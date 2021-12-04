@@ -1,0 +1,28 @@
+{
+  "name": "justy",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "description": "To Do App",
+  "repository": {
+    "type": "Github",
+    "url": "https://github.com/olek-arsee/justy"
+  },
+  "author": {
+    "name": "Olek Baran",
+    "email": "olek@arsee.pl"
+  },
+  "keywords": [
+    "TODO",
+    "TODO App",
+    "To Do",
+    "To Do App",
+    "Electron"
+  ],
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^16.0.4"
+  }
+}
