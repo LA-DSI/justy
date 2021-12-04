@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <title>Justy</title>
+    <link rel="stylesheet" href="./start.css">
+    <script src="./start.js" defer></script>
+</head>
+<body>
+    <div class="app flex-col">
+        <header class="flex-col">
+            <h1 class="white text-shadow flex-row">
+                <div id="heading">Welcome in</div>
+                <span class="lightBlue justy">&nbsp;Justy</span>
+            </h1>
+            <div id="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" class="logo white drop-shadow" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <div class="logo-caption">
+                    <p class="white text-shadow">Justy<br><span class="lightBlue">TODO</span></p>
+                </div>
+            </div>
+        </header>
+        <section class="buttons drop-shadow flex-col">
+            <button onclick="signIn()" class="text-shadow" id="login-text">Sign in</button>
+            <button onclick="signUp()" class="lightBlue text-shadow" id="registration-text">Sign up</button>
+            <button onclick="exit()" class="lightBlue text-shadow" id="exit-text">Exit</button>
+        </section>
+    </div>
+</body>
+</html>
