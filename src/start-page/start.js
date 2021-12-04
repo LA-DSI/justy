@@ -13,11 +13,7 @@ if (navigator.language == "pl") {
 }
 
 function signIn() {
-    console.log("Login")
-}
-
-function signUp() {
-    console.log("Registration")
+    location.href = "../login/login.html"
 }
 
 function exit() {

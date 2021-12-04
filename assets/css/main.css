@@ -53,3 +53,14 @@
     justify-content: center;
     align-items: center;
 }
+
+.footer-text {
+    position: absolute;
+    bottom: 1.5rem;
+    font-size: 0.8em;
+    font-weight: 200;
+}
+
+.footer-bold {
+    font-weight: 500;
+}

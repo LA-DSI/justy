@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <title>Justy</title>
+    <link rel="stylesheet" href="./login.css">
+    <script src="./login.js" defer></script>
+</head>
+<body>
+    <div class="app flex-col">
+            <div class="card">
+                <div class="content">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="exit white" onclick="exit()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <h1 class="white">Logowanie</h1>
+                    <div class="white flex-col">
+                        <div class="flex-row input">
+                            <label for="username">Login:</label>
+                            <input type="text" id="username">
+                        </div>
+                        <div class="flex-row input">
+                            <label for="password">Hasło:</label>
+                            <input type="password" id="password">
+                        </div>
+                    </div>
+                    <button>Zaloguj</button>
+                </div>
+            </div>
+    </div>
+    <footer class="white text-shadow flex-row">
+        <p class="footer-text">&copy; 2021 Copyright <span class="footer-bold">Arsee Projects</span> | Powered by <span class="footer-bold">Arsee Projects</span></p>
+    </footer>
+</body>
+</html>
