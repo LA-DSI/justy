@@ -1,3 +1,15 @@
+if (navigator.language == "pl") {
+  document.getElementById("heading").innerHTML = `Logowanie`
+  document.getElementById("login").placeholder = `Login lub Email`
+  document.getElementById("password").placeholder = `Hasło`
+  document.getElementById("login-button").innerHTML = `Zaloguj`
+} else {
+  document.getElementById("heading").innerHTML = `Sign in`
+  document.getElementById("login").placeholder = `Login or Email`
+  document.getElementById("password").placeholder = `Password`
+  document.getElementById("login-button").innerHTML = `Log in`
+}
+
 function exit() {
     location.href = "../start-page/start.html"
 }
