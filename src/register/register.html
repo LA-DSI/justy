@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <title>Justy</title>
     <link rel="stylesheet" href="../../assets/css/login-register.css">
-    <script src="./login.js" defer></script>
+    <script src="./register.js" defer></script>
 </head>
 <body>
     <div class="app flex-col">
@@ -15,7 +15,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="exit lightBlue drop-shadow" onclick="exit()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
-                    <h1 class="white text-shadow" id="heading">Sign in</h1>
+                    <h1 class="white text-shadow" id="heading">Sign up</h1>
                     <div class="white drop-shadow flex-col inputs">
                         <div class="login">
                             <input type="text" id="login" placeholder="Login or Email" class="text-shadow">
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="signIn()" id="login-button" class="white drop-shadow text-shadow">Log in</button>
+                    <button onclick="signUp()" id="register-button" class="white drop-shadow text-shadow">Register</button>
                 </div>
             </div>
     </div>

@@ -1,10 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
-let login;
+let justy;
 
-function createLoginWindow () {
-  login = new BrowserWindow({
+function createJustyWindow () {
+  justy = new BrowserWindow({
     title: "Justy",
     width: 500,
     height: 750,
@@ -23,19 +23,19 @@ function createLoginWindow () {
     }
   })
 
-  login.loadFile('src/start-page/start.html')
+  justy.loadFile('src/start-page/start.html')
 }
 
 app.whenReady().then(() => {
-  createLoginWindow()
-  login.once('ready-to-show', async () => {
-      login.show()
-      login.webContents.openDevTools({ mode: "detach" })
+  createJustyWindow()
+  justy.once('ready-to-show', async () => {
+      justy.show()
+      justy.webContents.openDevTools({ mode: "detach" })
   })
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createLoginWindow()
+      createJustyWindow()
     }
   })
 })

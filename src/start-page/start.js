@@ -16,6 +16,10 @@ function signIn() {
     location.href = "../login/login.html"
 }
 
+function signUp() {
+    location.href = "../register/register.html"
+}
+
 function exit() {
     ipcRenderer.send("exit")
 }
