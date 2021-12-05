@@ -91,17 +91,33 @@ input:focus::placeholder {
     opacity: 0;
 }
 
-.password-icon, .login-icon {
+.password-icon-login, .login-icon-login, .password-icon, .login-icon, .name-icon, .email-icon, .repeat-icon {
     width: 25px;
     position: absolute;
-    top: 106px;
+    top: 170px;
     right: 0px;
+}
+
+.password-icon-login {
+    top: 106px;
     cursor: pointer;
 }
 
-.login-icon {
+.name-icon, .login-icon-login {
     top: 34px;
-    cursor: default;
+}
+
+.login-icon {
+    top: 98px;
+}
+
+.password-icon {
+    top: 242px;
+    cursor: pointer;
+}
+
+.repeat-icon {
+    top: 315px;
 }
 
 #visible {
@@ -117,8 +133,26 @@ button {
     border-radius: 62px;
     transition: 0.3s;
     cursor: pointer;
+    user-select: none;
 }
 
 button:hover {
     border: 2px solid white;
+}
+
+/* Register */
+.name {
+    margin-bottom: 0;
+}
+
+.email {
+    margin-top: 0;
+}
+
+.card-register {
+    height: 550px;
+}
+
+#icon-ok, #icon-no {
+    display: none;
 }

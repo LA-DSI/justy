@@ -1,9 +1,9 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
-const path = require('path')
+const { app, BrowserWindow, ipcMain } = require("electron");
+const path = require("path");
 
 let justy;
 
-function createJustyWindow () {
+function createJustyWindow() {
   justy = new BrowserWindow({
     title: "Justy",
     width: 500,
@@ -19,33 +19,33 @@ function createJustyWindow () {
       devTools: true,
       contextIsolation: false,
       backgroundThrottling: false,
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
+      preload: path.join(__dirname, "preload.js"),
+    },
+  });
 
-  justy.loadFile('src/start-page/start.html')
+  justy.loadFile("src/start-page/start.html");
 }
 
 app.whenReady().then(() => {
-  createJustyWindow()
-  justy.once('ready-to-show', async () => {
-      justy.show()
-      justy.webContents.openDevTools({ mode: "detach" })
-  })
+  createJustyWindow();
+  justy.once("ready-to-show", async () => {
+    justy.show();
+    justy.webContents.openDevTools({ mode: "detach" });
+  });
 
-  app.on('activate', () => {
+  app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createJustyWindow()
+      createJustyWindow();
     }
-  })
-})
+  });
+});
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
   }
-})
+});
 
 ipcMain.on("exit", function (event, arg) {
   app.exit();
-})
+});

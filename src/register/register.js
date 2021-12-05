@@ -1,12 +1,14 @@
 if (navigator.language == "pl") {
   document.getElementById("heading").innerHTML = `Rejestracja`;
-  document.getElementById("login").placeholder = `Login lub Email`;
+  document.getElementById("name").placeholder = `Imię`;
   document.getElementById("password").placeholder = `Hasło`;
+  document.getElementById("repeat-password").placeholder = `Potwierdź hasło`;
   document.getElementById("register-button").innerHTML = `Zarejestruj`;
 } else {
   document.getElementById("heading").innerHTML = `Sign up`;
-  document.getElementById("login").placeholder = `Login or Email`;
+  document.getElementById("name").placeholder = `Name`;
   document.getElementById("password").placeholder = `Password`;
+  document.getElementById("repeat-password").placeholder = `Confirm password`;
   document.getElementById("register-button").innerHTML = `Register`;
 }
 
@@ -14,13 +16,31 @@ function exit() {
   location.href = "../start-page/start.html";
 }
 
+document.getElementById("name").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    document.getElementById("login").focus();
+  }
+});
+
 document.getElementById("login").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    document.getElementById("email").focus();
+  }
+});
+
+document.getElementById("email").addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     document.getElementById("password").focus();
   }
 });
 
 document.getElementById("password").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    document.getElementById("repeat-password").focus();
+  }
+});
+
+document.getElementById("repeat-password").addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
     signUp();
   }
@@ -39,9 +59,34 @@ function passwordVisibility() {
   }
 }
 
-function signUp() {
-  let login = document.getElementById("login").value;
-  let password = document.getElementById("password").value;
+setInterval (() => confirmPassword (), 1000);
 
-  console.log(login + password);
+function confirmPassword() {
+  if(document.getElementById("repeat-password").value == "") {
+    document.getElementById("icon-ok").style.display = "none";
+    document.getElementById("icon-no").style.display = "none";
+    document.getElementById("icon-start").style.display = "block";
+  }
+
+  if(document.getElementById("password").value != "" && document.getElementById("repeat-password").value != "") {
+    if(document.getElementById("password").value == document.getElementById("repeat-password").value) {
+      document.getElementById("icon-start").style.display = "none";
+      document.getElementById("icon-no").style.display = "none";
+      document.getElementById("icon-ok").style.display = "block";
+    } else {
+      document.getElementById("icon-start").style.display = "none";
+      document.getElementById("icon-ok").style.display = "none";
+      document.getElementById("icon-no").style.display = "block";
+    }
+  }
+}
+
+function signUp() {
+  let name = document.getElementById("name").value;
+  let login = document.getElementById("login").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let confirmPassword = document.getElementById("repeat-password").value;
+
+  console.log(login + " " + password);
 }

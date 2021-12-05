@@ -10,17 +10,29 @@
 </head>
 <body>
     <div class="app flex-col">
-            <div class="card">
+            <div class="card card-register">
                 <div class="content">
                     <svg xmlns="http://www.w3.org/2000/svg" class="exit lightBlue drop-shadow" onclick="exit()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                     <h1 class="white text-shadow" id="heading">Sign up</h1>
                     <div class="white drop-shadow flex-col inputs">
-                        <div class="login">
-                            <input type="text" id="login" placeholder="Login or Email" class="text-shadow">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="login-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div class="name login">
+                            <input type="text" id="name" placeholder="Name" class="text-shadow">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="name-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
+                        <div class="login">
+                            <input type="text" id="login" placeholder="Login" class="text-shadow">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="login-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="email login">
+                            <input type="email" id="email" placeholder="Email" class="text-shadow">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="email-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                             </svg>
                         </div>
                         <div class="password">
@@ -37,6 +49,24 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                     </svg>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="repeat password">
+                            <input type="password" id="repeat-password" placeholder="Repeat password" class="text-shadow">
+                            <div id="icon-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="repeat-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                            </div>
+                            <div id="icon-ok">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="repeat-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div id="icon-no">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="repeat-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
                             </div>
                         </div>
                     </div>
