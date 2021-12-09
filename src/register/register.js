@@ -40,11 +40,13 @@ document.getElementById("password").addEventListener("keypress", function (e) {
   }
 });
 
-document.getElementById("repeat-password").addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    signUp();
-  }
-});
+document
+  .getElementById("repeat-password")
+  .addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      signUp();
+    }
+  });
 
 function passwordVisibility() {
   var input = document.getElementById("password");
@@ -59,17 +61,23 @@ function passwordVisibility() {
   }
 }
 
-setInterval (() => confirmPassword (), 1000);
+setInterval(() => confirmPassword(), 1000);
 
 function confirmPassword() {
-  if(document.getElementById("repeat-password").value == "") {
+  if (document.getElementById("repeat-password").value == "") {
     document.getElementById("icon-ok").style.display = "none";
     document.getElementById("icon-no").style.display = "none";
     document.getElementById("icon-start").style.display = "block";
   }
 
-  if(document.getElementById("password").value != "" && document.getElementById("repeat-password").value != "") {
-    if(document.getElementById("password").value == document.getElementById("repeat-password").value) {
+  if (
+    document.getElementById("password").value != "" &&
+    document.getElementById("repeat-password").value != ""
+  ) {
+    if (
+      document.getElementById("password").value ==
+      document.getElementById("repeat-password").value
+    ) {
       document.getElementById("icon-start").style.display = "none";
       document.getElementById("icon-no").style.display = "none";
       document.getElementById("icon-ok").style.display = "block";
@@ -81,12 +89,38 @@ function confirmPassword() {
   }
 }
 
-function signUp() {
+async function signUp() {
   let name = document.getElementById("name").value;
   let login = document.getElementById("login").value;
   let email = document.getElementById("email").value;
   let password = document.getElementById("password").value;
   let confirmPassword = document.getElementById("repeat-password").value;
 
-  console.log(login + " " + password);
+  if (name && login && email && password && confirmPassword) {
+    if (password == confirmPassword) {
+      await fetch("https://justy-backend.herokuapp.com/auth/register", {
+        method: "post",
+        body: JSON.stringify({ name, login, email, password }),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }).then(async (response) => {
+        if (response.ok) {
+          const json = await response.json();
+          console.log(json);
+          // Pop-up - Load Login Page
+        } else {
+          console.log("response error");
+          // Pop-up - Error
+        }
+      });
+    } else {
+      console.log("passwords are not maching");
+      // Pop-up - Error
+    }
+  } else {
+    console.log("empty");
+    // Pop-up - Error
+  }
 }
