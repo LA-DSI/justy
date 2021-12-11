@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+const fs = require('fs');
 
 let justy;
 
@@ -23,7 +24,11 @@ function createJustyWindow() {
     },
   });
 
-  justy.loadFile("src/start-page/start.html");
+  if (fs.existsSync(path.join(__dirname, "..", "preferences.json"))) {
+    justy.loadFile("src/dashboard/dashboard.html");
+  } else {
+    justy.loadFile("src/start-page/start.html");
+  }
 }
 
 app.whenReady().then(() => {
@@ -49,3 +54,8 @@ app.on("window-all-closed", () => {
 ipcMain.on("exit", function (event, arg) {
   app.exit();
 });
+
+ipcMain.on("load-dashboard", () => {
+  app.exit();
+  app.relaunch();
+})

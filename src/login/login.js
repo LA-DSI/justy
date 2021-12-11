@@ -1,4 +1,6 @@
 const { ipcRenderer } = require("electron");
+const fs = require("fs");
+const path = require("path");
 
 if (navigator.language == "pl") {
   document.getElementById("heading").innerHTML = `Logowanie`;
@@ -45,7 +47,7 @@ async function signIn() {
   let login = document.getElementById("login").value;
   let password = document.getElementById("password").value;
 
-  if(login && password) {
+  if (login && password) {
     await fetch("https://justy-backend.herokuapp.com/auth/login", {
       method: "post",
       body: JSON.stringify({ login, password }),
@@ -56,16 +58,18 @@ async function signIn() {
     }).then(async (response) => {
       if (response.ok) {
         const json = await response.json();
-        console.log(json);
-        // Saving data in preferences.json
-        // Load dashboard
+        fs.writeFileSync(
+          path.join(__dirname, "..", "..", "preferences.json"),
+          JSON.stringify(json, null, 2)
+        );
+        ipcRenderer.send("load-dashboard");
       } else {
         console.log("login error");
         // Pop-up - Error
       }
     });
   } else {
-    console.log("empty")
+    console.log("empty");
     // Pop-up - Error
   }
 }
