@@ -7,5 +7,5 @@ if (navigator.language == "pl") {
 }
 
 function signIn() {
-  location.href = "../../register/register.html";
+  location.href = "../../../register/register.html";
 }

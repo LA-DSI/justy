@@ -9,8 +9,16 @@
     <script src="./register.js" defer></script>
 </head>
 <body>
+    <div class="loading flex-col drop-shadow" id="loading">
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
     <div class="app flex-col">
-            <div class="card card-register">
+            <div class="card card-register" id="card">
                 <div class="content">
                     <svg xmlns="http://www.w3.org/2000/svg" class="exit lightBlue drop-shadow" onclick="exit()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />

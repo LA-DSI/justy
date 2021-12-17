@@ -98,6 +98,8 @@ async function signUp() {
 
   if (name && login && email && password && confirmPassword) {
     if (password == confirmPassword) {
+      document.getElementById("loading").style.display = "flex";
+      document.getElementById("card").style.display = "none";
       await fetch("https://justy-backend.herokuapp.com/auth/register", {
         method: "post",
         body: JSON.stringify({ name, login, email, password }),
@@ -106,18 +108,19 @@ async function signUp() {
           Accept: "application/json",
         },
       }).then(async (response) => {
-        // if account exists
+        if (response.status == 409) {
+          location.href = "../pop-ups/errors/registration/account-exists.html";
+        }
         if (response.ok) {
-          console.log(response);
-          location.href = "../pop-ups/registration/registration.html";
+          //location.href = "../pop-ups/registration/registration.html";
         } else {
-          location.href = "../pop-ups/errors/server-error.html";
+          location.href = "../pop-ups/errors/registration/server-error.html";
         }
       });
     } else {
-      location.href = "../pop-ups/errors/matching.html";
+      location.href = "../pop-ups/errors/registration/matching.html";
     }
   } else {
-    location.href = "../pop-ups/errors/empty.html";
+    location.href = "../pop-ups/errors/registration/empty.html";
   }
 }
