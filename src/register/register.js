@@ -106,21 +106,18 @@ async function signUp() {
           Accept: "application/json",
         },
       }).then(async (response) => {
+        // if account exists
         if (response.ok) {
-          const json = await response.json();
-          console.log(json);
-          // Pop-up - Load Login Page
+          console.log(response);
+          location.href = "../pop-ups/registration/registration.html";
         } else {
-          console.log("response error");
-          // Pop-up - Error
+          location.href = "../pop-ups/errors/server-error.html";
         }
       });
     } else {
-      console.log("passwords are not maching");
-      // Pop-up - Error
+      location.href = "../pop-ups/errors/matching.html";
     }
   } else {
-    console.log("empty");
-    // Pop-up - Error
+    location.href = "../pop-ups/errors/empty.html";
   }
 }

@@ -24,6 +24,10 @@
     --lightPink: #FF87DF;
 }
 
+.app {
+    height: 100vh;
+}
+
 .lightBlue {
     color: var(--lightBlue);
 }
