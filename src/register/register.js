@@ -4,12 +4,30 @@ if (navigator.language == "pl") {
   document.getElementById("password").placeholder = `Hasło`;
   document.getElementById("repeat-password").placeholder = `Potwierdź hasło`;
   document.getElementById("register-button").innerHTML = `Zarejestruj`;
+  document.getElementById("popup-ok").innerHTML = `Rejestracja przebiegła pomyślnie!`;
+  document.getElementById("popup-server").innerHTML = `Błąd serwera!`;
+  document.getElementById("popup-account-exists").innerHTML = `Konto już istnieje!`;
+  document.getElementById("popup-matching").innerHTML = `Hasła nie pasują do siebie!`;
+  document.getElementById("popup-empty").innerHTML = `Wypełnij wszystkie pola!`;
+  document.getElementById("button-text-ok").innerHTML = `Zaloguj się`;
+  document.getElementById("button-text-again").innerHTML = `Spróbuj ponownie`;
 } else {
   document.getElementById("heading").innerHTML = `Sign up`;
   document.getElementById("name").placeholder = `Name`;
   document.getElementById("password").placeholder = `Password`;
   document.getElementById("repeat-password").placeholder = `Confirm password`;
   document.getElementById("register-button").innerHTML = `Register`;
+  document.getElementById("popup-ok").innerHTML = `Registration was successful!`;
+  document.getElementById("popup-server").innerHTML = `Server error!`;
+  document.getElementById("popup-account-exists").innerHTML = `Account already exists!`;
+  document.getElementById("popup-matching").innerHTML = `The passwords don't match!`;
+  document.getElementById("popup-empty").innerHTML = `Fill in all fields!`;
+  document.getElementById("button-text-ok").innerHTML = `Sign in`;
+  document.getElementById("button-text-again").innerHTML = `Try again`;
+}
+
+function signIn() {
+  location.href = "../../login/login.html";
 }
 
 function exit() {
@@ -100,6 +118,7 @@ async function signUp() {
     if (password == confirmPassword) {
       document.getElementById("loading").style.display = "flex";
       document.getElementById("card").style.display = "none";
+      //fetch catch error
       await fetch("https://justy-backend.herokuapp.com/auth/register", {
         method: "post",
         body: JSON.stringify({ name, login, email, password }),
@@ -109,18 +128,66 @@ async function signUp() {
         },
       }).then(async (response) => {
         if (response.status == 409) {
-          location.href = "../pop-ups/errors/registration/account-exists.html";
+          document.getElementById("loading").style.display = "none";
+          document.getElementById("card-container").style.display = "none";
+          document.body.style.height = "100vh";
+          document.getElementById("popup-account-exists").style.display = "block";
+          document.getElementById("wrong-icon").style.display = "block";
+          document.getElementById("button-ok").style.display = "none";
+          document.getElementById("button-wrong").style.display = "block";
+          document.getElementById("button-text-again").style.display = "block";
+          document.getElementById("popup").style.display = "flex";
         }
         if (response.ok) {
-          location.href = "../pop-ups/registration/registration.html";
+          document.getElementById("loading").style.display = "none";
+          document.getElementById("card-container").style.display = "none";
+          document.body.style.height = "100vh";
+          document.getElementById("popup-ok").style.display = "block";
+          document.getElementById("ok-icon").style.display = "block";
+          document.getElementById("button-wrong").style.display = "none";
+          document.getElementById("button-ok").style.display = "block";
+          document.getElementById("button-text-ok").style.display = "block";
+          document.getElementById("popup").style.display = "flex";
         } else {
-          location.href = "../pop-ups/errors/registration/server-error.html";
+          document.getElementById("loading").style.display = "none";
+          document.getElementById("card-container").style.display = "none";
+          document.body.style.height = "100vh";
+          document.getElementById("popup-server").style.display = "block";
+          document.getElementById("wrong-icon").style.display = "block";
+          document.getElementById("button-ok").style.display = "none";
+          document.getElementById("button-wrong").style.display = "block";
+          document.getElementById("button-text-again").style.display = "block";
+          document.getElementById("popup").style.display = "flex";
         }
       });
     } else {
-      location.href = "../pop-ups/errors/registration/matching.html";
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("card-container").style.display = "none";
+      document.body.style.height = "100vh";
+      document.getElementById("popup-matching").style.display = "block";
+      document.getElementById("wrong-icon").style.display = "block";
+      document.getElementById("button-ok").style.display = "none";
+      document.getElementById("button-wrong").style.display = "block";
+      document.getElementById("button-text-again").style.display = "block";
+      document.getElementById("popup").style.display = "flex";
     }
   } else {
-    location.href = "../pop-ups/errors/registration/empty.html";
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("card-container").style.display = "none";
+    document.body.style.height = "100vh";
+    document.getElementById("popup-empty").style.display = "block";
+    document.getElementById("wrong-icon").style.display = "block";
+    document.getElementById("button-ok").style.display = "none";
+    document.getElementById("button-wrong").style.display = "block";
+    document.getElementById("button-text-again").style.display = "block";
+    document.getElementById("popup").style.display = "flex";
   }
+}
+
+function registerPopupOk() {
+  location.href = "../login/login.html";
+}
+
+function registerPopupAgain() {
+  location.href = "../register/register.html";
 }

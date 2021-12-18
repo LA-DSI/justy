@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <title>Justy</title>
     <link rel="stylesheet" href="../../assets/css/login-register.css">
+    <link rel="stylesheet" href="../../assets/css/pop-up.css">
     <script src="./register.js" defer></script>
 </head>
 <body>
@@ -17,9 +18,34 @@
             <div></div>
         </div>
     </div>
-    <div class="app flex-col">
+    <div class="popup-container flex-col">
+        <div class="popup flex-col card-popup card" id="popup">
+            <div class="white flex-row text-shadow header-popup">
+                <svg xmlns="http://www.w3.org/2000/svg" class="ok-icon lightBlue drop-shadow" id="ok-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="wrong-icon lightBlue drop-shadow" id="wrong-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <p id="popup-ok">Registration was successful!</p>
+                <p id="popup-server">Server error!</p>
+                <p id="popup-account-exists">Account already exists!</p>
+                <p id="popup-matching">The passwords don't match!</p>
+                <p id="popup-empty">Fill in all fields!</p>
+            </div>
+            <div class="drop-shadow">
+                <div id="button-ok">
+                    <button onclick="registerPopupOk()" class="white text-shadow" id="button-text-ok">Sign in</button>
+                </div>
+                <div id="button-wrong">
+                    <button onclick="registerPopupAgain()" class="white text-shadow" id="button-text-again">Try again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app flex-col" id="card-container">
             <div class="card card-register" id="card">
-                <div class="content">
+                <div class="content" id="content">
                     <svg xmlns="http://www.w3.org/2000/svg" class="exit lightBlue drop-shadow" onclick="exit()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
