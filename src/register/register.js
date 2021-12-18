@@ -5,7 +5,7 @@ if (navigator.language == "pl") {
   document.getElementById("repeat-password").placeholder = `Potwierdź hasło`;
   document.getElementById("register-button").innerHTML = `Zarejestruj`;
   document.getElementById("popup-ok").innerHTML = `Rejestracja przebiegła pomyślnie!`;
-  document.getElementById("popup-server").innerHTML = `Błąd serwera!`;
+  document.getElementById("popup-connection").innerHTML = `Coś poszło nie tak!`;
   document.getElementById("popup-account-exists").innerHTML = `Konto już istnieje!`;
   document.getElementById("popup-matching").innerHTML = `Hasła nie pasują do siebie!`;
   document.getElementById("popup-empty").innerHTML = `Wypełnij wszystkie pola!`;
@@ -18,7 +18,7 @@ if (navigator.language == "pl") {
   document.getElementById("repeat-password").placeholder = `Confirm password`;
   document.getElementById("register-button").innerHTML = `Register`;
   document.getElementById("popup-ok").innerHTML = `Registration was successful!`;
-  document.getElementById("popup-server").innerHTML = `Server error!`;
+  document.getElementById("popup-connection").innerHTML = `Something went wrong!`;
   document.getElementById("popup-account-exists").innerHTML = `Account already exists!`;
   document.getElementById("popup-matching").innerHTML = `The passwords don't match!`;
   document.getElementById("popup-empty").innerHTML = `Fill in all fields!`;
@@ -152,7 +152,7 @@ async function signUp() {
           document.getElementById("loading").style.display = "none";
           document.getElementById("card-container").style.display = "none";
           document.body.style.height = "100vh";
-          document.getElementById("popup-server").style.display = "block";
+          document.getElementById("popup-connection").style.display = "block";
           document.getElementById("wrong-icon").style.display = "block";
           document.getElementById("button-ok").style.display = "none";
           document.getElementById("button-wrong").style.display = "block";
@@ -189,5 +189,5 @@ function registerPopupOk() {
 }
 
 function registerPopupAgain() {
-  location.href = "../register/register.html";
+  location.href = "./register.html";
 }

@@ -21,6 +21,6 @@
     display: none;
 }
 
-#popup-ok, #popup-server, #button-text-ok, #button-text-server, #ok-icon, #wrong-icon, #button-ok, #popup-account-exists, #popup-matching, #popup-empty {
+#popup-ok, #popup-connection, #button-text-ok, #button-text-server, #ok-icon, #wrong-icon, #button-ok, #popup-account-exists, #popup-matching, #popup-empty, #popup-no-account {
     display: none;
 }

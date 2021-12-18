@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <title>Justy</title>
     <link rel="stylesheet" href="../../assets/css/login-register.css">
+    <link rel="stylesheet" href="../../assets/css/pop-up.css">
     <script src="./login.js" defer></script>
 </head>
 <body>
@@ -17,7 +18,24 @@
             <div></div>
         </div>
     </div>
-    <div class="app flex-col">
+    <div class="popup-container flex-col">
+        <div class="popup flex-col card-popup card" id="popup">
+            <div class="white flex-row text-shadow header-popup">
+                <svg xmlns="http://www.w3.org/2000/svg" class="wrong-icon lightBlue drop-shadow" id="wrong-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <p id="popup-empty">Fill in all fields!</p>
+                <p id="popup-no-account">There is no such account!</p>
+                <p id="popup-connection">Something went wrong!</p>
+            </div>
+            <div class="drop-shadow">
+                <div id="button-wrong">
+                    <button onclick="loginPopupAgain()" class="white text-shadow" id="button-text-again">Try again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app flex-col" id="card-container">
             <div class="card" id="card">
                 <div class="content">
                     <svg xmlns="http://www.w3.org/2000/svg" class="exit lightBlue drop-shadow" onclick="exit()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
