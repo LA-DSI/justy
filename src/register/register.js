@@ -112,7 +112,7 @@ async function signUp() {
           location.href = "../pop-ups/errors/registration/account-exists.html";
         }
         if (response.ok) {
-          //location.href = "../pop-ups/registration/registration.html";
+          location.href = "../pop-ups/registration/registration.html";
         } else {
           location.href = "../pop-ups/errors/registration/server-error.html";
         }

@@ -48,6 +48,8 @@ async function signIn() {
   let password = document.getElementById("password").value;
 
   if (login && password) {
+    document.getElementById("loading").style.display = "flex";
+    document.getElementById("card").style.display = "none";
     await fetch("https://justy-backend.herokuapp.com/auth/login", {
       method: "post",
       body: JSON.stringify({ login, password }),
@@ -56,6 +58,9 @@ async function signIn() {
         Accept: "application/json",
       },
     }).then(async (response) => {
+      if (response.status == 404) {
+        location.href = "../pop-ups/errors/login/no-account.html";
+      }
       if (response.ok) {
         const json = await response.json();
         fs.writeFileSync(
@@ -64,12 +69,10 @@ async function signIn() {
         );
         ipcRenderer.send("load-dashboard");
       } else {
-        console.log("login error");
-        // Pop-up - Error
+        location.href = "../pop-ups/errors/login/server-error.html";
       }
     });
   } else {
-    console.log("empty");
-    // Pop-up - Error
+    location.href = "../pop-ups/errors/login/empty.html";
   }
 }
