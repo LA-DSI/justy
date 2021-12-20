@@ -6,10 +6,11 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <title>Justy</title>
     <link rel="stylesheet" href="./start.css">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
     <script src="./start.js" defer></script>
 </head>
 <body>
-    <div class="app flex-col">
+    <div class="app flex-col slideInDown" id="app">
         <header class="flex-col">
             <h1 class="white text-shadow flex-row">
                 <div id="heading">Welcome in</div>
@@ -32,7 +33,7 @@
         </section>
     </div>
     <footer class="white text-shadow flex-row">
-        <p class="footer-text">&copy; 2021 Copyright <span class="footer-bold">Arsee Projects</span> | Powered by <span class="footer-bold">Arsee Projects</span></p>
+        <p class="footer-text">&copy; <span id="year"></span> Copyright <span class="footer-bold">Arsee Projects</span> | Powered by <span class="footer-bold">Arsee Projects</span></p>
     </footer>
 </body>
 </html>

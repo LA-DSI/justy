@@ -42,3 +42,48 @@
     transform: translateX(150%);
   }
 }
+
+.slideOutLeft {
+  animation-name: slideOutLeft;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    visibility: hidden;
+    transform: translateX(-150%);
+  }
+}
+
+.slideInDown {
+  animation-name: slideInDown;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-150%);
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.slideOutDown {
+  animation-name: slideOutDown;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+@keyframes slideOutDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    visibility: hidden;
+    transform: translateY(150%);
+  }
+}

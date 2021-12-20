@@ -1,5 +1,9 @@
 @import url(../../assets/css/main.css);
 
+body {
+  overflow: hidden;
+}
+
 .app {
   height: 100vh;
 }
@@ -10,7 +14,8 @@ header {
 }
 
 body {
-  background: linear-gradient(203.96deg, #111216 0%, #284798 100%);
+  background: no-repeat url("../../assets/images/bg-start.jpg");
+  background-size: cover;
 }
 
 h1 {

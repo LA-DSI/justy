@@ -12,14 +12,29 @@ if (navigator.language == "pl") {
   document.getElementById("exit-text").innerHTML = `Exit`;
 }
 
+let year = new Date().getFullYear()
+document.getElementById("year").innerHTML = year;
+
 function signIn() {
-  location.href = "../login/login.html";
+  document.getElementById("app").classList.add("slideOutDown")
+  document.getElementById("app").animationPlayState = "running"
+  sleep(400).then(() => {
+    location.href = "../login/login.html";
+  })
 }
 
 function signUp() {
-  location.href = "../register/register.html";
+  document.getElementById("app").classList.add("slideOutDown")
+  document.getElementById("app").animationPlayState = "running"
+  sleep(400).then(() => {
+    location.href = "../register/register.html";
+  })
 }
 
 function exit() {
   ipcRenderer.send("exit");
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

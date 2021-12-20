@@ -1,7 +1,11 @@
 if (navigator.language == "pl") {
+  document.getElementById("search-bar").placeholder = `Szukaj TODO`
   document.getElementById("hi").innerHTML = `Cześć`;
+  document.getElementById("text-add").innerHTML = `Dodaj nowe zadanie!`;
 } else {
+  document.getElementById("search-bar").placeholder = `Search for TODO`
   document.getElementById("hi").innerHTML = `Hi`;
+  document.getElementById("text-add").innerHTML = `Add new task!`;
 }
 
 function search() {
@@ -10,7 +14,7 @@ function search() {
   if (searchInput.style.display === "inline-block") {
     document.getElementById("search-bar").classList = "slideOutRight"
     document.getElementById("search-bar").animationPlayState = "running"
-    sleep(1000).then(() => {
+    sleep(400).then(() => {
         searchInput.style.display = "none";
     })
   } else {

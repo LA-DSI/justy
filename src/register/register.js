@@ -45,7 +45,15 @@ function signIn() {
 }
 
 function exit() {
-  location.href = "../start-page/start.html";
+  document.getElementById("card-container").classList.add("slideOutLeft")
+  document.getElementById("card-container").animationPlayState = "running"
+  sleep(400).then(() => {
+    location.href = "../start-page/start.html";
+  })
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 document.getElementById("name").addEventListener("keypress", function (e) {

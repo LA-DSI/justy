@@ -14,27 +14,34 @@
         <div class="main-container">
             <header>
                 <nav>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
                     </svg>
                     <div id="search-bar-container">
-                        <input type="text" id="search-bar" name="search" placeholder="Search for TODO" />
+                        <div class="drop-shadow">
+                            <input type="text" id="search-bar" class="text-shadow" name="search" placeholder="Search for TODO" />
+                        </div>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" onclick="search()" class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" onclick="search()" class="search-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </nav>
                 <h1>
-                    <div>
+                    <div class="white text-shadow">
                         <span id="hi">Hi </span>
                         <span id="name"></span>
                     </div>
                 </h1>
-                <div class="add"></div>
+                <div class="add drop-shadow">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="add-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" />
+                    </svg>
+                    <p class="text-add white text-shadow" id="text-add">Add new task!</p>
+                </div>
             </header>
-            <section class="flex-row">
+            <section class="flex-row drop-shadow">
                 <div class="stripe"></div>
-                <p class="text-stripe">TODO</p>
+                <p class="text-stripe lightBlue">TODO</p>
                 <div class="stripe"></div>
             </section>
         </div>

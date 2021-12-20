@@ -29,7 +29,15 @@ if (navigator.language == "pl") {
 }
 
 function exit() {
-  location.href = "../start-page/start.html";
+  document.getElementById("card-container").classList.add("slideOutRight")
+  document.getElementById("card-container").animationPlayState = "running"
+  sleep(400).then(() => {
+    location.href = "../start-page/start.html";
+  })
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 document.getElementById("login").addEventListener("keypress", function (e) {
