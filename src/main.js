@@ -10,7 +10,7 @@ function createJustyWindow() {
     width: 500,
     height: 750,
     minWidth: 500,
-    minHeight: 625,
+    minHeight: 650,
     resizable: true,
     minimizable: true,
     frame: true,
