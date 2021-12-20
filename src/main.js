@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
-const fs = require('fs');
+const fs = require("fs");
 
 let justy;
 
@@ -58,4 +58,4 @@ ipcMain.on("exit", function (event, arg) {
 ipcMain.on("load-dashboard", () => {
   app.exit();
   app.relaunch();
-})
+});

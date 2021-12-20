@@ -1,26 +1,37 @@
 .card-popup {
-    height: 150px;
+  height: 150px;
 }
 
 .header-popup {
-    margin-bottom: 1.5rem;
-    user-select: none;
+  margin-bottom: 1.5rem;
+  user-select: none;
 }
 
-.ok-icon, .wrong-icon {
-    width: 30px;
-    margin-right: 0.5rem;
+.ok-icon,
+.wrong-icon {
+  width: 30px;
+  margin-right: 0.5rem;
 }
 
 .popup-container {
-    height: 100%;
+  height: 100%;
 }
 
 .popup {
-    z-index: 1;
-    display: none;
+  z-index: 1;
+  display: none;
 }
 
-#popup-ok, #popup-connection, #button-text-ok, #button-text-server, #ok-icon, #wrong-icon, #button-ok, #popup-account-exists, #popup-matching, #popup-empty, #popup-no-account {
-    display: none;
+#popup-ok,
+#popup-connection,
+#button-text-ok,
+#button-text-server,
+#ok-icon,
+#wrong-icon,
+#button-ok,
+#popup-account-exists,
+#popup-matching,
+#popup-empty,
+#popup-no-account {
+  display: none;
 }

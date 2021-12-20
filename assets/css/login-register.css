@@ -166,11 +166,11 @@ button:hover {
 /* Loading Animation */
 
 .loading {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    z-index: 1;
-    display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  display: none;
 }
 
 .lds-ring {

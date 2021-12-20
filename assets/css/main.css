@@ -1,71 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Bai Jamjuree', sans-serif;
-    text-align: center;
-    scroll-behavior: smooth;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Bai Jamjuree", sans-serif;
+  text-align: center;
+  scroll-behavior: smooth;
 }
 
 :root {
-    /* Texts */
-    --lightBlue: #9CB5F9;
-    --darkBlue: #21346A;
-    --white: #FFFFFF;
-    --black: #000000;
+  /* Texts */
+  --lightBlue: #9cb5f9;
+  --darkBlue: #21346a;
+  --white: #ffffff;
+  --black: #000000;
 
-    /* Specials */
-    --pink: #FD5FEC;
-    --cyan: #5FF5F7;
+  /* Specials */
+  --pink: #fd5fec;
+  --cyan: #5ff5f7;
 
-    /* Other */
-    --lightPink: #FF87DF;
+  /* Other */
+  --lightPink: #ff87df;
 }
 
 .app {
-    height: 100vh;
+  height: 100vh;
 }
 
 .lightBlue {
-    color: var(--lightBlue);
+  color: var(--lightBlue);
 }
 
 .white {
-    color: var(--white);
+  color: var(--white);
 }
 
 .text-shadow {
-    text-shadow: 10.055px 10.055px 10.055px rgba(0, 0, 0, 0.25);
+  text-shadow: 10.055px 10.055px 10.055px rgba(0, 0, 0, 0.25);
 }
 
 .drop-shadow {
-    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .flex-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer-text {
-    position: absolute;
-    bottom: 1.5rem;
-    font-size: 0.8em;
-    font-weight: 200;
-    user-select: none;
+  position: absolute;
+  bottom: 1.5rem;
+  font-size: 0.8em;
+  font-weight: 200;
+  user-select: none;
 }
 
 .footer-bold {
-    font-weight: 500;
+  font-weight: 500;
 }
