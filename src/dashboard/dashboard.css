@@ -1,0 +1,71 @@
+@import url(../../assets/css/main.css);
+
+.app {
+    width: 100%;
+    height: 100%;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 1rem 0 1rem;
+}
+
+.menu-icon, .search-icon {
+    height: 45px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#search-bar-container {
+    width: 80%;
+}
+
+#search-bar {
+    width: 90%;
+    height: 45px;
+    border-radius: 54px;
+    outline: none;
+    border: solid 2px #000000;
+    padding: 0 1rem;
+    text-align: left;
+    display: none;
+}
+
+h1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 1.3rem;
+    font-weight: 200;
+}
+
+#name {
+    font-weight: 500;
+}
+
+.add {
+    background-color: #000000;
+    height: 44px;
+    width: 260px;
+    border-radius: 54px;
+    margin: 0 0 1rem 1.3rem;
+    cursor: pointer;
+}
+
+.stripe {
+    background-color: #000000;
+    border-radius: 54px;
+    height: 2px;
+    width: 39%;
+}
+
+.text-stripe {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    user-select: none;
+}

@@ -1,0 +1,44 @@
+.slideInLeft {
+  animation-name: slideInLeft;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-150%);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slideInRight {
+  animation-name: slideInRight;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+@keyframes slideInRight {
+  0% {
+    transform: translateX(150%);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.slideOutRight {
+  animation-name: slideOutRight;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    visibility: hidden;
+    transform: translateX(150%);
+  }
+}

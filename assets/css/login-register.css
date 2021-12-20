@@ -1,13 +1,13 @@
 @import url(../../assets/css/main.css);
 
-header {
-  width: 100%;
-  height: 300px;
-}
-
 body {
   background: linear-gradient(203.96deg, #111216 0%, #284798 100%);
   overflow: hidden;
+}
+
+header {
+  width: 100%;
+  height: 300px;
 }
 
 .card {
@@ -206,37 +206,5 @@ button:hover {
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-/* Animations */
-
-.slideInLeft {
-  animation-name: slideInLeft;
-  animation-duration: 0.8s;
-  animation-fill-mode: both;
-}
-@keyframes slideInLeft {
-  0% {
-    transform: translateX(-100%);
-    visibility: visible;
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.slideInRight {
-  animation-name: slideInRight;
-  animation-duration: 0.8s;
-  animation-fill-mode: both;
-}
-@keyframes slideInRight {
-  0% {
-    transform: translateX(100%);
-    visibility: visible;
-  }
-  100% {
-    transform: translateX(0);
   }
 }

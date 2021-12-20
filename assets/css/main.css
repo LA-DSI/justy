@@ -24,6 +24,10 @@
   --lightPink: #ff87df;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .app {
   height: 100vh;
 }
