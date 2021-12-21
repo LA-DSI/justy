@@ -7,6 +7,7 @@
     <title>Justy</title>
     <link rel="stylesheet" href="./dashboard.css">
     <link rel="stylesheet" href="../../assets/css/animations.css">
+    <link rel="stylesheet" href="../../assets/css/scrollbars.css">
     <script src="./dashboard.js" defer></script>
 </head>
 <body>
@@ -39,11 +40,16 @@
                     <p class="text-add white text-shadow" id="text-add">Add new task!</p>
                 </div>
             </header>
-            <section class="flex-row drop-shadow">
-                <div class="stripe"></div>
-                <p class="text-stripe lightBlue">TODO</p>
-                <div class="stripe"></div>
-            </section>
+            <div class="flex-col">
+                <div class="todo-section">
+                    <div class="flex-row drop-shadow title">
+                        <div class="stripe"></div>
+                        <p class="text-stripe lightBlue">TODO</p>
+                        <div class="stripe"></div>
+                    </div>
+                    <div id="todos-container" class="flex-col"></div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

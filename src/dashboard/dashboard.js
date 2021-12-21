@@ -49,7 +49,20 @@ async function loadTodos() {
         return response.json().then(function (json) {
           const todos = JSON.parse(json.list);
           for (const todo of todos) {
-            console.log(todo)
+            let todoWrapper = document.createElement("div");
+            todoWrapper.id = "todo-wrapper"
+            todoWrapper.classList = "todo-wrapper drop-shadow"
+            document.getElementById("todos-container").appendChild(todoWrapper)
+
+            let todoMain = document.createElement("div");
+            todoMain.classList = "todo-main text-shadow"
+            todoMain.innerHTML = `<p class="todo-text">${todo.title}</p>`;
+            todoWrapper.appendChild(todoMain)
+
+            let todoSettings = document.createElement("div");
+            todoSettings.classList = "todo-circle"
+            todoSettings.innerHTML = `...`;
+            todoWrapper.appendChild(todoSettings)
           }
         });
       } else {
