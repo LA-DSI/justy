@@ -2,10 +2,12 @@ if (navigator.language == "pl") {
   document.getElementById("search-bar").placeholder = `Szukaj TODO`;
   document.getElementById("hi").innerHTML = `Cześć`;
   document.getElementById("text-add").innerHTML = `Dodaj nowe zadanie!`;
+  document.getElementById("done-text").innerHTML = `ZROBIONE`
 } else {
   document.getElementById("search-bar").placeholder = `Search for TODO`;
   document.getElementById("hi").innerHTML = `Hi`;
   document.getElementById("text-add").innerHTML = `Add new task!`;
+  document.getElementById("done-text").innerHTML = `DONE`
 }
 
 const preferences = require("../../preferences.json");
@@ -35,6 +37,19 @@ if (!document.getElementById("name").innerHTML) {
   document.getElementById("hi").style.fontWeight = 500;
 }
 
+function addTodo() {
+  if(document.getElementById("add-container").style.display == "flex") {
+    document.getElementById("add-container").classList.add("slideOutRight")
+    document.getElementById("add-container").animationPlayState = "running";
+    sleep(400).then(() => {
+      document.getElementById("add-container").style.display = "none"
+    })
+  } else {
+    document.getElementById("add-container").classList.remove("slideOutRight")
+    document.getElementById("add-container").style.display = "flex"
+  }
+}
+
 async function loadTodos() {
   await fetch("https://justy-backend.herokuapp.com/todos", {
     method: "get",
@@ -46,22 +61,35 @@ async function loadTodos() {
   })
     .then(async (response) => {
       if (response.ok) {
+        document.getElementById("loading").style.display = "none"
         return response.json().then(function (json) {
           const todos = JSON.parse(json.list);
           for (const todo of todos) {
             let todoWrapper = document.createElement("div");
             todoWrapper.id = "todo-wrapper"
             todoWrapper.classList = "todo-wrapper drop-shadow"
-            document.getElementById("todos-container").appendChild(todoWrapper)
+            if(todo.done == true) {
+              document.getElementById("done").style.display = "block"
+              document.getElementById("todos-done-container").appendChild(todoWrapper)
+            } else {
+              document.getElementById("done").style.display = "none"
+              document.getElementById("todos-container").appendChild(todoWrapper)
+            }
 
             let todoMain = document.createElement("div");
             todoMain.classList = "todo-main text-shadow"
-            todoMain.innerHTML = `<p class="todo-text">${todo.title}</p>`;
+            if(todo.category == "important") {
+              todoMain.innerHTML = `<svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#fd5fec" stroke-width="4"/></svg><p class="todo-text" id="todo-text">${todo.title}</p>`;
+            } else if (todo.done == true) {
+              todoMain.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p>`;
+            } else {
+              todoMain.innerHTML = `<svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#5ff5f7" stroke-width="4"/></svg><p class="todo-text" id="todo-text">${todo.title}</p>`;
+            }
             todoWrapper.appendChild(todoMain)
 
             let todoSettings = document.createElement("div");
-            todoSettings.classList = "todo-circle"
-            todoSettings.innerHTML = `...`;
+            todoSettings.classList = "todo-circle";
+            todoSettings.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`;
             todoWrapper.appendChild(todoSettings)
           }
         });

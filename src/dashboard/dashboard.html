@@ -12,11 +12,11 @@
 </head>
 <body>
     <div class="app">
-        <div class="main-container">
+        <div class="main-container" id="main-container">
             <header>
                 <nav>
                     <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                     <div id="search-bar-container">
                         <div class="drop-shadow">
@@ -33,11 +33,14 @@
                         <span id="name"></span>
                     </div>
                 </h1>
-                <div class="add drop-shadow">
+                <div onclick="addTodo()" class="add drop-shadow">
                     <svg xmlns="http://www.w3.org/2000/svg" class="add-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" />
                     </svg>
                     <p class="text-add white text-shadow" id="text-add">Add new task!</p>
+                </div>
+                <div id="add-container" class="flex-col hidden slideInLeft">
+                    <div class="add-wrapper"></div>
                 </div>
             </header>
             <div class="flex-col">
@@ -47,7 +50,23 @@
                         <p class="text-stripe lightBlue">TODO</p>
                         <div class="stripe"></div>
                     </div>
+                    <div class="loading flex-col drop-shadow" id="loading">
+                        <div class="lds-ring">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
                     <div id="todos-container" class="flex-col"></div>
+                    <section id="done">
+                        <div class="flex-row drop-shadow title-done">
+                            <div class="stripe"></div>
+                            <p class="text-stripe lightBlue" id="done-text">DONE</p>
+                            <div class="stripe"></div>
+                        </div>
+                        <div id="todos-done-container" class="flex-col"></div>
+                    </section>
                 </div>
             </div>
         </div>
