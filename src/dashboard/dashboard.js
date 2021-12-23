@@ -76,6 +76,10 @@ async function loadTodos() {
               document.getElementById("todos-container").appendChild(todoWrapper)
             }
 
+            if(todo.done == false) {
+              document.getElementById("title").style.display = "flex"
+            }
+
             let todoMain = document.createElement("div");
             todoMain.classList = "todo-main text-shadow"
             if(todo.category == "important") {

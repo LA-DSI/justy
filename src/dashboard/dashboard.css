@@ -93,7 +93,7 @@ h1 {
   height: 44px;
   width: 260px;
   border-radius: 54px;
-  margin: 0 0 1rem 1.3rem;
+  margin: 0 0 2rem 1.3rem;
   transition: 0.3s;
   cursor: pointer;
 }
@@ -118,7 +118,7 @@ h1 {
   align-items: center;
   border: solid 1px #9cb5f9;
   backdrop-filter: blur(5px);
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   transition: 0.3s;
 }
 
@@ -134,6 +134,7 @@ h1 {
 }
 
 .title {
+  margin-top: -1rem;
   margin-bottom: 1rem;
 }
 
@@ -207,7 +208,7 @@ h1 {
   color: white;
 }
 
-#done {
+#done, #title {
   display: none;
 }
 
