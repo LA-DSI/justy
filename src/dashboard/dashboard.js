@@ -85,6 +85,10 @@ async function loadTodos() {
             } else {
               todoMain.innerHTML = `<svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#5ff5f7" stroke-width="4"/></svg><p class="todo-text" id="todo-text">${todo.title}</p>`;
             }
+
+            if(todo.category == "important" && todo.done == true) {
+              todoMain.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p>`;
+            }
             todoWrapper.appendChild(todoMain)
 
             let todoSettings = document.createElement("div");
