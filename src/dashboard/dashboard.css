@@ -194,6 +194,12 @@ h1 {
   margin-right: 1rem;
 }
 
+.todo-text {
+  max-width: 86%;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
 .todo-circle {
   width: 55px;
   justify-content: center;
