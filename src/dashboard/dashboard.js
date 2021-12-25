@@ -98,8 +98,22 @@ async function loadTodos() {
             let todoSettings = document.createElement("div");
             todoSettings.classList = "todo-circle";
             todoSettings.id = "todo-circle"
-            todoSettings.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" onclick="openProperties()" width="55" height="55" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`
+            todoSettings.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`
             todoWrapper.appendChild(todoSettings)
+            todoSettings.onclick = function() {
+              const settingsIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`
+              const settingsIcons = `<img src="../../assets/icons/edit.svg" class="edit drop-shadow"><img src="../../assets/icons/delete.svg" class="delete drop-shadow"><img src="../../assets/icons/exit.svg" class="exit drop-shadow">`
+              todoSettings.previousSibling.style.width = "58%"
+              todoSettings.style.width = "35%"
+              if(todoSettings.innerHTML == settingsIcons) {
+                todoSettings.innerHTML = settingsIcon
+                todoSettings.style.cursor = "pointer"
+                todoSettings.onclick = "none"
+              } else {
+                todoSettings.innerHTML = settingsIcons
+                todoSettings.style.cursor = "default"
+              }
+            }
           }
         });
       } else {
@@ -107,35 +121,6 @@ async function loadTodos() {
       }
     })
     .catch((reason) => {
-      console.log("something went wrong");
+      console.log("something went wrong" + reason);
     });
-}
-
-function openProperties() {
-  const settingsIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`
-  const settingsIcons = `<img src="../../assets/icons/edit.svg" class="edit drop-shadow" onclick="edit()"><img src="../../assets/icons/delete.svg" class="delete drop-shadow" onclick="delete()"><img src="../../assets/icons/exit.svg" class="exit drop-shadow" onclick="closeProperties()">`
-  document.getElementById("todo-circle").previousSibling.style.width = "58%"
-  document.getElementById("todo-circle").style.width = "35%"
-  if(document.getElementById("todo-circle").innerHTML == settingsIcons) {
-    document.getElementById("todo-circle").innerHTML = settingsIcon
-    document.getElementById("todo-circle").style.cursor = "pointer"
-  } else {
-    document.getElementById("todo-circle").innerHTML = settingsIcons
-    document.getElementById("todo-circle").style.cursor = "default"
-  }
-}
-
-function closeProperties() {
-  document.getElementById("todo-circle").previousSibling.style.width = "81%"
-  document.getElementById("todo-circle").style.width = "55px"
-  document.getElementById("todo-circle").innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" onclick="openProperties()" width="55" height="55" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`
-  document.getElementById("todo-circle").style.cursor = "pointer";
-}
-
-function editTodo() {
-  console.log("edit");
-}
-
-function deleteTodo() {
-  console.log("delete");
 }
