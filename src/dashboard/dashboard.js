@@ -64,6 +64,8 @@ async function loadTodos() {
         document.getElementById("loading").style.display = "none"
         return response.json().then(function (json) {
           const todos = JSON.parse(json.list);
+          const settingsIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`
+          const settingsIcons = `<img src="../../assets/icons/edit.svg" class="edit drop-shadow" onclick="edit()"><img src="../../assets/icons/delete.svg" class="delete drop-shadow" onclick="delete()"><img src="../../assets/icons/exit.svg" class="exit drop-shadow" onclick="closeProperties()">`
           for (const todo of todos) {
             let todoWrapper = document.createElement("div");
             todoWrapper.id = "todo-wrapper"
@@ -97,7 +99,20 @@ async function loadTodos() {
 
             let todoSettings = document.createElement("div");
             todoSettings.classList = "todo-circle";
-            todoSettings.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`;
+            todoSettings.id = "todo-circle"
+            todoSettings.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`
+            todoSettings.onclick = function() {
+              todoSettings.previousSibling.style.width = "58%"
+              todoSettings.style.width = "35%"
+              if(todoSettings.innerHTML == settingsIcons) {
+                todoSettings.innerHTML = settingsIcon
+                todoSettings.style.cursor = "pointer"
+              } else {
+                todoSettings.innerHTML = settingsIcons
+                todoSettings.style.cursor = "default"
+                todoSettings.onclick = "none"
+              }
+            }
             todoWrapper.appendChild(todoSettings)
           }
         });

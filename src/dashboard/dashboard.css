@@ -192,12 +192,14 @@ h1 {
 
 .todo-icon {
   margin-right: 1rem;
+  position: absolute;
 }
 
 .todo-text {
   max-width: 86%;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
+  margin-left: 2.75rem;
 }
 
 .todo-circle {
@@ -208,6 +210,34 @@ h1 {
 
 .dots-icon {
   transition: 0.3s;
+}
+
+.todo-circle img {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  filter: invert(69%) sepia(35%) saturate(762%) hue-rotate(194deg) brightness(99%) contrast(97%);
+  transition: 0.3s;
+}
+
+.todo-circle img:hover {
+  filter: invert(100%) sepia(47%) saturate(0%) hue-rotate(156deg) brightness(112%) contrast(100%);
+}
+
+.delete {
+  margin: 0 0.2rem;
+}
+
+.delete:hover {
+  margin: 0 0.8rem;
+}
+
+.edit:hover {
+  margin-right: 0.8rem;
+}
+
+.exit:hover {
+  margin-left: 0.8rem;
 }
 
 .todo-circle:hover .dots-icon {
