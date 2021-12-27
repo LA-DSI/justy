@@ -228,19 +228,7 @@ h1 {
 }
 
 .delete {
-  margin: 0 0.2rem;
-}
-
-.delete:hover {
-  margin: 0 0.6rem;
-}
-
-.edit:hover {
-  margin-right: 0.6rem;
-}
-
-.exit:hover {
-  margin-left: 0.6rem;
+  margin: 0 0.5rem;
 }
 
 .todo-circle:hover .dots-icon {
