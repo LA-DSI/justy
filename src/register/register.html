@@ -12,14 +12,6 @@
     <script src="./register.js" defer></script>
 </head>
 <body>
-    <div class="loading flex-col drop-shadow" id="loading">
-        <div class="lds-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
     <div class="popup-container flex-col">
         <div class="popup flex-col card-popup card" id="popup">
             <div class="white flex-row text-shadow header-popup">
@@ -46,6 +38,18 @@
         </div>
     </div>
     <div class="app flex-col slideInLeft" id="card-container">
+            <div class="flex-col">
+                <div class="loading-container" id="loading">
+                    <div class="loading flex-col drop-shadow">
+                        <div class="lds-ring">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="card card-register" id="card">
                 <div class="content" id="content">
                     <svg xmlns="http://www.w3.org/2000/svg" class="exit lightBlue drop-shadow" onclick="exit()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
