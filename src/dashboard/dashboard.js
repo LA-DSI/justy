@@ -109,14 +109,14 @@ async function loadTodos() {
             let todoSettings = document.createElement("div");
             todoSettings.classList = "todo-circle";
             todoSettings.id = "todo-circle";
-            todoSettings.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`;
+            todoSettings.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" id="dots-icon-${todo.id}" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg><div id="settings-buttons-${todo.id}" class="flex-row no-display" style="width:100%;height:100%"><img src="../../assets/icons/edit.svg" onclick="editTask('${todo.id}')" class="edit drop-shadow"><img src="../../assets/icons/delete.svg" onclick="deleteTask('${todo.id}')" class="delete drop-shadow"><img src="../../assets/icons/exit.svg" onclick="closeProperties('${todo.id}')" class="exit drop-shadow"></div>`;
             todoWrapper.appendChild(todoSettings);
             todoSettings.onclick = function () {
-              todoSettings.previousSibling.style.width = "58%";
-              todoSettings.style.width = "35%";
-              todoSettings.innerHTML = `<img src="../../assets/icons/edit.svg" onclick="editTask('${todo.id}')" class="edit drop-shadow"><img src="../../assets/icons/delete.svg" onclick="deleteTask('${todo.id}')" class="delete drop-shadow"><img src="../../assets/icons/exit.svg" onclick="closeProperties('${todo.id}')" class="exit drop-shadow">`;
-              todoSettings.style.cursor = "pointer";
-              todoSettings.onclick = "none";
+              document.getElementById(`settings-buttons-${todo.id}`).classList.toggle("no-display");
+              document.getElementById(`dots-icon-${todo.id}`).classList.toggle("no-display");
+              todoSettings.classList.toggle("settings-shown-circle");
+              todoSettings.previousSibling.classList.toggle("settings-shown-main");
+              todoSettings.onclick = () => {}
             };
           }
         });
@@ -139,8 +139,27 @@ async function deleteTask(idTodo) {
 
 function closeProperties(idTodo) {
   const todoMain = document.getElementById(`todo-main-${idTodo}`)
-
-  todoMain.style.width = "81%"
-  todoMain.nextSibling.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" class="dots-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" /></svg>`
-  todoMain.nextSibling.style.width = "55px"
+  const todoSettings = todoMain.nextSibling;
+  document
+    .getElementById(`settings-buttons-${idTodo}`)
+    .classList.toggle("no-display");
+  document
+    .getElementById(`dots-icon-${idTodo}`)
+    .classList.toggle("no-display");
+  todoMain.classList.toggle("settings-shown-main")
+  todoSettings.classList.toggle("settings-shown-circle");
+  sleep(200).then(()=>{
+    todoSettings.onclick = function () {
+      document
+        .getElementById(`settings-buttons-${idTodo}`)
+        .classList.toggle("no-display");
+      document
+        .getElementById(`dots-icon-${idTodo}`)
+        .classList.toggle("no-display");
+      todoSettings.classList.toggle("settings-shown-circle");
+      todoSettings.previousSibling.classList.toggle("settings-shown-main");
+      todoSettings.onclick = () => {};
+    };
+  })
+  
 }
