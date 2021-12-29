@@ -15,6 +15,8 @@ This README is a simple documentation of this "TODO" App
 - [x] Scrolling through longer titles
 - [ ] Sort tasks with the earliest due date
 - [ ] TODO details like description and other
-- [ ] Tasks properties (deleting, editing)
+- [ ] Marking as done
+- [ ] Tasks properties (editing)
+- [x] Tasks properties (deleting)
 - [ ] Adding new tasks
 - [ ] Searching

@@ -1,13 +1,23 @@
+const { ipcRenderer } = require("electron");
+
 if (navigator.language == "pl") {
   document.getElementById("search-bar").placeholder = `Szukaj TODO`;
   document.getElementById("hi").innerHTML = `Cześć`;
   document.getElementById("text-add").innerHTML = `Dodaj nowe zadanie!`;
   document.getElementById("done-text").innerHTML = `ZROBIONE`;
+  document.getElementById("error-text").innerHTML = `Coś poszło nie tak!`;
+  document.getElementById("error-button-text").innerHTML = `Spróbuj ponownie`;
+  document.getElementById("warning-text").innerHTML = "Jesteś pewny?"
+  document.getElementById("delete-button").innerHTML = "Tak, usuń"
 } else {
   document.getElementById("search-bar").placeholder = `Search for TODO`;
   document.getElementById("hi").innerHTML = `Hi`;
   document.getElementById("text-add").innerHTML = `Add new task!`;
   document.getElementById("done-text").innerHTML = `DONE`;
+  document.getElementById("error-text").innerHTML = `Something went wrong!`;
+  document.getElementById("error-button-text").innerHTML = `Try again`;
+  document.getElementById("warning-text").innerHTML = "Are you sure?"
+  document.getElementById("delete-button").innerHTML = "Yes, delete"
 }
 
 const preferences = require("../../preferences.json");
@@ -62,6 +72,7 @@ async function loadTodos() {
     .then(async (response) => {
       if (response.ok) {
         document.getElementById("loading").style.display = "none";
+        document.getElementById("error").style.display = "none"
         return response.json().then(function (json) {
           const todos = JSON.parse(json.list);
           for (const todo of todos) {
@@ -121,12 +132,32 @@ async function loadTodos() {
           }
         });
       } else {
-        console.log("something went wrong");
+        document.getElementById("loading").style.display = "none"
+        document.getElementById("error").style.display = "flex"
       }
     })
     .catch((reason) => {
-      console.log("something went wrong" + reason);
+      document.getElementById("loading").style.display = "none"
+      document.getElementById("error").style.display = "flex"
     });
+}
+
+function closeProperties(idTodo) {
+  const todoMain = document.getElementById(`todo-main-${idTodo}`)
+  const todoSettings = todoMain.nextSibling;
+  document.getElementById(`settings-buttons-${idTodo}`).classList.toggle("no-display");
+  document.getElementById(`dots-icon-${idTodo}`).classList.toggle("no-display");
+  todoMain.classList.toggle("settings-shown-main")
+  todoSettings.classList.toggle("settings-shown-circle");
+  sleep(200).then(()=>{
+    todoSettings.onclick = function () {
+      document.getElementById(`settings-buttons-${idTodo}`).classList.toggle("no-display");
+      document.getElementById(`dots-icon-${idTodo}`).classList.toggle("no-display");
+      todoSettings.classList.toggle("settings-shown-circle");
+      todoSettings.previousSibling.classList.toggle("settings-shown-main");
+      todoSettings.onclick = () => {};
+    };
+  })
 }
 
 function editTask(idTodo) {
@@ -134,32 +165,37 @@ function editTask(idTodo) {
 }
 
 async function deleteTask(idTodo) {
-  console.log("delete " + idTodo);
+  document.getElementById("warning").style.display = "flex"
+  document.querySelector(".app").style.opacity = "0.1"
+  document.getElementById("delete-button").onclick = async function() {
+    let item_id = idTodo
+    await fetch("https://justy-backend.herokuapp.com/todos", {
+      method: "delete",
+      body: JSON.stringify({ item_id }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Bearer " + preferences.token,
+      },
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          ipcRenderer.send("reload-app")
+        } else {
+          document.getElementById("warning").style.display = "none"
+          document.querySelector(".app").style.opacity = "1"
+          document.getElementById("error").style.display = "flex"
+        }
+      })
+      .catch((reason) => {
+        document.getElementById("warning").style.display = "none"
+        document.querySelector(".app").style.opacity = "1"
+        document.getElementById("error").style.display = "flex"
+      })
+    }
 }
 
-function closeProperties(idTodo) {
-  const todoMain = document.getElementById(`todo-main-${idTodo}`)
-  const todoSettings = todoMain.nextSibling;
-  document
-    .getElementById(`settings-buttons-${idTodo}`)
-    .classList.toggle("no-display");
-  document
-    .getElementById(`dots-icon-${idTodo}`)
-    .classList.toggle("no-display");
-  todoMain.classList.toggle("settings-shown-main")
-  todoSettings.classList.toggle("settings-shown-circle");
-  sleep(200).then(()=>{
-    todoSettings.onclick = function () {
-      document
-        .getElementById(`settings-buttons-${idTodo}`)
-        .classList.toggle("no-display");
-      document
-        .getElementById(`dots-icon-${idTodo}`)
-        .classList.toggle("no-display");
-      todoSettings.classList.toggle("settings-shown-circle");
-      todoSettings.previousSibling.classList.toggle("settings-shown-main");
-      todoSettings.onclick = () => {};
-    };
-  })
-  
+function deleteExit() {
+  document.getElementById("warning").style.display = "none"
+  document.querySelector(".app").style.opacity = "1"
 }

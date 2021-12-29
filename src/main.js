@@ -59,3 +59,7 @@ ipcMain.on("load-dashboard", () => {
   app.exit();
   app.relaunch();
 });
+
+ipcMain.on("reload-app", () => {
+  justy.reload()
+})

@@ -8,9 +8,7 @@ if (navigator.language == "pl") {
   document.getElementById("password").placeholder = `Hasło`;
   document.getElementById("login-button").innerHTML = `Zaloguj`;
   document.getElementById("popup-empty").innerHTML = `Wypełnij wszystkie pola!`;
-  document.getElementById(
-    "popup-no-account"
-  ).innerHTML = `Nie ma takiego konta!`;
+  document.getElementById("popup-no-account").innerHTML = `Nie ma takiego konta!`;
   document.getElementById("popup-connection").innerHTML = `Coś poszło nie tak!`;
   document.getElementById("button-text-again").innerHTML = `Spróbuj ponownie`;
 } else {
@@ -19,12 +17,8 @@ if (navigator.language == "pl") {
   document.getElementById("password").placeholder = `Password`;
   document.getElementById("login-button").innerHTML = `Log in`;
   document.getElementById("popup-empty").innerHTML = `Fill in all fields!`;
-  document.getElementById(
-    "popup-no-account"
-  ).innerHTML = `There is no such account!`;
-  document.getElementById(
-    "popup-connection"
-  ).innerHTML = `Something went wrong!`;
+  document.getElementById("popup-no-account").innerHTML = `There is no such account!`;
+  document.getElementById("popup-connection").innerHTML = `Something went wrong!`;
   document.getElementById("button-text-again").innerHTML = `Try again`;
 }
 

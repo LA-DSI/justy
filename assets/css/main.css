@@ -12,7 +12,7 @@
 :root {
   /* Texts */
   --lightBlue: #9cb5f9;
-  --darkBlue: #21346a;
+  --darkBlue: #061b52;
   --white: #ffffff;
   --black: #000000;
 
@@ -38,6 +38,10 @@ body {
 
 .white {
   color: var(--white);
+}
+
+.pink {
+  color: var(--pink);
 }
 
 .text-shadow {

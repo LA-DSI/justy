@@ -4,16 +4,10 @@ if (navigator.language == "pl") {
   document.getElementById("password").placeholder = `Hasło`;
   document.getElementById("repeat-password").placeholder = `Potwierdź hasło`;
   document.getElementById("register-button").innerHTML = `Zarejestruj`;
-  document.getElementById(
-    "popup-ok"
-  ).innerHTML = `Rejestracja przebiegła pomyślnie!`;
+  document.getElementById("popup-ok").innerHTML = `Rejestracja przebiegła pomyślnie!`;
   document.getElementById("popup-connection").innerHTML = `Coś poszło nie tak!`;
-  document.getElementById(
-    "popup-account-exists"
-  ).innerHTML = `Konto już istnieje!`;
-  document.getElementById(
-    "popup-matching"
-  ).innerHTML = `Hasła nie pasują do siebie!`;
+  document.getElementById("popup-account-exists").innerHTML = `Konto już istnieje!`;
+  document.getElementById("popup-matching").innerHTML = `Hasła nie pasują do siebie!`;
   document.getElementById("popup-empty").innerHTML = `Wypełnij wszystkie pola!`;
   document.getElementById("button-text-ok").innerHTML = `Zaloguj się`;
   document.getElementById("button-text-again").innerHTML = `Spróbuj ponownie`;
@@ -23,18 +17,10 @@ if (navigator.language == "pl") {
   document.getElementById("password").placeholder = `Password`;
   document.getElementById("repeat-password").placeholder = `Confirm password`;
   document.getElementById("register-button").innerHTML = `Register`;
-  document.getElementById(
-    "popup-ok"
-  ).innerHTML = `Registration was successful!`;
-  document.getElementById(
-    "popup-connection"
-  ).innerHTML = `Something went wrong!`;
-  document.getElementById(
-    "popup-account-exists"
-  ).innerHTML = `Account already exists!`;
-  document.getElementById(
-    "popup-matching"
-  ).innerHTML = `The passwords don't match!`;
+  document.getElementById("popup-ok").innerHTML = `Registration was successful!`;
+  document.getElementById("popup-connection").innerHTML = `Something went wrong!`;
+  document.getElementById("popup-account-exists").innerHTML = `Account already exists!`;
+  document.getElementById("popup-matching").innerHTML = `The passwords don't match!`;
   document.getElementById("popup-empty").innerHTML = `Fill in all fields!`;
   document.getElementById("button-text-ok").innerHTML = `Sign in`;
   document.getElementById("button-text-again").innerHTML = `Try again`;

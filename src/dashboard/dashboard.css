@@ -10,6 +10,7 @@ body {
 .app {
   width: 100%;
   height: 100%;
+  transition: 0.2s;
 }
 
 nav {
@@ -29,7 +30,8 @@ nav {
 }
 
 .menu-icon:hover,
-.search-icon:hover {
+.search-icon:hover,
+.delete-exit:hover {
   color: white;
 }
 
@@ -118,7 +120,7 @@ h1 {
   align-items: center;
   border: solid 1px #9cb5f9;
   backdrop-filter: blur(5px);
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   transition: 0.3s;
 }
 
@@ -268,9 +270,39 @@ h1 {
   height: 55px;
 }
 
+.error-container {
+  display: none;
+}
+
+.error-header {
+  margin-bottom: 1.5rem;
+  user-select: none;
+}
+
+.wrong-icon {
+  width: 30px;
+  margin-right: 0.5rem;
+}
+
+button {
+  width: 180px;
+  padding: 8px 0px;
+  background: none;
+  border: none;
+  border: 2px solid #5FF5F7;
+  border-radius: 62px;
+  transition: 0.3s;
+  cursor: pointer;
+  user-select: none;
+}
+
+button:hover {
+  border: 2px solid white;
+}
+
 /* Loading Animation */
 
-.loading-container {
+.loading-container, .error-container, .warning {
   width: 250px;
   height: 250px;
   background-color: white;
@@ -280,6 +312,7 @@ h1 {
   border: 1px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
   margin-bottom: 2rem;
+  user-select: none;
 }
 
 .loading {
@@ -323,3 +356,42 @@ h1 {
   }
 }
 
+.warning-container {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
+
+.warning {
+  backdrop-filter: blur(15px);
+}
+
+.warning-content {
+  margin-bottom: 1.5rem;
+}
+
+.delete-icon {
+  width: 36px;
+  margin-right: 0.5rem;
+}
+
+.warning-text {
+  font-size: 1.2rem;
+}
+
+.delete-button {
+  border: 2px solid #fd5fec;
+  font-size: 0.9rem;
+}
+
+.delete-exit {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
