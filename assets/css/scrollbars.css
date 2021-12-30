@@ -11,5 +11,18 @@
     background-color: #fd5fec;
     border-radius: 20px;
     border: 5px solid #061b52;
-    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+textarea::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: #5ff5f7;
+    border: none;
+}
+
+textarea::-webkit-scrollbar-track {
+    background: none;
 }

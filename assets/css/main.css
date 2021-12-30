@@ -44,6 +44,10 @@ body {
   color: var(--pink);
 }
 
+.cyan {
+  color: var(--cyan);
+}
+
 .text-shadow {
   text-shadow: 10.055px 10.055px 10.055px rgba(0, 0, 0, 0.25);
 }
@@ -76,4 +80,8 @@ body {
 
 .footer-bold {
   font-weight: 500;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

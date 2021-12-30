@@ -27,6 +27,72 @@
             </div>
         </div>
     </div>
+    <div class="flex-row warning-container" id="edit">
+        <div class="warning edit-popup flex-col">
+            <svg xmlns="http://www.w3.org/2000/svg" onclick="editExit()" class="delete-exit lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <div class="flex-row warning-content">
+                <svg xmlns="http://www.w3.org/2000/svg" class="delete-icon drop-shadow cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                <p class="white text-shadow warning-text" id="edit-text">Edit task!</p>
+            </div>
+            <div class="edit-content">
+                <table class="drop-shadow">
+                    <tr>
+                        <td class="td-text">
+                            <label for="title-edit" id="title-edit-text" class="white">Title</label>
+                        </td>
+                        <td>
+                            <textarea name="title-edit" class="title-edit" id="title-edit" rows="1"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-text">
+                            <label for="desc-edit" id="desc-edit-text" class="white">Description</label>
+                        </td>
+                        <td>
+                            <textarea name="desc-edit" id="desc-edit" rows="1"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-text">
+                            <label for="category-edit" id="category-edit-text" class="white cursor-pointer">Very important?</label>
+                        </td>
+                        <td>
+                            <label class="checkbox-edit-container flex-col">
+                                <input type="checkbox" name="category-edit" id="category-edit">
+                                <div class="checkbox-edit"></div>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-text">
+                            <label for="date-edit" id="date-edit-text" class="white">Deadline</label>
+                        </td>
+                        <td>
+                            <textarea type="text" class="date-edit" name="date-edit" id="date-edit" rows="1"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-text">
+                            <label for="done-edit" id="done-edit-text" class="white cursor-pointer">Done?</label>
+                        </td>
+                        <td>
+                            <label class="checkbox-edit-container flex-col">
+                                <input type="checkbox" name="done-edit" id="done-edit"">
+                                <div class="checkbox-edit"></div>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="button-edit">
+                <button id="edit-button" class="delete-button white text-shadow">Save</button>
+            </div>
+        </div>
+    </div>
     <div class="app">
         <div class="main-container" id="main-container">
             <header>

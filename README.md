@@ -7,12 +7,12 @@ This README is a simple documentation of this "TODO" App
 ### App spine
 - [x] Start page
 - [x] Register page
-- [] Login page
+- [ ] Login page
 - [ ] Dashboard
 - [ ] Settings
 
 ### Login
-- [] forgot password
+- [ ] forgot password
 
 ### Dashboard
 - [x] Scrolling through longer titles
@@ -23,3 +23,8 @@ This README is a simple documentation of this "TODO" App
 - [x] Tasks properties (deleting)
 - [ ] Adding new tasks
 - [ ] Searching
+- [ ] Expired Bearer fix
+- [ ] fix todo done
+- [ ] close other settings bar when one is open
+- [ ] if todo is expired
+- [ ] header width 91%

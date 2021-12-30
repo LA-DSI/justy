@@ -9,6 +9,12 @@ if (navigator.language == "pl") {
   document.getElementById("error-button-text").innerHTML = `Spróbuj ponownie`;
   document.getElementById("warning-text").innerHTML = "Jesteś pewny?"
   document.getElementById("delete-button").innerHTML = "Tak, usuń"
+  document.getElementById("edit-text").innerHTML = "Edytuj zadanie!"
+  document.getElementById("title-edit-text").innerHTML = "Tytuł"
+  document.getElementById("desc-edit-text").innerHTML = "Opis"
+  document.getElementById("category-edit-text").innerHTML = "Bardzo ważne?"
+  document.getElementById("done-edit-text").innerHTML = "Zrobione?"
+  document.getElementById("edit-button").innerHTML = "Zapisz"
 } else {
   document.getElementById("search-bar").placeholder = `Search for TODO`;
   document.getElementById("hi").innerHTML = `Hi`;
@@ -18,6 +24,12 @@ if (navigator.language == "pl") {
   document.getElementById("error-button-text").innerHTML = `Try again`;
   document.getElementById("warning-text").innerHTML = "Are you sure?"
   document.getElementById("delete-button").innerHTML = "Yes, delete"
+  document.getElementById("edit-text").innerHTML = "Edit task!"
+  document.getElementById("title-edit-text").innerHTML = "Title"
+  document.getElementById("desc-edit-text").innerHTML = "Description"
+  document.getElementById("category-edit-text").innerHTML = "Very important?"
+  document.getElementById("done-edit-text").innerHTML = "Done?"
+  document.getElementById("edit-button").innerHTML = "Save"
 }
 
 const preferences = require("../../preferences.json");
@@ -75,20 +87,17 @@ async function loadTodos() {
         document.getElementById("error").style.display = "none"
         return response.json().then(function (json) {
           const todos = JSON.parse(json.list);
+          window.todos = todos;
           for (const todo of todos) {
             let todoWrapper = document.createElement("div");
             todoWrapper.id = "todo-wrapper";
             todoWrapper.classList = "todo-wrapper drop-shadow";
             if (todo.done == true) {
               document.getElementById("done").style.display = "block";
-              document
-                .getElementById("todos-done-container")
-                .appendChild(todoWrapper);
+              document.getElementById("todos-done-container").appendChild(todoWrapper);
             } else {
               document.getElementById("done").style.display = "none";
-              document
-                .getElementById("todos-container")
-                .appendChild(todoWrapper);
+              document.getElementById("todos-container").appendChild(todoWrapper);
             }
 
             if (todo.done == false) {
@@ -160,11 +169,7 @@ function closeProperties(idTodo) {
   })
 }
 
-function editTask(idTodo) {
-  console.log("edit " + idTodo);
-}
-
-async function deleteTask(idTodo) {
+function deleteTask(idTodo) {
   document.getElementById("warning").style.display = "flex"
   document.querySelector(".app").style.opacity = "0.1"
   document.getElementById("delete-button").onclick = async function() {
@@ -197,5 +202,59 @@ async function deleteTask(idTodo) {
 
 function deleteExit() {
   document.getElementById("warning").style.display = "none"
+  document.querySelector(".app").style.opacity = "1"
+}
+
+var dateOptions = { hourCycle: 'h23', hour: '2-digit', minute: '2-digit', day: 'numeric', year: 'numeric', month: 'long' };
+
+function editTask(idTodo) {
+  document.getElementById("edit").style.display = "flex"
+  document.querySelector(".app").style.opacity = "0.1"
+  for(const todo of window.todos) {
+    if(todo.id == idTodo) {
+      document.getElementById("title-edit").value = todo.title
+      document.getElementById("desc-edit").value = todo.description
+      if(todo.category == "important") {
+        document.getElementById("category-edit").checked = true
+      } else {
+        document.getElementById("category-edit").checked = false
+      }
+      if(document.getElementById("desc-edit").value.length < 19) {
+        document.getElementById("desc-edit").rows = 1;
+      } else if(document.getElementById("desc-edit").value.length > 19) {
+        document.getElementById("desc-edit").rows = 2;
+      } else if(document.getElementById("desc-edit").value.length > 38) {
+        document.getElementById("desc-edit").rows = 3;
+      }
+      let date = new Date(todo.endDate)
+      if(navigator.language == "pl") {
+        document.getElementById("date-edit").value = date.toLocaleString("pl-PL", dateOptions)
+      } else {
+        document.getElementById("date-edit").value = date.toLocaleString("en-US", dateOptions)
+      }
+      if(todo.done == true) {
+        document.getElementById("done-edit").checked = true
+      } else {
+        document.getElementById("done-edit").checked = false
+      }
+      break
+    }
+  }
+
+  document.getElementById("edit-button").onclick = async function() {
+    await fetch("https://justy-backend.herokuapp.com/todos/edit", {
+      method: "post",
+      body: "",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Bearer " + preferences.token,
+      },
+    })
+  }
+}
+
+function editExit() {
+  document.getElementById("edit").style.display = "none"
   document.querySelector(".app").style.opacity = "1"
 }
