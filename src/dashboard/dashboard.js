@@ -12,7 +12,7 @@ if (navigator.language == "pl") {
   document.getElementById("edit-text").innerHTML = "Edytuj zadanie!"
   document.getElementById("title-edit-text").innerHTML = "Tytuł"
   document.getElementById("desc-edit-text").innerHTML = "Opis"
-  document.getElementById("category-edit-text").innerHTML = "Bardzo ważne?"
+  document.getElementById("category-edit-text").innerHTML = "Ważne?"
   document.getElementById("done-edit-text").innerHTML = "Zrobione?"
   document.getElementById("edit-button").innerHTML = "Zapisz"
 } else {
@@ -27,7 +27,7 @@ if (navigator.language == "pl") {
   document.getElementById("edit-text").innerHTML = "Edit task!"
   document.getElementById("title-edit-text").innerHTML = "Title"
   document.getElementById("desc-edit-text").innerHTML = "Description"
-  document.getElementById("category-edit-text").innerHTML = "Very important?"
+  document.getElementById("category-edit-text").innerHTML = "Important?"
   document.getElementById("done-edit-text").innerHTML = "Done?"
   document.getElementById("edit-button").innerHTML = "Save"
 }
@@ -70,6 +70,10 @@ function addTodo() {
     document.getElementById("add-container").classList.remove("slideOutRight");
     document.getElementById("add-container").style.display = "flex";
   }
+}
+
+function refresh() {
+  ipcRenderer.send("reload-app")
 }
 
 async function loadTodos() {
@@ -117,6 +121,14 @@ async function loadTodos() {
 
             if (todo.category == "important" && todo.done == true) {
               todoMain.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p>`;
+            }
+
+            if(todo.endDate - new Date().getTime() < 0) {
+              if(todo.category == "important") {
+                todoMain.style.color = "#fd5fec"
+              } else {
+                todoMain.style.color = "#5ff5f7"
+              }
             }
 
             todoMain.onclick = function () {
@@ -205,8 +217,6 @@ function deleteExit() {
   document.querySelector(".app").style.opacity = "1"
 }
 
-var dateOptions = { hourCycle: 'h23', hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'numeric', year: 'numeric' };
-
 function editTask(idTodo) {
   document.getElementById("edit").style.display = "flex"
   document.querySelector(".app").style.opacity = "0.1"
@@ -226,12 +236,8 @@ function editTask(idTodo) {
       } else if(document.getElementById("desc-edit").value.length > 38) {
         document.getElementById("desc-edit").rows = 3;
       }
-      let date = new Date(todo.endDate)
-      if(navigator.language == "pl") {
-        document.getElementById("date-edit").value = date.toLocaleString("pl-PL", dateOptions)
-      } else {
-        document.getElementById("date-edit").value = date.toLocaleString("en-US", dateOptions)
-      }
+      let date = new Date(todo.endDate).toISOString()
+      document.getElementById("date-edit").value = date.slice(0,16);
       if(todo.done == true) {
         document.getElementById("done-edit").checked = true
       } else {
@@ -242,15 +248,44 @@ function editTask(idTodo) {
   }
 
   document.getElementById("edit-button").onclick = async function() {
+    let dateEdit = new Date(document.getElementById("date-edit").value)
+    let categoryEdit
+    if(document.getElementById("category-edit").checked == true) {
+      categoryEdit = "important";
+    } else {
+      categoryEdit = "";
+    }
+
+    const item_id = idTodo
+    const title = document.getElementById("title-edit").value
+    const description = document.getElementById("desc-edit").value
+    const category = categoryEdit
+    const endDate = dateEdit.getTime()
+    const done = document.getElementById("done-edit").checked
+
     await fetch("https://justy-backend.herokuapp.com/todos/edit", {
       method: "post",
-      body: "",
+      body: JSON.stringify({ item_id, title, description, category, endDate, done }),
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         Authorization: "Bearer " + preferences.token,
       },
     })
+      .then(async (response) => {
+        if (response.ok) {
+          ipcRenderer.send("reload-app")
+        } else {
+          document.getElementById("edit").style.display = "none"
+          document.querySelector(".app").style.opacity = "1"
+          document.getElementById("error").style.display = "flex"
+        }
+      })
+      .catch((reason) => {
+        document.getElementById("edit").style.display = "none"
+        document.querySelector(".app").style.opacity = "1"
+        document.getElementById("error").style.display = "flex"
+      })
   }
 }
 

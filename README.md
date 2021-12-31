@@ -19,14 +19,15 @@ This README is a simple documentation of this "TODO" App
 - [ ] Sort tasks with the earliest due date
 - [ ] TODO details like description and other
 - [ ] Marking as done
-- [ ] Tasks properties (editing)
+- [ ] Changing done option in editing
+- [x] Tasks properties (editing)
 - [x] Tasks properties (deleting)
 - [ ] Adding new tasks
 - [ ] Searching
 - [ ] Expired Bearer fix
 - [ ] fix todo done
 - [ ] close other settings bar when one is open
-- [ ] if todo is expired
-- [ ] header width 91%
-- [ ] refresh button
-- [ ] better rwd
+- [x] if todo is expired
+- [x] header width 90%
+- [x] refresh button
+- [x] better rwd

@@ -7,6 +7,7 @@
     <title>Justy</title>
     <link rel="stylesheet" href="./dashboard.css">
     <link rel="stylesheet" href="../../assets/css/animations.css">
+    <link rel="stylesheet" href="../../assets/css/date-picker.css">
     <link rel="stylesheet" href="../../assets/css/scrollbars.css">
     <script src="./dashboard.js" defer></script>
 </head>
@@ -58,7 +59,7 @@
                     </tr>
                     <tr>
                         <td class="td-text">
-                            <label for="category-edit" id="category-edit-text" class="white cursor-pointer">Very important?</label>
+                            <label for="category-edit" id="category-edit-text" class="white cursor-pointer">Important?</label>
                         </td>
                         <td>
                             <label class="checkbox-edit-container flex-col">
@@ -72,7 +73,7 @@
                             <label for="date-edit" id="date-edit-text" class="white">Deadline</label>
                         </td>
                         <td>
-                            <textarea type="text" class="date-edit" name="date-edit" id="date-edit" rows="1"></textarea>
+                            <input type="datetime-local" class="date-edit" name="date-edit" id="date-edit">
                         </td>
                     </tr>
                     <tr>
@@ -115,11 +116,18 @@
                         <span id="name"></span>
                     </div>
                 </h1>
-                <div onclick="addTodo()" class="add drop-shadow">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="add-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" />
-                    </svg>
-                    <p class="text-add white text-shadow" id="text-add">Add new task!</p>
+                <div class="add-refresh-container">
+                    <div onclick="addTodo()" class="add drop-shadow">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="add-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" />
+                        </svg>
+                        <p class="text-add white text-shadow" id="text-add">Add new task!</p>
+                    </div>
+                    <div onclick="refresh()" class="refresh drop-shadow">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="refresh-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                    </div>
                 </div>
                 <div id="add-container" class="flex-col hidden slideInLeft">
                     <div class="add-wrapper"></div>
