@@ -425,6 +425,10 @@ td {
   overflow-y: hidden;
 }
 
+.date-edit {
+  text-align: center;
+}
+
 .td-text {
   font-weight: 500;
   overflow: auto;

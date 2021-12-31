@@ -205,7 +205,7 @@ function deleteExit() {
   document.querySelector(".app").style.opacity = "1"
 }
 
-var dateOptions = { hourCycle: 'h23', hour: '2-digit', minute: '2-digit', day: 'numeric', year: 'numeric', month: 'long' };
+var dateOptions = { hourCycle: 'h23', hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'numeric', year: 'numeric' };
 
 function editTask(idTodo) {
   document.getElementById("edit").style.display = "flex"

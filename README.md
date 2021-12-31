@@ -28,3 +28,5 @@ This README is a simple documentation of this "TODO" App
 - [ ] close other settings bar when one is open
 - [ ] if todo is expired
 - [ ] header width 91%
+- [ ] refresh button
+- [ ] better rwd
