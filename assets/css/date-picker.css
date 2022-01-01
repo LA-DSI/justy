@@ -9,4 +9,9 @@ input[type="datetime-local"] {
     border-radius: 3px;
     filter: invert(83%) sepia(76%) saturate(368%) hue-rotate(108deg) brightness(104%) contrast(93%) drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.25));
     cursor: pointer;
+    transition: 0.3s;
+}
+
+::-webkit-calendar-picker-indicator:hover {
+    filter: invert(83%) sepia(76%) saturate(368%) hue-rotate(108deg) brightness(104%) contrast(93%) drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.25)) brightness(1000%);
 }

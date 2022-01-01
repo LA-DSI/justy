@@ -134,12 +134,7 @@
                 </div>
             </header>
             <div class="flex-col">
-                <div class="todo-section">
-                    <div class="flex-row drop-shadow title" id="title">
-                        <div class="stripe"></div>
-                        <p class="text-stripe lightBlue">TODO</p>
-                        <div class="stripe"></div>
-                    </div>
+                <div class="todo-section" id="todo-section">
                     <div class="flex-row">
                         <div class="loading-container" id="loading">
                             <div class="loading flex-col drop-shadow">
@@ -162,20 +157,27 @@
                                     <p class="white text-shadow" id="error-text">Something went wrong!</p>
                                 </div>
                                 <div id="button-wrong">
-                                    <button onclick="loadTodos()" class="white text-shadow" id="error-button-text">Try again</button>
+                                    <button onclick="refresh()" class="white text-shadow" id="error-button-text">Try again</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="todos-container" class="flex-col"></div>
-                    <section id="done">
-                        <div class="flex-row drop-shadow title-done">
+                    <div id="todos-wrapper">
+                        <div class="flex-row drop-shadow title" id="title">
                             <div class="stripe"></div>
-                            <p class="text-stripe lightBlue" id="done-text">DONE</p>
+                            <p class="text-stripe lightBlue">TODO</p>
                             <div class="stripe"></div>
                         </div>
-                        <div id="todos-done-container" class="flex-col"></div>
-                    </section>
+                        <div id="todos-container" class="flex-col"></div>
+                        <section id="done">
+                            <div class="flex-row drop-shadow title-done">
+                                <div class="stripe"></div>
+                                <p class="text-stripe lightBlue" id="done-text">DONE</p>
+                                <div class="stripe"></div>
+                            </div>
+                            <div id="todos-done-container" class="flex-col"></div>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>

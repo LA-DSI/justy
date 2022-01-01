@@ -112,15 +112,17 @@ async function loadTodos() {
             todoMain.classList = "todo-main text-shadow";
             todoMain.id = `todo-main-${todo.id}`
             if (todo.category == "important") {
-              todoMain.innerHTML = `<svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#fd5fec" stroke-width="4"/></svg><p class="todo-text" id="todo-text">${todo.title}</p>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsDone('${todo.id}')"></div><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#fd5fec" stroke-width="4"/></svg></div<<div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
             } else if (todo.done == true) {
-              todoMain.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsTODO('${todo.id}')"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
+              todoMain.children[0].classList.add("delete-hover-after")
             } else {
-              todoMain.innerHTML = `<svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#5ff5f7" stroke-width="4"/></svg><p class="todo-text" id="todo-text">${todo.title}</p>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsDone('${todo.id}')"><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#5ff5f7" stroke-width="4"/></svg></div><div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
             }
 
             if (todo.category == "important" && todo.done == true) {
-              todoMain.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsTODO('${todo.id}')"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" onclick="markAsTODO('${todo.id}')" class="todo-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
+              todoMain.children[0].classList.add("delete-hover-after")
             }
 
             if(todo.endDate - new Date().getTime() < 0) {
@@ -131,7 +133,7 @@ async function loadTodos() {
               }
             }
 
-            todoMain.onclick = function () {
+            todoMain.children[1].onclick = function () {
               todoWrapper.classList.toggle("todo-wrapper-focused");
               todoMain.classList.toggle("todo-main-focused");
               todoSettings.classList.toggle("todo-circle-focused");
@@ -155,11 +157,13 @@ async function loadTodos() {
       } else {
         document.getElementById("loading").style.display = "none"
         document.getElementById("error").style.display = "flex"
+        document.getElementById("todos-wrapper").style.display = "none"
       }
     })
     .catch((reason) => {
       document.getElementById("loading").style.display = "none"
       document.getElementById("error").style.display = "flex"
+      document.getElementById("todos-wrapper").style.display = "none"
     });
 }
 
@@ -202,12 +206,14 @@ function deleteTask(idTodo) {
           document.getElementById("warning").style.display = "none"
           document.querySelector(".app").style.opacity = "1"
           document.getElementById("error").style.display = "flex"
+          document.getElementById("todos-wrapper").style.display = "none"
         }
       })
       .catch((reason) => {
         document.getElementById("warning").style.display = "none"
         document.querySelector(".app").style.opacity = "1"
         document.getElementById("error").style.display = "flex"
+        document.getElementById("todos-wrapper").style.display = "none"
       })
     }
 }
@@ -279,12 +285,14 @@ function editTask(idTodo) {
           document.getElementById("edit").style.display = "none"
           document.querySelector(".app").style.opacity = "1"
           document.getElementById("error").style.display = "flex"
+          document.getElementById("todos-wrapper").style.display = "none"
         }
       })
       .catch((reason) => {
         document.getElementById("edit").style.display = "none"
         document.querySelector(".app").style.opacity = "1"
         document.getElementById("error").style.display = "flex"
+        document.getElementById("todos-wrapper").style.display = "none"
       })
   }
 }
@@ -292,4 +300,62 @@ function editTask(idTodo) {
 function editExit() {
   document.getElementById("edit").style.display = "none"
   document.querySelector(".app").style.opacity = "1"
+}
+
+async function markAsDone(item_id) {
+  const done = true;
+  await fetch("https://justy-backend.herokuapp.com/todos/edit", {
+    method: "post",
+    body: JSON.stringify({ item_id, done }),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: "Bearer " + preferences.token,
+    },
+  })
+  .then(async (response) => {
+    if (response.ok) {
+      ipcRenderer.send("reload-app")
+    } else {
+      document.getElementById("edit").style.display = "none"
+      document.querySelector(".app").style.opacity = "1"
+      document.getElementById("error").style.display = "flex"
+      document.getElementById("todos-wrapper").style.display = "none"
+    }
+  })
+  .catch((reason) => {
+    document.getElementById("edit").style.display = "none"
+    document.querySelector(".app").style.opacity = "1"
+    document.getElementById("error").style.display = "flex"
+    document.getElementById("todos-wrapper").style.display = "none"
+  })
+}
+
+async function markAsTODO(item_id) {
+  const done = false;
+  await fetch("https://justy-backend.herokuapp.com/todos/edit", {
+    method: "post",
+    body: JSON.stringify({ item_id, done }),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: "Bearer " + preferences.token,
+    },
+  })
+  .then(async (response) => {
+    if (response.ok) {
+      ipcRenderer.send("reload-app")
+    } else {
+      document.getElementById("edit").style.display = "none"
+      document.querySelector(".app").style.opacity = "1"
+      document.getElementById("error").style.display = "flex"
+      document.getElementById("todos-wrapper").style.display = "none"
+    }
+  })
+  .catch((reason) => {
+    document.getElementById("edit").style.display = "none"
+    document.querySelector(".app").style.opacity = "1"
+    document.getElementById("error").style.display = "flex"
+    document.getElementById("todos-wrapper").style.display = "none"
+  })
 }

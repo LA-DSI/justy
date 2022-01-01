@@ -208,16 +208,59 @@ h1 {
   transition: 0.3s;
 }
 
-.todo-icon {
-  margin-right: 1rem;
+.todo-main {
+  cursor: default;
+}
+
+.todo-text-container {
+  width: 100%;
+  height: 100%;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.todo-icon-container {
+  height: 28px;
+  cursor: pointer;
+}
+
+.todo-icon-container:hover::after {
   position: absolute;
+  content: "";
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  filter: drop-shadow(4px -1px 4px rgba(0, 0, 0, 0.8));
+  cursor: pointer;
+}
+
+.delete-hover-after:hover::after {
+  display: none;
+}
+
+.todo-icon-container svg {
+  border-radius: 30px;
+}
+
+circle {
+  transition: 0.3s;
+}
+
+.todo-icon-container:hover circle {
+  stroke: #9cb5f9;
+  stroke-width: 120%;
 }
 
 .todo-text {
   max-width: 86%;
   white-space: nowrap;
   overflow-x: auto;
-  margin-left: 2.75rem;
 }
 
 .todo-circle {
@@ -529,6 +572,10 @@ textarea, table input {
 
 #edit-button:hover {
   border-color: white;
+}
+
+#edit, #warning {
+  position: fixed;
 }
 
 @media (min-width: 1000px) {
