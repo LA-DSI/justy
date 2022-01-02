@@ -114,14 +114,14 @@ async function loadTodos() {
             if (todo.category == "important") {
               todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsDone('${todo.id}')"></div><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#fd5fec" stroke-width="4"/></svg></div<<div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
             } else if (todo.done == true) {
-              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsTODO('${todo.id}')"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsTODO('${todo.id}')"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon todo-done-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
               todoMain.children[0].classList.add("delete-hover-after")
             } else {
               todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsDone('${todo.id}')"><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#5ff5f7" stroke-width="4"/></svg></div><div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
             }
 
             if (todo.category == "important" && todo.done == true) {
-              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsTODO('${todo.id}')"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" onclick="markAsTODO('${todo.id}')" class="todo-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsTODO('${todo.id}')"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" onclick="markAsTODO('${todo.id}')" class="todo-icon todo-done-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
               todoMain.children[0].classList.add("delete-hover-after")
             }
 
@@ -133,11 +133,13 @@ async function loadTodos() {
               }
             }
 
-            todoMain.children[1].onclick = function () {
-              todoWrapper.classList.toggle("todo-wrapper-focused");
-              todoMain.classList.toggle("todo-main-focused");
-              todoSettings.classList.toggle("todo-circle-focused");
-            };
+            todoMain.children[1].onclick = function() {
+              // get todo ID from function parameters
+              // set todo-wrapper height to 197px
+              // create div with todo-desc class
+              // add attributes from vannilla tilt
+              // hide div after second click
+            }
             todoWrapper.appendChild(todoMain);
 
             let todoSettings = document.createElement("div");
