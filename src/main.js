@@ -56,8 +56,7 @@ ipcMain.on("exit", function (event, arg) {
 });
 
 ipcMain.on("load-dashboard", () => {
-  app.exit();
-  app.relaunch();
+  justy.loadFile("src/dashboard/dashboard.html");
 });
 
 ipcMain.on("reload-app", () => {

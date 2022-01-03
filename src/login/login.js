@@ -22,6 +22,9 @@ if (navigator.language == "pl") {
   document.getElementById("button-text-again").innerHTML = `Try again`;
 }
 
+let year = new Date().getFullYear()
+document.getElementById("year").innerHTML = year;
+
 function exit() {
   document.getElementById("card-container").classList.add("slideOutRight")
   document.getElementById("card-container").animationPlayState = "running"

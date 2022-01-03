@@ -13,6 +13,7 @@ This README is a simple documentation of this "TODO" App
 
 ### Login
 - [ ] forgot password
+- [ ] copyright year in login and register
 
 ### Dashboard
 - [x] Scrolling through longer titles
@@ -23,10 +24,10 @@ This README is a simple documentation of this "TODO" App
 - [x] Tasks properties (deleting)
 - [ ] Adding new tasks
 - [ ] Searching
-- [ ] Expired Bearer fix (paweł plz explain what's going on)
-- [ ] fix todos done display (paweł plz help)
-- [ ] Changing done option fix (from true to false doesnt work) (paweł plz help)
-- [ ] close other settings bars when one is open (paweł plz help)
+- [x] Expired Bearer fix
+- [x] fix todos done display (paweł plz help)
+- [x] Changing done option fix (from true to false doesnt work) (paweł plz help)
+- [x] close other settings bars when one is open (paweł plz help)
 - [x] if todo is expired
 - [x] header width 90%
 - [x] refresh button

@@ -559,7 +559,7 @@ textarea, table input {
   transition: 0.3s;
 }
 
-#edit-button:hover {
+#edit-button:hover, .todo-desc:hover {
   border-color: white;
 }
 
@@ -568,9 +568,9 @@ textarea, table input {
 }
 
 .todo-desc {
-  width: 100%;
+  width: 81%;
   height: 110px;
-  border-radius: 20px;
+  border-radius: 25px;
   box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
   background: rgba(255, 255, 255, 0.05);
   overflow: hidden;
@@ -581,6 +581,10 @@ textarea, table input {
   backdrop-filter: blur(5px);
   margin-top: 2rem;
   transition: 0.3s;
+}
+
+#todos-container {
+  align-items: flex-start;
 }
 
 @media (min-width: 1000px) {

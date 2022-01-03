@@ -34,7 +34,28 @@ if (navigator.language == "pl") {
 
 const preferences = require("../../preferences.json");
 document.getElementById("name").innerHTML = preferences.user.firstname;
-loadTodos();
+checkBearer();
+
+async function checkBearer() {
+  await fetch("https://justy-backend.herokuapp.com/", {
+    method: "get",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: "Bearer " + preferences.token,
+    },
+  })
+   .then(async (response) => {
+     if(response.ok) {
+      const json = await response.json()
+      if(json.user) {
+        loadTodos()
+      } else {
+        location.href = "../start-page/start.html"
+      }
+     }
+   })
+}
 
 function search() {
   let searchInput = document.getElementById("search-bar");
@@ -92,15 +113,15 @@ async function loadTodos() {
         return response.json().then(function (json) {
           const todos = JSON.parse(json.list);
           window.todos = todos;
+          let isDone = false
           for (const todo of todos) {
             let todoWrapper = document.createElement("div");
             todoWrapper.id = "todo-wrapper";
             todoWrapper.classList = "todo-wrapper drop-shadow";
             if (todo.done == true) {
-              document.getElementById("done").style.display = "block";
+              isDone = true;
               document.getElementById("todos-done-container").appendChild(todoWrapper);
             } else {
-              document.getElementById("done").style.display = "none";
               document.getElementById("todos-container").appendChild(todoWrapper);
             }
 
@@ -112,7 +133,7 @@ async function loadTodos() {
             todoMain.classList = "todo-main text-shadow";
             todoMain.id = `todo-main-${todo.id}`
             if (todo.category == "important") {
-              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsDone('${todo.id}')"></div><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#fd5fec" stroke-width="4"/></svg></div<<div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsDone('${todo.id}')"><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#fd5fec" stroke-width="4"/></svg></div><div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
             } else if (todo.done == true) {
               todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsTODO('${todo.id}')"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon todo-done-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
               todoMain.children[0].classList.add("delete-hover-after")
@@ -134,9 +155,19 @@ async function loadTodos() {
             }
 
             todoMain.children[1].onclick = function() {
-              // get todo ID from function parameters
-              // set todo-wrapper height to 197px
-              // create div with todo-desc class
+              todoWrapper.style.height = "197px"
+              let todoDesc = document.createElement("div")
+              todoDesc.classList = "todo-desc"
+              todoDesc.innerHTML = `${todo.title}`
+              todoWrapper.appendChild(todoDesc)
+              VanillaTilt.init(todoDesc, {
+                reverse: false,
+                max: 30,
+                speed: 1000,
+                glare: true,
+                "max-glare": 0.5,
+                easing: "cubic-bezier(.03,.98,.52,.99)"
+              })
               // add attributes from vannilla tilt
               // hide div after second click
             }
@@ -152,8 +183,17 @@ async function loadTodos() {
               document.getElementById(`dots-icon-${todo.id}`).classList.toggle("no-display");
               todoSettings.classList.toggle("settings-shown-circle");
               todoSettings.previousSibling.classList.toggle("settings-shown-main");
+              if(window.settingsOpen) {
+                closeProperties(window.settingsOpen)
+              }
+              window.settingsOpen = todo.id;
               todoSettings.onclick = () => {}
             };
+          }
+          if(isDone == true) {
+            document.getElementById("done").style.display = "block";
+          } else {
+            document.getElementById("done").style.display = "none";
           }
         });
       } else {
@@ -182,6 +222,10 @@ function closeProperties(idTodo) {
       document.getElementById(`dots-icon-${idTodo}`).classList.toggle("no-display");
       todoSettings.classList.toggle("settings-shown-circle");
       todoSettings.previousSibling.classList.toggle("settings-shown-main");
+      if(window.settingsOpen) {
+        closeProperties(window.settingsOpen)
+      }
+      window.settingsOpen = idTodo;
       todoSettings.onclick = () => {};
     };
   })
