@@ -13,16 +13,16 @@
     border: 5px solid #061b52;
 }
 
-textarea::-webkit-scrollbar {
+textarea::-webkit-scrollbar, .desc-text::-webkit-scrollbar {
     width: 2px;
     height: 2px;
 }
 
-textarea::-webkit-scrollbar-thumb {
+textarea::-webkit-scrollbar-thumb, .desc-text::-webkit-scrollbar-thumb {
     background-color: #5ff5f7;
     border: none;
 }
 
-textarea::-webkit-scrollbar-track {
+textarea::-webkit-scrollbar-track , .desc-text::-webkit-scrollbar-track {
     background: none;
 }

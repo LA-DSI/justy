@@ -13,7 +13,6 @@ This README is a simple documentation of this "TODO" App
 
 ### Login
 - [ ] forgot password
-- [ ] copyright year in login and register
 
 ### Dashboard
 - [x] Scrolling through longer titles
@@ -24,6 +23,7 @@ This README is a simple documentation of this "TODO" App
 - [x] Tasks properties (deleting)
 - [ ] Adding new tasks
 - [ ] Searching
+- [ ] fix settings bars which are not slide after click x
 - [x] Expired Bearer fix
 - [x] fix todos done display (paweł plz help)
 - [x] Changing done option fix (from true to false doesnt work) (paweł plz help)

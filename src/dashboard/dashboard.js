@@ -53,8 +53,13 @@ async function checkBearer() {
       } else {
         location.href = "../start-page/start.html"
       }
+     } else {
+      loadTodos()
      }
    })
+    .catch((reason) => {
+      loadTodos()
+    })
 }
 
 function search() {
@@ -155,21 +160,26 @@ async function loadTodos() {
             }
 
             todoMain.children[1].onclick = function() {
-              todoWrapper.style.height = "197px"
-              let todoDesc = document.createElement("div")
-              todoDesc.classList = "todo-desc"
-              todoDesc.innerHTML = `${todo.title}`
-              todoWrapper.appendChild(todoDesc)
-              VanillaTilt.init(todoDesc, {
-                reverse: false,
-                max: 30,
-                speed: 1000,
-                glare: true,
-                "max-glare": 0.5,
-                easing: "cubic-bezier(.03,.98,.52,.99)"
-              })
-              // add attributes from vannilla tilt
-              // hide div after second click
+              if(document.getElementById(`todo-desc-${todo.id}`)) {
+                todoWrapper.removeChild(document.getElementById(`todo-desc-${todo.id}`))
+                todoWrapper.style.height = "55px"
+              } else {
+                todoWrapper.style.height = "197px"
+                let todoDesc = document.createElement("div")
+                todoDesc.classList = "todo-desc flex-col"
+                todoDesc.id = `todo-desc-${todo.id}`
+                todoDesc.innerHTML = `<div class="flex-row drop-shadow" style="margin-bottom:1rem;"><svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" class="desc-icon lightBlue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg><p class="desc-text white">${todo.description}</p></div><div class="flex-row drop-shadow"><svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" class="desc-icon lightBlue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg><p class="white">${todo.endDate}</p></div>`
+                todoWrapper.appendChild(todoDesc)
+                VanillaTilt.init(todoDesc, {
+                  reverse: false,
+                  max: 28,
+                  speed: 1000,
+                  scale: 1.03,
+                  glare: true,
+                  "max-glare": 0.2,
+                  easing: "cubic-bezier(.03,.98,.52,.99)"
+                })
+              }
             }
             todoWrapper.appendChild(todoMain);
 
