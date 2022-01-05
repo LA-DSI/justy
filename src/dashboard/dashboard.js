@@ -138,16 +138,16 @@ async function loadTodos() {
             todoMain.classList = "todo-main text-shadow";
             todoMain.id = `todo-main-${todo.id}`
             if (todo.category == "important") {
-              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsDone('${todo.id}')"><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#fd5fec" stroke-width="4"/></svg></div><div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="reverseDone('${todo.id}', ${todo.done})"><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#fd5fec" stroke-width="4"/></svg></div><div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
             } else if (todo.done == true) {
-              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsTODO('${todo.id}')"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon todo-done-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="reverseDone('${todo.id}', ${todo.done})"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" class="todo-icon todo-done-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
               todoMain.children[0].classList.add("delete-hover-after")
             } else {
-              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsDone('${todo.id}')"><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#5ff5f7" stroke-width="4"/></svg></div><div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="reverseDone('${todo.id}', ${todo.done})"><svg width="28" height="28" class="todo-icon drop-shadow" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="14" r="12" stroke="#5ff5f7" stroke-width="4"/></svg></div><div class="todo-text-container"><p class="todo-text" id="todo-text">${todo.title}</p></div>`;
             }
 
             if (todo.category == "important" && todo.done == true) {
-              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="markAsTODO('${todo.id}')"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" onclick="markAsTODO('${todo.id}')" class="todo-icon todo-done-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
+              todoMain.innerHTML = `<div class="todo-icon-container flex-col" onclick="reverseDone('${todo.id}', ${todo.done})"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" onclick="markAsTODO('${todo.id}')" class="todo-icon todo-done-icon lightBlue drop-shadow" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg></div><div class="todo-text-container"><p class="todo-text todo-text-done lightBlue" id="todo-text">${todo.title}</p></div>`;
               todoMain.children[0].classList.add("delete-hover-after")
             }
 
@@ -168,17 +168,27 @@ async function loadTodos() {
                 let todoDesc = document.createElement("div")
                 todoDesc.classList = "todo-desc flex-col"
                 todoDesc.id = `todo-desc-${todo.id}`
-                todoDesc.innerHTML = `<div class="flex-row drop-shadow" style="margin-bottom:1rem;"><svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" class="desc-icon lightBlue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg><p class="desc-text white">${todo.description}</p></div><div class="flex-row drop-shadow"><svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" class="desc-icon lightBlue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg><p class="white">${todo.endDate}</p></div>`
+                let date = new Date(todo.endDate).toLocaleDateString(navigator.language, {hour: '2-digit', minute:'2-digit'})
+                todoDesc.innerHTML = `<div class="flex-row drop-shadow" style="margin-bottom:1rem;width:100%;"><div class="desc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" class="lightBlue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div><textarea id="text-area-${todo.id}" class="desc-text" rows="1">${todo.description}</textarea></div><div class="flex-row drop-shadow"><div class="desc-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28px" height="28px" class="lightBlue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg></div><p class="desc-text white">${date}</p></div>`
                 todoWrapper.appendChild(todoDesc)
+                if(document.getElementById(`text-area-${todo.id}`).innerHTML.length < 19) {
+                  document.getElementById(`text-area-${todo.id}`).style.width = (document.getElementById(`text-area-${todo.id}`).scrollHeight)+"px"
+                } else if(document.getElementById(`text-area-${todo.id}`).innerHTML.length > 19) {
+                  document.getElementById(`text-area-${todo.id}`).rows = 2
+                }
                 VanillaTilt.init(todoDesc, {
                   reverse: false,
-                  max: 28,
+                  max: 30,
                   speed: 1000,
                   scale: 1.03,
                   glare: true,
+                  axis: "y",
                   "max-glare": 0.2,
                   easing: "cubic-bezier(.03,.98,.52,.99)"
                 })
+                if(todoSettings.classList.contains("settings-shown-circle")) {
+                  closeProperties(`${todo.id}`)
+                }
               }
             }
             todoWrapper.appendChild(todoMain);
@@ -220,6 +230,7 @@ async function loadTodos() {
 }
 
 function closeProperties(idTodo) {
+  window.settingsOpen = null
   const todoMain = document.getElementById(`todo-main-${idTodo}`)
   const todoSettings = todoMain.nextSibling;
   document.getElementById(`settings-buttons-${idTodo}`).classList.toggle("no-display");
@@ -298,7 +309,9 @@ function editTask(idTodo) {
       } else if(document.getElementById("desc-edit").value.length > 38) {
         document.getElementById("desc-edit").rows = 3;
       }
-      let date = new Date(todo.endDate).toISOString()
+      let date1 = new Date(todo.endDate)
+      let tzoffset = (new Date()).getTimezoneOffset() * 60000;
+      let date = (new Date(date1 - tzoffset)).toISOString().slice(0, -1);
       document.getElementById("date-edit").value = date.slice(0,16);
       if(todo.done == true) {
         document.getElementById("done-edit").checked = true
@@ -358,37 +371,8 @@ function editExit() {
   document.querySelector(".app").style.opacity = "1"
 }
 
-async function markAsDone(item_id) {
-  const done = true;
-  await fetch("https://justy-backend.herokuapp.com/todos/edit", {
-    method: "post",
-    body: JSON.stringify({ item_id, done }),
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: "Bearer " + preferences.token,
-    },
-  })
-  .then(async (response) => {
-    if (response.ok) {
-      ipcRenderer.send("reload-app")
-    } else {
-      document.getElementById("edit").style.display = "none"
-      document.querySelector(".app").style.opacity = "1"
-      document.getElementById("error").style.display = "flex"
-      document.getElementById("todos-wrapper").style.display = "none"
-    }
-  })
-  .catch((reason) => {
-    document.getElementById("edit").style.display = "none"
-    document.querySelector(".app").style.opacity = "1"
-    document.getElementById("error").style.display = "flex"
-    document.getElementById("todos-wrapper").style.display = "none"
-  })
-}
-
-async function markAsTODO(item_id) {
-  const done = false;
+async function reverseDone(item_id, done) {
+  done = !done
   await fetch("https://justy-backend.herokuapp.com/todos/edit", {
     method: "post",
     body: JSON.stringify({ item_id, done }),

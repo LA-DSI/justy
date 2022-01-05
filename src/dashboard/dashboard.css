@@ -492,7 +492,8 @@ textarea, table input {
   border: none;
   outline: none;
   color: white;
-  padding: 0.5rem 0;
+  padding-right: 0.5rem;
+  padding-bottom: 0.2rem;
   font-size: 1rem;
 }
 
@@ -583,12 +584,12 @@ textarea, table input {
 }
 
 .desc-icon {
-  margin-right: 1rem;
+  width: 28px;
+  height: 28px;
 }
 
 .desc-text {
-  overflow: auto;
-  width: 70%;
+  margin-left: 1rem;
 }
 
 #todos-container {
