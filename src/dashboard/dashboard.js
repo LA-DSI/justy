@@ -33,6 +33,9 @@ if (navigator.language == "pl") {
 }
 
 const preferences = require("../../preferences.json");
+if(preferences.user.team_member == true) {
+  document.getElementById("ff-icon").style.display = "flex"
+}
 document.getElementById("name").innerHTML = preferences.user.firstname;
 checkBearer();
 

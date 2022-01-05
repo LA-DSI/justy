@@ -77,9 +77,10 @@ nav, .add-refresh-container {
 
 h1 {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: row;
+  width: 100%;
   margin: 1rem 0;
   font-weight: 200;
   font-style: italic;
@@ -87,6 +88,12 @@ h1 {
 
 #name {
   font-weight: 500;
+  margin-left: 0.5rem;
+  overflow: auto;
+}
+
+.ff-icon {
+  margin-right: 0.5rem;
 }
 
 .add, .refresh {

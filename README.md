@@ -27,4 +27,4 @@ This README is a simple documentation of this "TODO" App
 - [x] better rwd
 - [ ] animations (at the end of the work)
 - [ ] better preferences (cookies)
-- [ ] f&f
+- [x] f&f
