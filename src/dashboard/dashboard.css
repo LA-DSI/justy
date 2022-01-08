@@ -94,6 +94,7 @@ h1 {
 
 .ff-icon {
   margin-right: 0.5rem;
+  display: none;
 }
 
 .add, .refresh {
