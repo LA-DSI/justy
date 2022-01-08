@@ -89,15 +89,19 @@ if (!document.getElementById("name").innerHTML) {
 }
 
 function addTodo() {
-  if (document.getElementById("add-container").style.display == "flex") {
-    document.getElementById("add-container").classList.add("slideOutRight");
-    document.getElementById("add-container").animationPlayState = "running";
-    sleep(400).then(() => {
-      document.getElementById("add-container").style.display = "none";
-    });
+  document.getElementById("edit").style.display = "flex"
+  document.querySelector(".app").style.opacity = "0.1"
+  document.getElementById("edit-icon-popup").classList.add("no-display")
+  document.getElementById("add-icon-popup").classList.remove("no-display")
+  if(navigator.language == "pl") {
+    document.getElementById("edit-text").innerHTML = "Dodaj nowe zadanie!"
+    document.getElementById("edit-button").innerHTML = "Dodaj"
   } else {
-    document.getElementById("add-container").classList.remove("slideOutRight");
-    document.getElementById("add-container").style.display = "flex";
+    document.getElementById("text-add").innerHTML = `Add new task!`;
+    document.getElementById("edit-button").innerHTML = "Add"
+  }
+  document.getElementById("edit-button").onclick = function() {
+    console.log("add")
   }
 }
 

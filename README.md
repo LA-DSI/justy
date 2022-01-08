@@ -28,3 +28,4 @@ This README is a simple documentation of this "TODO" App
 - [ ] animations (at the end of the work)
 - [ ] better preferences (cookies)
 - [x] f&f
+- [ ] edit and add input errors
