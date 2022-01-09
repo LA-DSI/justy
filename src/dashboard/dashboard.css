@@ -603,6 +603,15 @@ textarea, table input {
   align-items: flex-start;
 }
 
+#title-edit::placeholder, #desc-edit::placeholder {
+  color: #9cb5f9;
+  transition: 0.3s;
+}
+
+#title-edit:focus::placeholder, #desc-edit:focus::placeholder {
+  opacity: 0;
+}
+
 @media (min-width: 1000px) {
   #todos-container, #todos-done-container {
     display: grid;

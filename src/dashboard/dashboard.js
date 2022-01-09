@@ -88,23 +88,6 @@ if (!document.getElementById("name").innerHTML) {
   document.getElementById("hi").style.fontWeight = 500;
 }
 
-function addTodo() {
-  document.getElementById("edit").style.display = "flex"
-  document.querySelector(".app").style.opacity = "0.1"
-  document.getElementById("edit-icon-popup").classList.add("no-display")
-  document.getElementById("add-icon-popup").classList.remove("no-display")
-  if(navigator.language == "pl") {
-    document.getElementById("edit-text").innerHTML = "Dodaj nowe zadanie!"
-    document.getElementById("edit-button").innerHTML = "Dodaj"
-  } else {
-    document.getElementById("text-add").innerHTML = `Add new task!`;
-    document.getElementById("edit-button").innerHTML = "Add"
-  }
-  document.getElementById("edit-button").onclick = function() {
-    console.log("add")
-  }
-}
-
 function refresh() {
   ipcRenderer.send("reload-app")
 }
@@ -297,9 +280,29 @@ function deleteExit() {
   document.querySelector(".app").style.opacity = "1"
 }
 
+document.getElementById("title-edit").addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault()
+  }
+});
+
 function editTask(idTodo) {
   document.getElementById("edit").style.display = "flex"
   document.querySelector(".app").style.opacity = "0.1"
+  document.getElementById("edit-icon-popup").classList.remove("no-display")
+  document.getElementById("add-icon-popup").classList.add("no-display")
+  document.getElementById("tr-done").classList.remove("no-display")
+  if(navigator.language == "pl") {
+    document.getElementById("edit-text").innerHTML = "Edytuj zadanie!"
+    document.getElementById("edit-button").innerHTML = "Zapisz"
+    document.getElementById("title-edit").placeholder = "Wprowadź tytuł"
+    document.getElementById("desc-edit").placeholder = "Wprowadź opis"
+  } else {
+    document.getElementById("text-add").innerHTML = `Edit task!`;
+    document.getElementById("edit-button").innerHTML = "Save"
+    document.getElementById("title-edit").placeholder = "Enter title"
+    document.getElementById("desc-edit").placeholder = "Enter description"
+  }
   for(const todo of window.todos) {
     if(todo.id == idTodo) {
       document.getElementById("title-edit").value = todo.title
@@ -376,6 +379,69 @@ function editTask(idTodo) {
 function editExit() {
   document.getElementById("edit").style.display = "none"
   document.querySelector(".app").style.opacity = "1"
+}
+
+function addTodo() {
+  document.getElementById("edit").style.display = "flex"
+  document.querySelector(".app").style.opacity = "0.1"
+  document.getElementById("edit-icon-popup").classList.add("no-display")
+  document.getElementById("add-icon-popup").classList.remove("no-display")
+  document.getElementById("tr-done").classList.add("no-display")
+  document.getElementById("title-edit").value = null
+  document.getElementById("desc-edit").value = null
+  document.getElementById("category-edit").checked = false
+  document.getElementById("date-edit").value = null
+  if(navigator.language == "pl") {
+    document.getElementById("edit-text").innerHTML = "Dodaj nowe zadanie!"
+    document.getElementById("edit-button").innerHTML = "Dodaj"
+    document.getElementById("title-edit").placeholder = "Wprowadź tytuł"
+    document.getElementById("desc-edit").placeholder = "Wprowadź opis"
+  } else {
+    document.getElementById("text-add").innerHTML = `Add new task!`;
+    document.getElementById("edit-button").innerHTML = "Add"
+    document.getElementById("title-edit").placeholder = "Enter title"
+    document.getElementById("desc-edit").placeholder = "Enter description"
+  }
+  document.getElementById("edit-button").onclick = async function() {
+    let dateEdit = new Date(document.getElementById("date-edit").value)
+    let categoryEdit
+    if(document.getElementById("category-edit").checked == true) {
+      categoryEdit = "important";
+    } else {
+      categoryEdit = "";
+    }
+
+    const title = document.getElementById("title-edit").value
+    const description = document.getElementById("desc-edit").value
+    const category = categoryEdit
+    const endDate = dateEdit.getTime()
+
+    await fetch("https://justy-backend.herokuapp.com/todos", {
+      method: "post",
+      body: JSON.stringify({ title, description, category, endDate }),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Bearer " + preferences.token,
+      },
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          ipcRenderer.send("reload-app")
+        } else {
+          document.getElementById("edit").style.display = "none"
+          document.querySelector(".app").style.opacity = "1"
+          document.getElementById("error").style.display = "flex"
+          document.getElementById("todos-wrapper").style.display = "none"
+        }
+      })
+      .catch((reason) => {
+        document.getElementById("edit").style.display = "none"
+        document.querySelector(".app").style.opacity = "1"
+        document.getElementById("error").style.display = "flex"
+        document.getElementById("todos-wrapper").style.display = "none"
+      })
+  }
 }
 
 async function reverseDone(item_id, done) {

@@ -21,11 +21,13 @@ This README is a simple documentation of this "TODO" App
 - [x] Marking as done
 - [x] Tasks properties (editing)
 - [x] Tasks properties (deleting)
-- [ ] Adding new tasks
+- [x] Adding new tasks
 - [ ] Searching
 - [x] refresh button
 - [x] better rwd
 - [ ] animations (at the end of the work)
 - [ ] better preferences (cookies)
 - [x] f&f
-- [ ] edit and add input errors
+- [ ] editing and adding popup - input errors
+- [ ] details - desc width
+- [ ] adding poup - date can't be from past
