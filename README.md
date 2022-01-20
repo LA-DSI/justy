@@ -16,7 +16,6 @@ This README is a simple documentation of this "TODO" App
 
 ### Dashboard
 - [x] Scrolling through longer titles
-- [ ] Sort tasks by expired, then important and at the end by earliest due date (paweł plz help)
 - [x] TODO details like description and other
 - [x] Marking as done
 - [x] Tasks properties (editing)
@@ -25,9 +24,8 @@ This README is a simple documentation of this "TODO" App
 - [ ] Searching
 - [x] refresh button
 - [x] better rwd
-- [ ] animations (at the end of the work)
-- [ ] better preferences (cookies)
 - [x] f&f
 - [ ] editing and adding popup - input errors
-- [ ] details - desc width
+- [ ] close other desc popups when one is open
 - [ ] adding poup - date can't be from past
+- [ ] animations (at the end of the work)
