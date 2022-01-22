@@ -25,7 +25,5 @@ This README is a simple documentation of this "TODO" App
 - [x] refresh button
 - [x] better rwd
 - [x] f&f
-- [ ] editing and adding popup - input errors
 - [ ] close other desc popups when one is open
-- [ ] adding poup - date can't be from past
 - [ ] animations (at the end of the work)

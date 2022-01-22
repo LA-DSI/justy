@@ -351,6 +351,19 @@ function editTask(idTodo) {
     const endDate = dateEdit.getTime()
     const done = document.getElementById("done-edit").checked
 
+    if(!title || !endDate) {
+      document.getElementById("todos-wrapper").style.display = "none"
+      document.getElementById("edit").style.display = "none"
+      document.querySelector(".app").style.opacity = "1"
+      if(navigator.language == "pl") {
+        document.getElementById("error-text").innerHTML = "Wprowadź tytuł i datę!"
+      } else {
+        document.getElementById("error-text").innerHTML = "Enter a title and date!"
+      }
+      document.getElementById("error").style.display = "flex"
+      return
+    }
+
     await fetch("https://justy-backend.herokuapp.com/todos/edit", {
       method: "post",
       body: JSON.stringify({ item_id, title, description, category, endDate, done }),
@@ -418,6 +431,32 @@ function addTodo() {
     const description = document.getElementById("desc-edit").value
     const category = categoryEdit
     const endDate = dateEdit.getTime()
+
+    if(!title || !endDate) {
+      document.getElementById("todos-wrapper").style.display = "none"
+      document.getElementById("edit").style.display = "none"
+      document.querySelector(".app").style.opacity = "1"
+      if(navigator.language == "pl") {
+        document.getElementById("error-text").innerHTML = "Wprowadź tytuł i datę!"
+      } else {
+        document.getElementById("error-text").innerHTML = "Enter a title and date!"
+      }
+      document.getElementById("error").style.display = "flex"
+      return
+    }
+
+    if(endDate < new Date()) {
+      document.getElementById("todos-wrapper").style.display = "none"
+      document.getElementById("edit").style.display = "none"
+      document.querySelector(".app").style.opacity = "1"
+      if(navigator.language == "pl") {
+        document.getElementById("error-text").innerHTML = "Data musi być z przyszłości!"
+      } else {
+        document.getElementById("error-text").innerHTML = "Date must be from the future!"
+      }
+      document.getElementById("error").style.display = "flex"
+      return
+    }
 
     await fetch("https://justy-backend.herokuapp.com/todos", {
       method: "post",

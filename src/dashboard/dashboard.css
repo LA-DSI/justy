@@ -359,8 +359,8 @@ button:hover {
 /* Loading Animation */
 
 .loading-container, .error-container, .warning {
-  width: 250px;
-  height: 250px;
+  width: 270px;
+  height: 270px;
   background-color: white;
   box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
   border-radius: 30px;
