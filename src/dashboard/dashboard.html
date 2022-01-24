@@ -169,14 +169,26 @@
                     <div id="todos-wrapper">
                         <div class="flex-row drop-shadow title" id="title">
                             <div class="stripe"></div>
-                            <p class="text-stripe lightBlue">TODO</p>
+                            <p class="text-stripe lightBlue flex-row" onclick="dropDownToDo()">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon" id="stripe-icon-up1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon no-display" id="stripe-icon-down1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" /></svg>
+                                <span class="title-main">TODO</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon" id="stripe-icon-up2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon no-display" id="stripe-icon-down2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" /></svg>
+                            </p>
                             <div class="stripe"></div>
                         </div>
                         <div id="todos-container" class="flex-col"></div>
                         <section id="done">
                             <div class="flex-row drop-shadow title-done">
                                 <div class="stripe"></div>
-                                <p class="text-stripe lightBlue" id="done-text">DONE</p>
+                                <p class="text-stripe lightBlue flex-row" id="done-text" onclick="dropDownDone()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon" id="stripe-icon-done-down1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon no-display" id="stripe-icon-done-up1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" /></svg>
+                                    <span class="title-main" id="title-main-done">DONE</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon" id="stripe-icon-done-down2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon no-display" id="stripe-icon-done-up2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" /></svg>
+                                </p>
                                 <div class="stripe"></div>
                             </div>
                             <div id="todos-done-container"></div>

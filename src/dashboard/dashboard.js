@@ -4,7 +4,7 @@ if (navigator.language == "pl") {
   document.getElementById("search-bar").placeholder = `Szukaj TODO`;
   document.getElementById("hi").innerHTML = `Cześć`;
   document.getElementById("text-add").innerHTML = `Dodaj nowe zadanie!`;
-  document.getElementById("done-text").innerHTML = `ZROBIONE`;
+  document.getElementById("title-main-done").innerHTML = `ZROBIONE`;
   document.getElementById("error-text").innerHTML = `Coś poszło nie tak!`;
   document.getElementById("error-button-text").innerHTML = `Spróbuj ponownie`;
   document.getElementById("warning-text").innerHTML = "Jesteś pewny?"
@@ -19,7 +19,7 @@ if (navigator.language == "pl") {
   document.getElementById("search-bar").placeholder = `Search for TODO`;
   document.getElementById("hi").innerHTML = `Hi`;
   document.getElementById("text-add").innerHTML = `Add new task!`;
-  document.getElementById("done-text").innerHTML = `DONE`;
+  document.getElementById("title-main-done").innerHTML = `DONE`;
   document.getElementById("error-text").innerHTML = `Something went wrong!`;
   document.getElementById("error-button-text").innerHTML = `Try again`;
   document.getElementById("warning-text").innerHTML = "Are you sure?"
@@ -521,4 +521,21 @@ async function reverseDone(item_id, done) {
     document.getElementById("error").style.display = "flex"
     document.getElementById("todos-wrapper").style.display = "none"
   })
+}
+
+function dropDownToDo() {
+  document.getElementById("todos-container").classList.toggle("no-display")
+  document.getElementById("title").classList.toggle("margin-3rem")
+  document.getElementById("stripe-icon-up1").classList.toggle("no-display")
+  document.getElementById("stripe-icon-up2").classList.toggle("no-display")
+  document.getElementById("stripe-icon-down1").classList.toggle("no-display")
+  document.getElementById("stripe-icon-down2").classList.toggle("no-display")
+}
+
+function dropDownDone() {
+  document.getElementById("todos-done-container").classList.toggle("no-display")
+  document.getElementById("stripe-icon-done-up1").classList.toggle("no-display")
+  document.getElementById("stripe-icon-done-up2").classList.toggle("no-display")
+  document.getElementById("stripe-icon-done-down1").classList.toggle("no-display")
+  document.getElementById("stripe-icon-done-down2").classList.toggle("no-display")
 }
