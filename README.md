@@ -25,5 +25,5 @@ This README is a simple documentation of this "TODO" App
 - [x] refresh button
 - [x] better rwd
 - [x] f&f
-- [ ] close other desc popups when one is open
+- [ ] todo and complete drop down lists
 - [ ] animations (at the end of the work)

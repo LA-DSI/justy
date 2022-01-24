@@ -150,6 +150,10 @@ async function loadTodos() {
             }
 
             todoMain.children[1].onclick = function() {
+              if (document.querySelector(".todo-desc") && !document.getElementById(`todo-desc-${todo.id}`)) {
+                document.querySelectorAll(".todo-desc").forEach(e => e.remove())
+                document.querySelectorAll(".todo-wrapper").forEach(e => e.style.height = "55px")
+              }
               if(document.getElementById(`todo-desc-${todo.id}`)) {
                 todoWrapper.removeChild(document.getElementById(`todo-desc-${todo.id}`))
                 todoWrapper.style.height = "55px"
@@ -200,6 +204,8 @@ async function loadTodos() {
                 closeProperties(window.settingsOpen)
               }
               window.settingsOpen = todo.id;
+              document.querySelectorAll(".todo-desc").forEach(e => e.remove())
+              document.querySelectorAll(".todo-wrapper").forEach(e => e.style.height = "55px")
               todoSettings.onclick = () => {}
             };
           }
@@ -240,6 +246,8 @@ function closeProperties(idTodo) {
         closeProperties(window.settingsOpen)
       }
       window.settingsOpen = idTodo;
+      document.querySelectorAll(".todo-desc").forEach(e => e.remove())
+      document.querySelectorAll(".todo-wrapper").forEach(e => e.style.height = "55px")
       todoSettings.onclick = () => {};
     };
   })
