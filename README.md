@@ -7,9 +7,6 @@ This README is a simple documentation of this "TODO" App
 ### App spine
 - [x] Start page
 - [x] Register page
-- [ ] Login page
+- [x] Login page
 - [x] Dashboard
 - [ ] Settings
-
-### Login
-- [ ] forgot password

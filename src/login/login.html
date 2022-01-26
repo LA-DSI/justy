@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../assets/css/animations.css">
     <link rel="stylesheet" href="../../assets/css/scrollbars.css">
     <script src="./login.js" defer></script>
+    <script src="../../assets/libs/vanilla-tilt.min.js"></script>
 </head>
 <body>
     <div class="popup-container flex-col">
@@ -72,8 +73,22 @@
                             </div>
                         </div>
                     </div>
-                    <button onclick="signIn()" id="login-button" class="white drop-shadow text-shadow">Log in</button>
+                    <p>
+                        <button onclick="signIn()" id="login-button" class="white drop-shadow text-shadow">Log in</button>
+                    </p>
+                    <p>
+                        <button onclick="forgotPassword()" class="forgot white drop-shadow" id="forgot-button">Forgot password</button>
+                    </p>
                 </div>
+            </div>
+            <div class="forgot-popup white drop-shadow flex-col no-display flipInY" id="forgot">
+                <svg xmlns="http://www.w3.org/2000/svg" onclick="forgotPassword()" class="exit forgot-exit lightBlue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <p id="forgot-text">To change your password, please contact our support:</p>
+                <p class="support">
+                    <a href="mailto:todo@arsee.pl">todo@arsee.pl</a>
+                </p>
             </div>
     </div>
     <footer class="white text-shadow flex-row">

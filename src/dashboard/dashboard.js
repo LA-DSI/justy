@@ -1,10 +1,7 @@
 const { ipcRenderer } = require("electron");
 const { copyFileSync } = require("original-fs");
 
-const isWindows = process.platform === "win32"
-const isLinux = process.platform === "linux"
 const isMac = process.platform === "darwin"
-
 
 if (navigator.language == "pl") {
   document.getElementById("search-bar").placeholder = `Szukaj TODO`;
