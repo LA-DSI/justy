@@ -65,18 +65,54 @@ async function checkBearer() {
     })
 }
 
-function search() {
+function searchBar() {
+  document.getElementById("search-bar").focus()
   let searchInput = document.getElementById("search-bar");
 
   if (searchInput.style.display === "inline-block") {
     document.getElementById("search-bar").classList = "slideOutRight";
     document.getElementById("search-bar").animationPlayState = "running";
     sleep(400).then(() => {
+      document.getElementById("search-bar").value = ""
       searchInput.style.display = "none";
     });
   } else {
     document.getElementById("search-bar").classList = "slideInRight";
     searchInput.style.display = "inline-block";
+  }
+}
+
+function search() {
+  var input = document.getElementById("search-bar")
+  var filter = input.value.toUpperCase()
+  var ul = document.getElementById("todos-container")
+  var li = ul.getElementsByClassName("todo-wrapper")
+  var a, i, txtValue
+  for(i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("p")[0];
+    txtValue = a.textContent || a.innerHTML
+    if(txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = ""
+    } else {
+      li[i].style.display = "none"
+    }
+  }
+}
+
+function searchDone() {
+  var input = document.getElementById("search-bar")
+  var filter = input.value.toUpperCase()
+  var ul = document.getElementById("todos-done-container")
+  var li = ul.getElementsByClassName("todo-wrapper")
+  var a, i, txtValue
+  for(i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("p")[0];
+    txtValue = a.textContent || a.innerHTML
+    if(txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = ""
+    } else {
+      li[i].style.display = "none"
+    }
   }
 }
 

@@ -26,3 +26,5 @@ This README is a simple documentation of this "TODO" App
 - [x] better rwd
 - [x] f&f
 - [ ] animations (at the end of the work)
+- [ ] Searching - exit
+- [ ] Searching - if there are no results
