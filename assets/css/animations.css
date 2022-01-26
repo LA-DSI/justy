@@ -15,7 +15,7 @@
 
 .slideInRight {
   animation-name: slideInRight;
-  animation-duration: 0.8s;
+  animation-duration: 0.6s;
   animation-fill-mode: both;
 }
 @keyframes slideInRight {
@@ -30,7 +30,7 @@
 
 .slideOutRight {
   animation-name: slideOutRight;
-  animation-duration: 0.8s;
+  animation-duration: 0.6s;
   animation-fill-mode: both;
 }
 @keyframes slideOutRight {
@@ -73,6 +73,21 @@
   }
 }
 
+.slideInDownDesc {
+  animation-name: slideInDown;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+}
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-80%);
+    visibility: visible;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .slideOutDown {
   animation-name: slideOutDown;
   animation-duration: 0.8s;
@@ -85,5 +100,20 @@
   100% {
     visibility: hidden;
     transform: translateY(150%);
+  }
+}
+
+.slideOutUpDesc {
+  animation-name: slideOutUp;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+}
+@keyframes slideOutUp {
+  0% {
+  transform: translateY(0);
+  }
+  100% {
+  visibility: hidden;
+  transform: translateY(-80%);
   }
 }

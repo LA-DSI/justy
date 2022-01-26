@@ -8,21 +8,8 @@ This README is a simple documentation of this "TODO" App
 - [x] Start page
 - [x] Register page
 - [ ] Login page
-- [ ] Dashboard
+- [x] Dashboard
 - [ ] Settings
 
 ### Login
 - [ ] forgot password
-
-### Dashboard
-- [x] Scrolling through longer titles
-- [x] TODO details like description and other
-- [x] Marking as done
-- [x] Tasks properties (editing)
-- [x] Tasks properties (deleting)
-- [x] Adding new tasks
-- [x] Searching
-- [x] refresh button
-- [x] better rwd
-- [x] f&f
-- [ ] animations

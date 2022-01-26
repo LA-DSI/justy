@@ -228,6 +228,7 @@ h1 {
   align-items: center;
   padding: 0 1rem;
   transition: 0.3s;
+  z-index: 3;
 }
 
 .todo-main {
