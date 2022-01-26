@@ -21,10 +21,8 @@ This README is a simple documentation of this "TODO" App
 - [x] Tasks properties (editing)
 - [x] Tasks properties (deleting)
 - [x] Adding new tasks
-- [ ] Searching
+- [x] Searching
 - [x] refresh button
 - [x] better rwd
 - [x] f&f
-- [ ] animations (at the end of the work)
-- [ ] Searching - exit
-- [ ] Searching - if there are no results
+- [ ] animations

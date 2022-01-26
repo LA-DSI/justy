@@ -1,4 +1,10 @@
 const { ipcRenderer } = require("electron");
+const { copyFileSync } = require("original-fs");
+
+const isWindows = process.platform === "win32"
+const isLinux = process.platform === "linux"
+const isMac = process.platform === "darwin"
+
 
 if (navigator.language == "pl") {
   document.getElementById("search-bar").placeholder = `Szukaj TODO`;
@@ -66,23 +72,10 @@ async function checkBearer() {
 }
 
 function searchBar() {
-  document.getElementById("search-bar").focus()
+  document.getElementById("title").classList.remove("margin-3rem")
+  shortcuts()
   let searchInput = document.getElementById("search-bar");
 
-  if (searchInput.style.display === "inline-block") {
-    document.getElementById("search-bar").classList = "slideOutRight";
-    document.getElementById("search-bar").animationPlayState = "running";
-    sleep(400).then(() => {
-      document.getElementById("search-bar").value = ""
-      searchInput.style.display = "none";
-    });
-  } else {
-    document.getElementById("search-bar").classList = "slideInRight";
-    searchInput.style.display = "inline-block";
-  }
-}
-
-function search() {
   var input = document.getElementById("search-bar")
   var filter = input.value.toUpperCase()
   var ul = document.getElementById("todos-container")
@@ -94,8 +87,70 @@ function search() {
     if(txtValue.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = ""
     } else {
+      li[i].style.display = ""
+    }
+  }
+
+  var input = document.getElementById("search-bar")
+  var filter = input.value.toUpperCase()
+  var ul = document.getElementById("todos-done-container")
+  var li = ul.getElementsByClassName("todo-wrapper")
+  var a, i, txtValue
+  for(i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("p")[0];
+    txtValue = a.textContent || a.innerHTML
+    if(txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = ""
+    } else {
+      li[i].style.display = ""
+    }
+  }
+
+  if (searchInput.style.display === "inline-block") {
+    document.getElementById("search-bar").classList = "slideOutRight";
+    document.getElementById("search-bar").animationPlayState = "running";
+    sleep(400).then(() => {
+      document.getElementById("search-bar").value = ""
+      searchInput.style.display = "none";
+    });
+  } else {
+    document.getElementById("search-bar").classList = "slideInRight";
+    searchInput.style.display = "inline-block";
+    sleep(800).then(() => {
+      document.getElementById("search-bar").focus()
+      window.onkeydown = function(e)  {
+        if(e.keyCode == 27) {
+          sleep(100).then(() => {
+            searchBar()
+            shortcuts()
+          })
+        }
+      }
+    })
+  }
+}
+
+function search() {
+  var input = document.getElementById("search-bar")
+  var filter = input.value.toUpperCase()
+  var ul = document.getElementById("todos-container")
+  var li = ul.getElementsByClassName("todo-wrapper")
+  var a, i, txtValue
+  var count;
+  for(i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("p")[0];
+    txtValue = a.textContent || a.innerHTML
+    if(txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = ""
+      count = 0+i;
+    } else {
       li[i].style.display = "none"
     }
+  }
+  if(count == null) {
+    document.getElementById("title").classList.add("margin-3rem")
+  } else {
+    document.getElementById("title").classList.remove("margin-3rem")
   }
 }
 
@@ -332,6 +387,33 @@ document.getElementById("title-edit").addEventListener("keypress", function (e) 
     e.preventDefault()
   }
 });
+
+function shortcuts() {
+  if(isMac) {
+    window.onkeydown = function(e)  {
+      if(e.keyCode == 70 && e.metaKey) {
+        sleep(200).then(() => {
+          searchBar()
+        })
+      }
+      if(e.keyCode == 82 && e.metaKey) {
+        refresh()
+      }
+    }
+  } else {
+    window.onkeydown = function(e)  {
+      if(e.keyCode == 70 && e.ctrlKey) {
+        sleep(200).then(() => {
+          searchBar()
+        })
+      }
+      if(e.keyCode == 82 && e.ctrlKey) {
+        refresh()
+      }
+    }
+  }
+}
+shortcuts()
 
 function editTask(idTodo) {
   document.getElementById("edit").style.display = "flex"
