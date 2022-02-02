@@ -56,3 +56,15 @@ function closeSettings() {
         settings()
     })
 }
+
+setInterval (() => time(), 1000);
+
+function time() {
+  let date = new Date()
+  document.getElementById("hours").innerHTML = `${date.getHours()}`
+  document.getElementById("minutes").innerHTML = `${date.getMinutes()}`
+}
+
+let date = new Date()
+document.getElementById("hours").innerHTML = `${date.getHours()}`
+document.getElementById("minutes").innerHTML = `${date.getMinutes()}`

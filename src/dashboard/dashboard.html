@@ -21,8 +21,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
             <ul class="settings-list">
-                <li>Tray</li>
-                <li>Startup</li>
+                <li class="flex-row">
+                    <span id="hours">00</span>
+                    <span>:</span>
+                    <span id="minutes" class="lightBlue">00</span>
+                </li>
                 <li>
                     <button onclick="signOut()" class="white logout-button" id="logout-text">Sign out</button>
                 </li>
