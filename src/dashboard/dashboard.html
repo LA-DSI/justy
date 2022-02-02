@@ -6,13 +6,34 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
     <title>Justy</title>
     <link rel="stylesheet" href="./dashboard.css">
+    <link rel="stylesheet" href="./settings.css">
     <link rel="stylesheet" href="../../assets/css/animations.css">
     <link rel="stylesheet" href="../../assets/css/date-picker.css">
     <link rel="stylesheet" href="../../assets/css/scrollbars.css">
     <script src="../../assets/libs/vanilla-tilt.min.js"></script>
     <script src="./dashboard.js" defer></script>
+    <script src="./settings.js" defer></script>
 </head>
 <body>
+    <div class="settings-container no-display slideInLeftSettings" id="settings">
+        <div class="settings drop-shadow white">
+            <svg xmlns="http://www.w3.org/2000/svg" id="settings-close" onclick="closeSettings()" class="no-display menu-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <ul class="settings-list">
+                <li>Tray</li>
+                <li>Startup</li>
+                <li>
+                    <button onclick="signOut()" class="white logout-button" id="logout-text">Sign out</button>
+                </li>
+            </ul>
+            <div class="footer-container flex-col">
+                <footer class="footer-settings">
+                    <p class="footer-text-settings text-shadow">&copy; <span id="year"></span> Copyright <span class="footer-bold">Arsee Projects</span></p>
+                </footer>
+            </div>
+        </div>
+    </div>
     <div class="flex-row warning-container" id="warning">
         <div class="warning flex-col">
             <svg xmlns="http://www.w3.org/2000/svg" onclick="deleteExit()" class="delete-exit lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -102,7 +123,7 @@
         <div class="main-container" id="main-container">
             <header>
                 <nav>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="menu-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="settings-open" onclick="settings()" class="menu-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                     <div id="search-bar-container">

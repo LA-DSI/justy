@@ -1,5 +1,7 @@
 const { ipcRenderer } = require("electron");
 const { copyFileSync } = require("original-fs");
+const fs = require("fs");
+const path = require("path");
 
 const isMac = process.platform === "darwin"
 
@@ -666,4 +668,9 @@ function dropDownDone() {
   document.getElementById("stripe-icon-done-up2").classList.toggle("no-display")
   document.getElementById("stripe-icon-done-down1").classList.toggle("no-display")
   document.getElementById("stripe-icon-done-down2").classList.toggle("no-display")
+}
+
+function signOut() {
+  fs.unlinkSync(path.join(__dirname, "..", "..", "preferences.json"),);
+  ipcRenderer.send("load-start");
 }

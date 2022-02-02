@@ -13,6 +13,22 @@
   }
 }
 
+.slideInLeftSettings {
+  animation-name: slideInLeft;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
 .slideInRight {
   animation-name: slideInRight;
   animation-duration: 0.6s;
@@ -55,6 +71,21 @@
   100% {
     visibility: hidden;
     transform: translateX(-150%);
+  }
+}
+
+.slideOutLeftSettings {
+  animation-name: slideOutLeft;
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+}
+@keyframes slideOutLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    visibility: hidden;
+    transform: translateX(-100%);
   }
 }
 

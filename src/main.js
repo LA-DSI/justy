@@ -59,6 +59,10 @@ ipcMain.on("load-dashboard", () => {
   justy.loadFile("src/dashboard/dashboard.html");
 });
 
+ipcMain.on("load-start", () => {
+  justy.loadFile("src/start-page/start.html");
+});
+
 ipcMain.on("reload-app", () => {
   justy.reload()
 })
