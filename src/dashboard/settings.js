@@ -59,12 +59,22 @@ function closeSettings() {
 
 setInterval (() => time(), 1000);
 
+var date = new Date()
+var hours = date.getHours()
+var minutes = date.getMinutes()
+
 function time() {
-  let date = new Date()
-  document.getElementById("hours").innerHTML = `${date.getHours()}`
-  document.getElementById("minutes").innerHTML = `${date.getMinutes()}`
+  if(hours < 10) {
+    document.getElementById("hours").innerHTML = "0" + `${hours}`
+  } else {
+    document.getElementById("hours").innerHTML = `${hours}`
+  }
+  if(minutes < 10) {
+    document.getElementById("minutes").innerHTML = "0" + `${minutes}`
+  } else {
+    document.getElementById("minutes").innerHTML = `${minutes}`
+  }
 }
 
-let date = new Date()
-document.getElementById("hours").innerHTML = `${date.getHours()}`
-document.getElementById("minutes").innerHTML = `${date.getMinutes()}`
+document.getElementById("hours").innerHTML = `${hours}`
+document.getElementById("minutes").innerHTML = `${minutes}`

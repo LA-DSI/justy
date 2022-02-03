@@ -312,6 +312,8 @@ async function loadTodos() {
               todoSettings.onclick = () => {}
             };
           }
+          document.getElementById("todo-count-number").innerHTML = ": " + document.getElementById("todos-container").childElementCount
+          document.getElementById("done-count-number").innerHTML = ": " + document.getElementById("todos-done-container").childElementCount
           if(isDone == true) {
             document.getElementById("done").style.display = "block";
           } else {

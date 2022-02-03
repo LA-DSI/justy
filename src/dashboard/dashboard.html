@@ -21,10 +21,22 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
             <ul class="settings-list">
-                <li class="flex-row">
+                <li class="flex-row time">
                     <span id="hours">00</span>
                     <span>:</span>
                     <span id="minutes" class="lightBlue">00</span>
+                </li>
+                <li>
+                    <ul id="todo-count">
+                        <li>
+                            <span id="todo-count-text">TODO</span>
+                            <span id="todo-count-number"></span>
+                        </li>
+                        <li>
+                            <span id="title-main-done">DONE</span>
+                            <span id="done-count-number"></span>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <button onclick="signOut()" class="white logout-button" id="logout-text">Sign out</button>

@@ -38,7 +38,6 @@
   text-align: center;
   user-select: none;
   font-size: 4.1rem;
-  width: 185px;
 }
 
 #hours {
@@ -78,4 +77,21 @@
 
 .settings-opacity {
   opacity: 0.1;
+}
+
+#todo-count li {
+  font-size: 1rem;
+  text-align: left;
+}
+
+#todo-count li:last-child {
+  margin-bottom: 0;
+}
+
+#todo-count li:first-child {
+  user-select: auto;
+}
+
+#todo-count li span:last-child {
+  color: #9cb5f9;
 }

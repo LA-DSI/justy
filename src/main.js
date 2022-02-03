@@ -17,7 +17,7 @@ function createJustyWindow() {
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
-      devTools: true,
+      devTools: false,
       contextIsolation: false,
       backgroundThrottling: false,
       preload: path.join(__dirname, "preload.js"),
