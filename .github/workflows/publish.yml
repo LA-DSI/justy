@@ -1,0 +1,57 @@
+name: Build and Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo apt-get install --no-install-recommends -y libarchive-tools libopenjp2-tools rpm
+        name: Install dependencies
+      - uses: actions/checkout@v2
+        name: Checkout Code
+      - uses: actions/setup-node@v2
+        name: Setup Node
+        with:
+          node-version: "v14"
+      - run: yarn install
+        name: Install dependencies
+      - run: yarn build
+        name: Compile
+      - run: yarn run publish:linux
+        name: Build and publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        name: Setup Node
+        with:
+          node-version: "v14"
+      - run: yarn install
+        name: Install dependencies
+      - run: yarn build
+        name: Compile
+      - run: yarn run publish:windows
+        name: Build and publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        name: Setup Node
+        with:
+          node-version: "v14"
+      - run: yarn install
+        name: Install dependencies
+      - run: yarn build
+        name: Compile
+      - run: yarn publish:mac
+        name: Build and publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

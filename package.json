@@ -9,8 +9,8 @@
     "url": "https://github.com/olek-arsee/justy"
   },
   "author": {
-    "name": "Olek Baran",
-    "email": "olek@arsee.pl"
+    "name": "Arsee Projects",
+    "email": "projects@arsee.pl"
   },
   "keywords": [
     "Justy",
@@ -89,7 +89,11 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "build:aur": "electron-builder -l pacman",
+    "publish:linux": "electron-builder -l -p always",
+    "publish:windows": "electron-builder -w -p always",
+    "publish:mac": "electron-builder -m -p always"
   },
   "devDependencies": {
     "electron": "^16.0.4",

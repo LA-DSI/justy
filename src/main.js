@@ -1,4 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
+const { checkForUpdates } = require("./updater")
 const path = require("path");
 const fs = require("fs");
 
@@ -32,6 +33,7 @@ function createJustyWindow() {
 }
 
 app.whenReady().then(() => {
+  checkForUpdates()
   createJustyWindow();
   justy.once("ready-to-show", async () => {
     justy.show();
