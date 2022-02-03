@@ -1,6 +1,4 @@
 const { ipcRenderer } = require("electron");
-const fs = require("fs");
-const path = require("path");
 
 if (navigator.language == "pl") {
   document.getElementById("heading").innerHTML = `Logowanie`;
@@ -84,10 +82,7 @@ async function signIn() {
       .then(async (response) => {
         if (response.ok) {
           const json = await response.json();
-          fs.writeFileSync(
-            path.join(__dirname, "..", "..", "preferences.json"),
-            JSON.stringify(json, null, 2)
-          );
+          ipcRenderer.send("save-preferences", json)
           ipcRenderer.send("load-dashboard");
         } else if (response.status == 404) {
           document.getElementById("loading").style.display = "none";
@@ -108,6 +103,7 @@ async function signIn() {
         }
       })
       .catch((reason) => {
+        console.log(reason)
         document.getElementById("loading").style.display = "none";
         document.getElementById("card-container").style.display = "none";
         document.body.style.height = "100vh";

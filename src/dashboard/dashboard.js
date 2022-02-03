@@ -1,7 +1,4 @@
 const { ipcRenderer } = require("electron");
-const { copyFileSync } = require("original-fs");
-const fs = require("fs");
-const path = require("path");
 
 const isMac = process.platform === "darwin"
 
@@ -37,7 +34,9 @@ if (navigator.language == "pl") {
   document.getElementById("edit-button").innerHTML = "Save"
 }
 
-const preferences = require("../../preferences.json");
+
+const preferences = ipcRenderer.sendSync("load-preferences")
+
 if(preferences.user.team_member == true) {
   document.getElementById("ff-icon").style.display = "flex"
 }
@@ -673,6 +672,6 @@ function dropDownDone() {
 }
 
 function signOut() {
-  fs.unlinkSync(path.join(__dirname, "..", "..", "preferences.json"),);
+  ipcRenderer.send("delete-preferences")
   ipcRenderer.send("load-start");
 }
