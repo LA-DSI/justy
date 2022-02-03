@@ -13,16 +13,86 @@
     "email": "olek@arsee.pl"
   },
   "keywords": [
+    "Justy",
     "TODO",
     "TODO App",
     "To Do",
     "To Do App",
     "Electron"
   ],
+  "build": {
+    "appId": "com.electron.justy",
+    "productName": "Justy",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "olek-arsee",
+        "repo": "justy"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "${name}-${version}.${ext}",
+      "icon": "assets/build/icon.ico"
+    },
+    "nsis": {
+      "deleteAppDataOnUninstall": true
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.productivity",
+      "icon": "assets/build/icon.icns"
+    },
+    "dmg": {
+      "background": "assets/build/dmg.png",
+      "artifactName": "${name}-${version}.${ext}",
+      "window": {
+        "width": "600",
+        "height": "500"
+      },
+      "contents": [
+        {
+          "x": 10,
+          "y": 215,
+          "type": "file"
+        },
+        {
+          "x": 420,
+          "y": 215,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "category": "Utility",
+      "icon": "assets/build/icon.icns",
+      "synopsis": "To Do App",
+      "artifactName": "${name}-${version}.${ext}",
+      "desktop": {
+        "Name": "Just"
+      },
+      "target": [
+        "deb",
+        "rpm",
+        "pacman",
+        "AppImage"
+      ]
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^4.6.1"
+  },
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder"
   },
   "devDependencies": {
-    "electron": "^16.0.4"
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5"
   }
 }
