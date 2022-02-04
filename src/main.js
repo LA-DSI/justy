@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
-const { checkForUpdates } = require("./updater")
 const path = require("path");
 const fs = require("fs");
+const { checkForUpdates } = require("./updater");
 
 let justy;
 
@@ -25,7 +25,7 @@ function createJustyWindow() {
     },
   });
 
-  if (fs.existsSync(path.join(app.getPath('userData'), "preferences.json"))) {
+  if (fs.existsSync(path.join(app.getPath("userData"), "preferences.json"))) {
     justy.loadFile("src/dashboard/dashboard.html");
   } else {
     justy.loadFile("src/start-page/start.html");
@@ -33,11 +33,11 @@ function createJustyWindow() {
 }
 
 app.whenReady().then(() => {
-  checkForUpdates()
+  checkForUpdates();
   createJustyWindow();
   justy.once("ready-to-show", async () => {
     justy.show();
-    //justy.webContents.openDevTools({ mode: "detach" });
+    // justy.webContents.openDevTools({ mode: "detach" });
   });
 
   app.on("activate", () => {
@@ -54,22 +54,25 @@ app.on("window-all-closed", () => {
 });
 
 ipcMain.on("load-preferences", function (event) {
-  const preferences = fs.readFileSync(path.join(app.getPath('userData'), "preferences.json"),)
-  event.returnValue = JSON.parse(preferences)
-})
+  const clickedEvent = event;
+  const preferences = fs.readFileSync(
+    path.join(app.getPath("userData"), "preferences.json")
+  );
+  clickedEvent.returnValue = JSON.parse(preferences);
+});
 
 ipcMain.on("save-preferences", function (event, arg) {
   fs.writeFileSync(
-    path.join(app.getPath('userData'), "preferences.json"),
+    path.join(app.getPath("userData"), "preferences.json"),
     JSON.stringify(arg, null, 2)
   );
-})
+});
 
-ipcMain.on("delete-preferences", function (event, arg) {
-  fs.unlinkSync(path.join(app.getPath('userData'), "preferences.json"),);
-})
+ipcMain.on("delete-preferences", function () {
+  fs.unlinkSync(path.join(app.getPath("userData"), "preferences.json"));
+});
 
-ipcMain.on("exit", function (event, arg) {
+ipcMain.on("exit", function () {
   app.exit();
 });
 
@@ -82,5 +85,5 @@ ipcMain.on("load-start", () => {
 });
 
 ipcMain.on("reload-app", () => {
-  justy.reload()
-})
+  justy.reload();
+});

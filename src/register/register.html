@@ -1,121 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
     <title>Justy</title>
-    <link rel="stylesheet" href="../../assets/css/login-register.css">
-    <link rel="stylesheet" href="../../assets/css/pop-up.css">
-    <link rel="stylesheet" href="../../assets/css/animations.css">
-    <link rel="stylesheet" href="../../assets/css/scrollbars.css">
+    <link rel="stylesheet" href="../../assets/css/login-register.css" />
+    <link rel="stylesheet" href="../../assets/css/pop-up.css" />
+    <link rel="stylesheet" href="../../assets/css/animations.css" />
+    <link rel="stylesheet" href="../../assets/css/scrollbars.css" />
     <script src="./register.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="popup-container flex-col">
-        <div class="popup flex-col card-popup card" id="popup">
-            <div class="white flex-row text-shadow header-popup">
-                <svg xmlns="http://www.w3.org/2000/svg" class="ok-icon lightBlue drop-shadow" id="ok-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="wrong-icon lightBlue drop-shadow" id="wrong-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <p id="popup-ok">Registration was successful!</p>
-                <p id="popup-connection">Something went wrong!</p>
-                <p id="popup-account-exists">Account already exists!</p>
-                <p id="popup-matching">The passwords don't match!</p>
-                <p id="popup-empty">Fill in all fields!</p>
-            </div>
-            <div class="drop-shadow">
-                <div id="button-ok">
-                    <button onclick="registerPopupOk()" class="white text-shadow" id="button-text-ok">Sign in</button>
-                </div>
-                <div id="button-wrong">
-                    <button onclick="registerPopupAgain()" class="white text-shadow" id="button-text-again">Try again</button>
-                </div>
-            </div>
+      <div class="popup flex-col card-popup card" id="popup">
+        <div class="white flex-row text-shadow header-popup">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="ok-icon lightBlue drop-shadow"
+            id="ok-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="wrong-icon lightBlue drop-shadow"
+            id="wrong-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+          <p id="popup-ok">Registration was successful!</p>
+          <p id="popup-connection">Something went wrong!</p>
+          <p id="popup-account-exists">Account already exists!</p>
+          <p id="popup-matching">The passwords don't match!</p>
+          <p id="popup-empty">Fill in all fields!</p>
         </div>
+        <div class="drop-shadow">
+          <div id="button-ok">
+            <button
+              onclick="registerPopupOk()"
+              class="white text-shadow"
+              id="button-text-ok"
+            >
+              Sign in
+            </button>
+          </div>
+          <div id="button-wrong">
+            <button
+              onclick="registerPopupAgain()"
+              class="white text-shadow"
+              id="button-text-again"
+            >
+              Try again
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="app flex-col slideInLeft" id="card-container">
-            <div class="flex-col">
-                <div class="loading-container" id="loading">
-                    <div class="loading flex-col drop-shadow">
-                        <div class="lds-ring">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </div>
-                </div>
+      <div class="flex-col">
+        <div class="loading-container" id="loading">
+          <div class="loading flex-col drop-shadow">
+            <div class="lds-ring">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
-            <div class="card card-register" id="card">
-                <div class="content" id="content">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="exit lightBlue drop-shadow" onclick="exit()" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    <h1 class="white text-shadow" id="heading">Sign up</h1>
-                    <div class="white drop-shadow flex-col inputs">
-                        <div class="name login">
-                            <input type="text" id="name" placeholder="Name" class="text-shadow">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="name-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                        </div>
-                        <div class="login">
-                            <input type="text" id="login" placeholder="Login" class="text-shadow">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="login-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <div class="email login">
-                            <input type="email" id="email" placeholder="Email" class="text-shadow">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="email-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
-                            </svg>
-                        </div>
-                        <div class="password">
-                            <input type="password" id="password" placeholder="Password" class="text-shadow">
-                            <div onclick="passwordVisibility()">
-                                <div id="not-visible">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="password-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                                    </svg>
-                                </div>
-                                <div id="visible">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="password-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="repeat password">
-                            <input type="password" id="repeat-password" placeholder="Repeat password" class="text-shadow">
-                            <div id="icon-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="repeat-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                </svg>
-                            </div>
-                            <div id="icon-ok">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="repeat-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                            </div>
-                            <div id="icon-no">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="repeat-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <button onclick="signUp()" id="register-button" class="white drop-shadow text-shadow">Register</button>
-                </div>
+          </div>
+        </div>
+      </div>
+      <div class="card card-register" id="card">
+        <div class="content" id="content">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="exit lightBlue drop-shadow"
+            onclick="exit()"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+          <h1 class="white text-shadow" id="heading">Sign up</h1>
+          <div class="white drop-shadow flex-col inputs">
+            <div class="name login">
+              <input
+                type="text"
+                id="name"
+                placeholder="Name"
+                class="text-shadow"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="name-icon drop-shadow"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                />
+              </svg>
             </div>
+            <div class="login">
+              <input
+                type="text"
+                id="login"
+                placeholder="Login"
+                class="text-shadow"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="login-icon drop-shadow"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div class="email login">
+              <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                class="text-shadow"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="email-icon drop-shadow"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                />
+              </svg>
+            </div>
+            <div class="password">
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                class="text-shadow"
+              />
+              <div onclick="passwordVisibility()">
+                <div id="not-visible">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="password-icon drop-shadow"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"
+                    />
+                  </svg>
+                </div>
+                <div id="visible">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="password-icon drop-shadow"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="repeat password">
+              <input
+                type="password"
+                id="repeat-password"
+                placeholder="Repeat password"
+                class="text-shadow"
+              />
+              <div id="icon-start">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="repeat-icon drop-shadow"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+              </div>
+              <div id="icon-ok">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="repeat-icon drop-shadow"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <div id="icon-no">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="repeat-icon drop-shadow"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          <button
+            onclick="signUp()"
+            id="register-button"
+            class="white drop-shadow text-shadow"
+          >
+            Register
+          </button>
+        </div>
+      </div>
     </div>
     <footer class="white text-shadow flex-row">
-        <p class="footer-text">&copy; <span id="year"></span> Copyright <span class="footer-bold">Arsee Projects</span> | Powered by <span class="footer-bold">Arsee Projects</span></p>
+      <p class="footer-text">
+        &copy; <span id="year"></span> Copyright
+        <span class="footer-bold">Arsee Projects</span> | Powered by
+        <span class="footer-bold">Arsee Projects</span>
+      </p>
     </footer>
-</body>
+  </body>
 </html>

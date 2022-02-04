@@ -1,9 +1,9 @@
 const { autoUpdater } = require("electron-updater");
 
 function checkForUpdates() {
-    autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdatesAndNotify();
 }
 
 module.exports = {
-    checkForUpdates
-}
+  checkForUpdates,
+};

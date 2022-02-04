@@ -69,7 +69,7 @@ h1 {
 
 .login:hover,
 .password:hover {
-  border-bottom: 2px solid #5FF5F7;
+  border-bottom: 2px solid #5ff5f7;
 }
 
 input {
@@ -139,7 +139,7 @@ button {
   padding: 8px 0px;
   background: none;
   border: none;
-  border: 2px solid #5FF5F7;
+  border: 2px solid #5ff5f7;
   border-radius: 62px;
   transition: 0.3s;
   cursor: pointer;
@@ -208,7 +208,7 @@ button:hover {
 
 .support > a {
   text-decoration: none;
-  color: #5FF5F7;
+  color: #5ff5f7;
   transition: 0.3s;
 }
 

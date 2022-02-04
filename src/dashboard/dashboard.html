@@ -1,238 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
     <title>Justy</title>
-    <link rel="stylesheet" href="./dashboard.css">
-    <link rel="stylesheet" href="./settings.css">
-    <link rel="stylesheet" href="../../assets/css/animations.css">
-    <link rel="stylesheet" href="../../assets/css/date-picker.css">
-    <link rel="stylesheet" href="../../assets/css/scrollbars.css">
+    <link rel="stylesheet" href="./dashboard.css" />
+    <link rel="stylesheet" href="./settings.css" />
+    <link rel="stylesheet" href="../../assets/css/animations.css" />
+    <link rel="stylesheet" href="../../assets/css/date-picker.css" />
+    <link rel="stylesheet" href="../../assets/css/scrollbars.css" />
     <script src="../../assets/libs/vanilla-tilt.min.js"></script>
     <script src="./dashboard.js" defer></script>
     <script src="./settings.js" defer></script>
-</head>
-<body>
-    <div class="settings-container no-display slideInLeftSettings" id="settings">
-        <div class="settings drop-shadow white">
-            <svg xmlns="http://www.w3.org/2000/svg" id="settings-close" onclick="closeSettings()" class="no-display menu-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            <ul class="settings-list">
-                <li class="flex-row time">
-                    <span id="hours">00</span>
-                    <span>:</span>
-                    <span id="minutes" class="lightBlue">00</span>
-                </li>
-                <li>
-                    <ul id="todo-count">
-                        <li>
-                            <span id="todo-count-text">TODO</span>
-                            <span id="todo-count-number"></span>
-                        </li>
-                        <li>
-                            <span id="title-main-done">DONE</span>
-                            <span id="done-count-number"></span>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <button onclick="signOut()" class="white logout-button" id="logout-text">Sign out</button>
-                </li>
+  </head>
+  <body>
+    <div
+      class="settings-container no-display slideInLeftSettings"
+      id="settings"
+    >
+      <div class="settings drop-shadow white">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          id="settings-close"
+          onclick="closeSettings()"
+          class="no-display menu-icon lightBlue drop-shadow"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+        <ul class="settings-list">
+          <li class="flex-row time">
+            <span id="hours">00</span>
+            <span>:</span>
+            <span id="minutes" class="lightBlue">00</span>
+          </li>
+          <li>
+            <ul id="todo-count">
+              <li>
+                <span id="todo-count-text">TODO</span>
+                <span id="todo-count-number"></span>
+              </li>
+              <li>
+                <span id="title-main-done">DONE</span>
+                <span id="done-count-number"></span>
+              </li>
             </ul>
-            <div class="footer-container flex-col">
-                <footer class="footer-settings">
-                    <p class="footer-text-settings text-shadow">&copy; <span id="year"></span> Copyright <span class="footer-bold">Arsee Projects</span></p>
-                </footer>
-            </div>
+          </li>
+          <li>
+            <button
+              onclick="signOut()"
+              class="white logout-button"
+              id="logout-text"
+            >
+              Sign out
+            </button>
+          </li>
+        </ul>
+        <div class="footer-container flex-col">
+          <footer class="footer-settings">
+            <p class="footer-text-settings text-shadow">
+              &copy; <span id="year"></span> Copyright
+              <span class="footer-bold">Arsee Projects</span>
+            </p>
+          </footer>
         </div>
+      </div>
     </div>
     <div class="flex-row warning-container" id="warning">
-        <div class="warning flex-col">
-            <svg xmlns="http://www.w3.org/2000/svg" onclick="deleteExit()" class="delete-exit lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            <div class="flex-row warning-content">
-                <svg xmlns="http://www.w3.org/2000/svg" class="delete-icon drop-shadow pink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                </svg>
-                <p class="white text-shadow warning-text" id="warning-text">Are you sure?</p>
-            </div>
-            <div id="button-wrong">
-                <button id="delete-button" class="delete-button white text-shadow">Yes, delete</button>
-            </div>
+      <div class="warning flex-col">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          onclick="deleteExit()"
+          class="delete-exit lightBlue drop-shadow"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+        <div class="flex-row warning-content">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="delete-icon drop-shadow pink"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+            />
+          </svg>
+          <p class="white text-shadow warning-text" id="warning-text">
+            Are you sure?
+          </p>
         </div>
+        <div id="button-wrong">
+          <button id="delete-button" class="delete-button white text-shadow">
+            Yes, delete
+          </button>
+        </div>
+      </div>
     </div>
     <div class="flex-row warning-container" id="edit">
-        <div class="warning edit-popup flex-col">
-            <svg xmlns="http://www.w3.org/2000/svg" onclick="editExit()" class="delete-exit lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            <div class="flex-row warning-content">
-                <svg xmlns="http://www.w3.org/2000/svg" id="edit-icon-popup" class="delete-icon drop-shadow cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" id="add-icon-popup" class="delete-icon drop-shadow cyan no-display" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <p class="white text-shadow warning-text" id="edit-text">Edit task!</p>
-            </div>
-            <div class="edit-content">
-                <table class="drop-shadow">
-                    <tr>
-                        <td class="td-text">
-                            <label for="title-edit" id="title-edit-text" class="white">Title</label>
-                        </td>
-                        <td>
-                            <textarea name="title-edit" class="title-edit" id="title-edit" rows="1"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td-text">
-                            <label for="desc-edit" id="desc-edit-text" class="white">Description</label>
-                        </td>
-                        <td>
-                            <textarea name="desc-edit" id="desc-edit" rows="1"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td-text">
-                            <label for="category-edit" id="category-edit-text" class="white cursor-pointer">Important?</label>
-                        </td>
-                        <td>
-                            <label class="checkbox-edit-container flex-col">
-                                <input type="checkbox" name="category-edit" id="category-edit">
-                                <div class="checkbox-edit"></div>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="td-text">
-                            <label for="date-edit" id="date-edit-text" class="white">Deadline</label>
-                        </td>
-                        <td>
-                            <input type="datetime-local" class="date-edit" name="date-edit" id="date-edit">
-                        </td>
-                    </tr>
-                    <tr id="tr-done">
-                        <td class="td-text">
-                            <label for="done-edit" id="done-edit-text" class="white cursor-pointer">Done?</label>
-                        </td>
-                        <td>
-                            <label class="checkbox-edit-container flex-col">
-                                <input type="checkbox" name="done-edit" id="done-edit"">
-                                <div class="checkbox-edit"></div>
-                            </label>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div id="button-edit">
-                <button id="edit-button" class="delete-button white text-shadow">Save</button>
-            </div>
+      <div class="warning edit-popup flex-col">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          onclick="editExit()"
+          class="delete-exit lightBlue drop-shadow"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+        <div class="flex-row warning-content">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            id="edit-icon-popup"
+            class="delete-icon drop-shadow cyan"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+            />
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            id="add-icon-popup"
+            class="delete-icon drop-shadow cyan no-display"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            />
+          </svg>
+          <p class="white text-shadow warning-text" id="edit-text">
+            Edit task!
+          </p>
         </div>
+        <div class="edit-content">
+          <table class="drop-shadow">
+            <tr>
+              <td class="td-text">
+                <label for="title-edit" id="title-edit-text" class="white"
+                  >Title</label
+                >
+              </td>
+              <td>
+                <textarea
+                  name="title-edit"
+                  class="title-edit"
+                  id="title-edit"
+                  rows="1"
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-text">
+                <label for="desc-edit" id="desc-edit-text" class="white"
+                  >Description</label
+                >
+              </td>
+              <td>
+                <textarea name="desc-edit" id="desc-edit" rows="1"></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-text">
+                <label
+                  for="category-edit"
+                  id="category-edit-text"
+                  class="white cursor-pointer"
+                  >Important?</label
+                >
+              </td>
+              <td>
+                <label class="checkbox-edit-container flex-col">
+                  <input
+                    type="checkbox"
+                    name="category-edit"
+                    id="category-edit"
+                  />
+                  <div class="checkbox-edit"></div>
+                </label>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-text">
+                <label for="date-edit" id="date-edit-text" class="white"
+                  >Deadline</label
+                >
+              </td>
+              <td>
+                <input
+                  type="datetime-local"
+                  class="date-edit"
+                  name="date-edit"
+                  id="date-edit"
+                />
+              </td>
+            </tr>
+            <tr id="tr-done">
+              <td class="td-text">
+                <label
+                  for="done-edit"
+                  id="done-edit-text"
+                  class="white cursor-pointer"
+                  >Done?</label
+                >
+              </td>
+              <td>
+                <label class="checkbox-edit-container flex-col">
+                  <input type="checkbox" name="done-edit" id="done-edit"">
+                  <div class="checkbox-edit"></div>
+                </label>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div id="button-edit">
+          <button id="edit-button" class="delete-button white text-shadow">
+            Save
+          </button>
+        </div>
+      </div>
     </div>
     <div class="app">
-        <div class="main-container" id="main-container">
-            <header>
-                <nav>
-                    <svg xmlns="http://www.w3.org/2000/svg" id="settings-open" onclick="settings()" class="menu-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                    <div id="search-bar-container">
-                        <div class="drop-shadow">
-                            <input type="text" onkeyup="search(), searchDone()" id="search-bar" class="text-shadow" name="search" placeholder="Search for TODO" />
-                        </div>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" onclick="searchBar()" class="search-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                </nav>
-                <h1 class="white drop-shadow">
-                    <div class="ff-icon flex-col" id="ff-icon" title="Friends and Family">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="pink" width="28" height="28" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                        </svg>
-                    </div>
-                    <span id="hi">Hi</span>
-                    <span id="name"></span>
-                </h1>
-                <div class="add-refresh-container">
-                    <div onclick="addTodo()" class="add drop-shadow">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="add-icon drop-shadow cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4" />
-                        </svg>
-                        <p class="text-add white text-shadow" id="text-add">Add new task!</p>
-                    </div>
-                    <div onclick="refresh()" class="refresh drop-shadow">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="refresh-icon drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
-                    </div>
-                </div>
-            </header>
-            <div class="flex-col">
-                <div class="todo-section" id="todo-section">
-                    <div class="flex-row">
-                        <div class="loading-container" id="loading">
-                            <div class="loading flex-col drop-shadow">
-                                <div class="lds-ring">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex-row">
-                        <div class="error-container" id="error">
-                            <div class="loading flex-col drop-shadow">
-                                <div class="flex-row error-header">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="wrong-icon lightBlue drop-shadow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                    <p class="white text-shadow" id="error-text">Something went wrong!</p>
-                                </div>
-                                <div id="button-wrong">
-                                    <button onclick="refresh()" class="white text-shadow" id="error-button-text">Try again</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="todos-wrapper">
-                        <div class="flex-row drop-shadow title" id="title">
-                            <div class="stripe"></div>
-                            <p class="text-stripe lightBlue flex-row" onclick="dropDownToDo()">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon" id="stripe-icon-up1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon no-display" id="stripe-icon-down1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" /></svg>
-                                <span class="title-main">TODO</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon" id="stripe-icon-up2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon no-display" id="stripe-icon-down2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" /></svg>
-                            </p>
-                            <div class="stripe"></div>
-                        </div>
-                        <div id="todos-container" class="flex-col"></div>
-                        <section id="done">
-                            <div class="flex-row drop-shadow title-done">
-                                <div class="stripe"></div>
-                                <p class="text-stripe lightBlue flex-row" id="done-text" onclick="dropDownDone()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon" id="stripe-icon-done-down1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon no-display" id="stripe-icon-done-up1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" /></svg>
-                                    <span class="title-main" id="title-main-done">DONE</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon" id="stripe-icon-done-down2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 11l7-7 7 7M5 19l7-7 7 7" /></svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="stripe-icon no-display" id="stripe-icon-done-up2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 13l-7 7-7-7m14-8l-7 7-7-7" /></svg>
-                                </p>
-                                <div class="stripe"></div>
-                            </div>
-                            <div id="todos-done-container"></div>
-                        </section>
-                    </div>
-                </div>
+      <div class="main-container" id="main-container">
+        <header>
+          <nav>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="settings-open"
+              onclick="settings()"
+              class="menu-icon lightBlue drop-shadow"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <div id="search-bar-container">
+              <div class="drop-shadow">
+                <input
+                  type="text"
+                  onkeyup="search(), searchDone()"
+                  id="search-bar"
+                  class="text-shadow"
+                  name="search"
+                  placeholder="Search for TODO"
+                />
+              </div>
             </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              onclick="searchBar()"
+              class="search-icon lightBlue drop-shadow"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </nav>
+          <h1 class="white drop-shadow">
+            <div
+              class="ff-icon flex-col"
+              id="ff-icon"
+              title="Friends and Family"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="pink"
+                width="28"
+                height="28"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                />
+              </svg>
+            </div>
+            <span id="hi">Hi</span>
+            <span id="name"></span>
+          </h1>
+          <div class="add-refresh-container">
+            <div onclick="addTodo()" class="add drop-shadow">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="add-icon drop-shadow cyan"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+              <p class="text-add white text-shadow" id="text-add">
+                Add new task!
+              </p>
+            </div>
+            <div onclick="refresh()" class="refresh drop-shadow">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="refresh-icon drop-shadow"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
+              </svg>
+            </div>
+          </div>
+        </header>
+        <div class="flex-col">
+          <div class="todo-section" id="todo-section">
+            <div class="flex-row">
+              <div class="loading-container" id="loading">
+                <div class="loading flex-col drop-shadow">
+                  <div class="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row">
+              <div class="error-container" id="error">
+                <div class="loading flex-col drop-shadow">
+                  <div class="flex-row error-header">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="wrong-icon lightBlue drop-shadow"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                    <p class="white text-shadow" id="error-text">
+                      Something went wrong!
+                    </p>
+                  </div>
+                  <div id="button-wrong">
+                    <button
+                      onclick="refresh()"
+                      class="white text-shadow"
+                      id="error-button-text"
+                    >
+                      Try again
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="todos-wrapper">
+              <div class="flex-row drop-shadow title" id="title">
+                <div class="stripe"></div>
+                <p
+                  class="text-stripe lightBlue flex-row"
+                  onclick="dropDownToDo()"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="stripe-icon"
+                    id="stripe-icon-up1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="stripe-icon no-display"
+                    id="stripe-icon-down1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+                    />
+                  </svg>
+                  <span class="title-main">TODO</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="stripe-icon"
+                    id="stripe-icon-up2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                    />
+                  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="stripe-icon no-display"
+                    id="stripe-icon-down2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+                    />
+                  </svg>
+                </p>
+                <div class="stripe"></div>
+              </div>
+              <div id="todos-container" class="flex-col"></div>
+              <section id="done">
+                <div class="flex-row drop-shadow title-done">
+                  <div class="stripe"></div>
+                  <p
+                    class="text-stripe lightBlue flex-row"
+                    id="done-text"
+                    onclick="dropDownDone()"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="stripe-icon"
+                      id="stripe-icon-done-down1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="3"
+                        d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="stripe-icon no-display"
+                      id="stripe-icon-done-up1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="3"
+                        d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+                      />
+                    </svg>
+                    <span class="title-main" id="title-main-done">DONE</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="stripe-icon"
+                      id="stripe-icon-done-down2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="3"
+                        d="M5 11l7-7 7 7M5 19l7-7 7 7"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="stripe-icon no-display"
+                      id="stripe-icon-done-up2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="3"
+                        d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+                      />
+                    </svg>
+                  </p>
+                  <div class="stripe"></div>
+                </div>
+                <div id="todos-done-container"></div>
+              </section>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
