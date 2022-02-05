@@ -191,7 +191,8 @@ function passwordVisibility() {
 }
 
 function confirmPassword() {
-  if (document.getElementById("repeat-password").value === "") {
+  // eslint-disable-next-line eqeqeq
+  if (document.getElementById("repeat-password").value == "") {
     document.getElementById("icon-ok").style.display = "none";
     document.getElementById("icon-no").style.display = "none";
     document.getElementById("icon-start").style.display = "block";

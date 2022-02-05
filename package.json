@@ -34,7 +34,7 @@
       "target": [
         "nsis"
       ],
-      "artifactName": "${name}-${version}.${ext}",
+      "artifactName": "${name}.${ext}",
       "icon": "assets/build/icon.ico"
     },
     "nsis": {
@@ -49,7 +49,7 @@
     },
     "dmg": {
       "background": "assets/build/dmg.png",
-      "artifactName": "${name}-${version}.${ext}",
+      "artifactName": "${name}.${ext}",
       "window": {
         "width": "600",
         "height": "500"
@@ -72,7 +72,7 @@
       "category": "Utility",
       "icon": "assets/build/icon.icns",
       "synopsis": "To Do App",
-      "artifactName": "${name}-${version}.${ext}",
+      "artifactName": "${name}.${ext}",
       "desktop": {
         "Name": "Just"
       },
