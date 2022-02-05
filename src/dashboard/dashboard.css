@@ -288,7 +288,7 @@ circle,
 
 .todo-icon-container:hover circle {
   stroke: #9cb5f9;
-  stroke-width: 120%;
+  stroke-width: 85%;
 }
 
 .todo-done-icon:hover {
