@@ -74,7 +74,7 @@
       "synopsis": "To Do App",
       "artifactName": "${name}.${ext}",
       "desktop": {
-        "Name": "Just"
+        "Name": "Justy"
       },
       "target": [
         "deb",
