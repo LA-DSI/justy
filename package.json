@@ -42,14 +42,20 @@
     },
     "mac": {
       "target": [
-        "dmg"
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
       ],
       "category": "public.app-category.productivity",
       "icon": "assets/build/mac/icon.icns"
     },
     "dmg": {
       "background": "assets/build/dmg.png",
-      "artifactName": "${name}.${ext}",
+      "artifactName": "${name}-${arch}.${ext}",
       "window": {
         "width": "600",
         "height": "500"
