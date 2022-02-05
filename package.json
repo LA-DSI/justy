@@ -35,7 +35,7 @@
         "nsis"
       ],
       "artifactName": "${name}.${ext}",
-      "icon": "assets/build/icon.ico"
+      "icon": "assets/build/win/icon.ico"
     },
     "nsis": {
       "deleteAppDataOnUninstall": true
@@ -45,7 +45,7 @@
         "dmg"
       ],
       "category": "public.app-category.productivity",
-      "icon": "assets/build/icon.icns"
+      "icon": "assets/build/mac/icon.icns"
     },
     "dmg": {
       "background": "assets/build/dmg.png",
@@ -70,7 +70,7 @@
     },
     "linux": {
       "category": "Utility",
-      "icon": "assets/build/icon.icns",
+      "icon": "assets/build/png",
       "synopsis": "To Do App",
       "artifactName": "${name}.${ext}",
       "desktop": {
