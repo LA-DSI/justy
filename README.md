@@ -65,11 +65,6 @@ Justy app installed from files: `.exe`, `.AppImage`, `.dmg` is automatically upd
 
 <br>
 
-- `AUR (Arch User Repository)`
-  - https://aur.archlinux.org/packages/justy/
-
-<br>
-
 ### **macOS**
 
 1. Download the file with the `.dmg` extension from the latest [Release](https://github.com/olek-arsee/justy/releases/latest).
