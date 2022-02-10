@@ -17,6 +17,9 @@ if (navigator.language === "pl") {
   document.getElementById("popup-empty").innerHTML = `Wypełnij wszystkie pola!`;
   document.getElementById("button-text-ok").innerHTML = `Zaloguj się`;
   document.getElementById("button-text-again").innerHTML = `Spróbuj ponownie`;
+  document.getElementById(
+    "popup-lenght"
+  ).innerHTML = `Hasło musi mieć co najmniej 8 znaków!`;
 } else {
   document.getElementById("heading").innerHTML = `Sign up`;
   document.getElementById("name").placeholder = `Name`;
@@ -38,6 +41,9 @@ if (navigator.language === "pl") {
   document.getElementById("popup-empty").innerHTML = `Fill in all fields!`;
   document.getElementById("button-text-ok").innerHTML = `Sign in`;
   document.getElementById("button-text-again").innerHTML = `Try again`;
+  document.getElementById(
+    "popup-lenght"
+  ).innerHTML = `Password must be at least 8 characters long!`;
 }
 
 const year = new Date().getFullYear();
@@ -46,6 +52,10 @@ document.getElementById("year").innerHTML = year;
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+sleep(1200).then(() => {
+  document.getElementById("name").focus();
+});
 
 function exit() {
   document.getElementById("card-container").classList.add("slideOutLeft");
@@ -88,40 +98,55 @@ async function signUp() {
 
   if (name && login && email && password && confirmPassword) {
     if (password === confirmPassword) {
-      document.getElementById("loading").style.display = "flex";
-      document.getElementById("card").style.display = "none";
-      await fetch("https://justy-backend.herokuapp.com/auth/register", {
-        method: "post",
-        body: JSON.stringify({ name, login, email, password }),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      })
-        .then(async (response) => {
-          if (response.ok) {
-            document.getElementById("loading").style.display = "none";
-            document.getElementById("card-container").style.display = "none";
-            document.body.style.height = "100vh";
-            document.getElementById("popup-ok").style.display = "block";
-            document.getElementById("ok-icon").style.display = "block";
-            document.getElementById("button-wrong").style.display = "none";
-            document.getElementById("button-ok").style.display = "block";
-            document.getElementById("button-text-ok").style.display = "block";
-            document.getElementById("popup").style.display = "flex";
-          } else if (response.status === 409) {
-            document.getElementById("loading").style.display = "none";
-            document.getElementById("card-container").style.display = "none";
-            document.body.style.height = "100vh";
-            document.getElementById("popup-account-exists").style.display =
-              "block";
-            document.getElementById("wrong-icon").style.display = "block";
-            document.getElementById("button-ok").style.display = "none";
-            document.getElementById("button-wrong").style.display = "block";
-            document.getElementById("button-text-again").style.display =
-              "block";
-            document.getElementById("popup").style.display = "flex";
-          } else {
+      if (password >= 8) {
+        document.getElementById("loading").style.display = "flex";
+        document.getElementById("card").style.display = "none";
+        await fetch("https://justy-backend.herokuapp.com/auth/register", {
+          method: "post",
+          body: JSON.stringify({ name, login, email, password }),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
+          .then(async (response) => {
+            if (response.ok) {
+              document.getElementById("loading").style.display = "none";
+              document.getElementById("card-container").style.display = "none";
+              document.body.style.height = "100vh";
+              document.getElementById("popup-ok").style.display = "block";
+              document.getElementById("ok-icon").style.display = "block";
+              document.getElementById("button-wrong").style.display = "none";
+              document.getElementById("button-ok").style.display = "block";
+              document.getElementById("button-text-ok").style.display = "block";
+              document.getElementById("popup").style.display = "flex";
+            } else if (response.status === 409) {
+              document.getElementById("loading").style.display = "none";
+              document.getElementById("card-container").style.display = "none";
+              document.body.style.height = "100vh";
+              document.getElementById("popup-account-exists").style.display =
+                "block";
+              document.getElementById("wrong-icon").style.display = "block";
+              document.getElementById("button-ok").style.display = "none";
+              document.getElementById("button-wrong").style.display = "block";
+              document.getElementById("button-text-again").style.display =
+                "block";
+              document.getElementById("popup").style.display = "flex";
+            } else {
+              document.getElementById("loading").style.display = "none";
+              document.getElementById("card-container").style.display = "none";
+              document.body.style.height = "100vh";
+              document.getElementById("popup-connection").style.display =
+                "block";
+              document.getElementById("wrong-icon").style.display = "block";
+              document.getElementById("button-ok").style.display = "none";
+              document.getElementById("button-wrong").style.display = "block";
+              document.getElementById("button-text-again").style.display =
+                "block";
+              document.getElementById("popup").style.display = "flex";
+            }
+          })
+          .catch((reason) => {
             document.getElementById("loading").style.display = "none";
             document.getElementById("card-container").style.display = "none";
             document.body.style.height = "100vh";
@@ -132,19 +157,18 @@ async function signUp() {
             document.getElementById("button-text-again").style.display =
               "block";
             document.getElementById("popup").style.display = "flex";
-          }
-        })
-        .catch((reason) => {
-          document.getElementById("loading").style.display = "none";
-          document.getElementById("card-container").style.display = "none";
-          document.body.style.height = "100vh";
-          document.getElementById("popup-connection").style.display = "block";
-          document.getElementById("wrong-icon").style.display = "block";
-          document.getElementById("button-ok").style.display = "none";
-          document.getElementById("button-wrong").style.display = "block";
-          document.getElementById("button-text-again").style.display = "block";
-          document.getElementById("popup").style.display = "flex";
-        });
+          });
+      } else {
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("card-container").style.display = "none";
+        document.body.style.height = "100vh";
+        document.getElementById("popup-lenght").style.display = "block";
+        document.getElementById("wrong-icon").style.display = "block";
+        document.getElementById("button-ok").style.display = "none";
+        document.getElementById("button-wrong").style.display = "block";
+        document.getElementById("button-text-again").style.display = "block";
+        document.getElementById("popup").style.display = "flex";
+      }
     } else {
       document.getElementById("loading").style.display = "none";
       document.getElementById("card-container").style.display = "none";

@@ -42,6 +42,10 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+sleep(1200).then(() => {
+  document.getElementById("login").focus();
+});
+
 function exit() {
   document.getElementById("card-container").classList.add("slideOutRight");
   document.getElementById("card-container").animationPlayState = "running";
