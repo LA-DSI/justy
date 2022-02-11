@@ -1,5 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/olek-arsee/justy/main/assets/build/png/128x128.png"></p>
-<h3 align="center" style="font-weight:bold;">Justy<br>TODO</h3>
+<p align="center"><img src="https://user-images.githubusercontent.com/74045117/153612009-ee9cd2cb-5ef2-4f96-af02-4c8cb2d0829f.png" width="100%"></p>
 
 # **Description**
 
