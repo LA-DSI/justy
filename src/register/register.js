@@ -43,7 +43,7 @@ if (navigator.language === "pl") {
   document.getElementById("button-text-again").innerHTML = `Try again`;
   document.getElementById(
     "popup-lenght"
-  ).innerHTML = `Password must be at least 8 characters long!`;
+  ).innerHTML = `Password must be longer than 8 characters!`;
 }
 
 const year = new Date().getFullYear();
@@ -98,7 +98,7 @@ async function signUp() {
 
   if (name && login && email && password && confirmPassword) {
     if (password === confirmPassword) {
-      if (password >= 8) {
+      if (password.length >= 8) {
         document.getElementById("loading").style.display = "flex";
         document.getElementById("card").style.display = "none";
         await fetch("https://justy-backend.herokuapp.com/auth/register", {
@@ -117,6 +117,7 @@ async function signUp() {
               document.getElementById("popup-ok").style.display = "block";
               document.getElementById("ok-icon").style.display = "block";
               document.getElementById("button-wrong").style.display = "none";
+              document.getElementById("popup-lenght").style.display = "none";
               document.getElementById("button-ok").style.display = "block";
               document.getElementById("button-text-ok").style.display = "block";
               document.getElementById("popup").style.display = "flex";
@@ -127,6 +128,7 @@ async function signUp() {
               document.getElementById("popup-account-exists").style.display =
                 "block";
               document.getElementById("wrong-icon").style.display = "block";
+              document.getElementById("popup-lenght").style.display = "none";
               document.getElementById("button-ok").style.display = "none";
               document.getElementById("button-wrong").style.display = "block";
               document.getElementById("button-text-again").style.display =
@@ -139,6 +141,7 @@ async function signUp() {
               document.getElementById("popup-connection").style.display =
                 "block";
               document.getElementById("wrong-icon").style.display = "block";
+              document.getElementById("popup-lenght").style.display = "none";
               document.getElementById("button-ok").style.display = "none";
               document.getElementById("button-wrong").style.display = "block";
               document.getElementById("button-text-again").style.display =
@@ -151,6 +154,7 @@ async function signUp() {
             document.getElementById("card-container").style.display = "none";
             document.body.style.height = "100vh";
             document.getElementById("popup-connection").style.display = "block";
+            document.getElementById("popup-lenght").style.display = "none";
             document.getElementById("wrong-icon").style.display = "block";
             document.getElementById("button-ok").style.display = "none";
             document.getElementById("button-wrong").style.display = "block";
@@ -171,6 +175,7 @@ async function signUp() {
       }
     } else {
       document.getElementById("loading").style.display = "none";
+      document.getElementById("popup-lenght").style.display = "none";
       document.getElementById("card-container").style.display = "none";
       document.body.style.height = "100vh";
       document.getElementById("popup-matching").style.display = "block";
@@ -182,6 +187,7 @@ async function signUp() {
     }
   } else {
     document.getElementById("loading").style.display = "none";
+    document.getElementById("popup-lenght").style.display = "none";
     document.getElementById("card-container").style.display = "none";
     document.body.style.height = "100vh";
     document.getElementById("popup-empty").style.display = "block";
