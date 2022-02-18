@@ -12,7 +12,6 @@ if (navigator.language === "pl") {
   document.getElementById("error-button-text").innerHTML = `Spróbuj ponownie`;
   document.getElementById("warning-text").innerHTML = "Jesteś pewny?";
   document.getElementById("delete-button").innerHTML = "Tak, usuń";
-  document.getElementById("edit-text").innerHTML = "Edytuj zadanie!";
   document.getElementById("title-edit-text").innerHTML = "Tytuł";
   document.getElementById("desc-edit-text").innerHTML = "Opis";
   document.getElementById("category-edit-text").innerHTML = "Ważne?";
@@ -26,7 +25,6 @@ if (navigator.language === "pl") {
   document.getElementById("error-button-text").innerHTML = `Try again`;
   document.getElementById("warning-text").innerHTML = "Are you sure?";
   document.getElementById("delete-button").innerHTML = "Yes, delete";
-  document.getElementById("edit-text").innerHTML = "Edit task!";
   document.getElementById("title-edit-text").innerHTML = "Title";
   document.getElementById("desc-edit-text").innerHTML = "Description";
   document.getElementById("category-edit-text").innerHTML = "Important?";
@@ -324,13 +322,13 @@ async function loadTodos() {
                 if (!todo.description == "") {
                   if (
                     document.getElementById(`text-area-${todo.id}`).innerHTML
-                      .length < 19
+                      .length <= 21
                   ) {
                     document.getElementById(`text-area-${todo.id}`).cols =
                       document.getElementById(`text-area-${todo.id}`).innerHTML
                         .length /
                         2 +
-                      2;
+                      7;
                     document.getElementById(
                       `text-area-${todo.id}`
                     ).style.paddingBottom = 0;
@@ -339,7 +337,7 @@ async function loadTodos() {
                     ).style.paddingRight = 0;
                   } else if (
                     document.getElementById(`text-area-${todo.id}`).innerHTML
-                      .length > 19
+                      .length > 21
                   ) {
                     document.getElementById(`text-area-${todo.id}`).rows = 2;
                     document.getElementById(
@@ -396,10 +394,10 @@ async function loadTodos() {
               todoSettings.onclick = () => {};
             };
           }
-          document.getElementById("todo-count-number").innerHTML = `: ${
+          document.getElementById("todo-count-number").innerHTML = `${
             document.getElementById("todos-container").childElementCount
           }`;
-          document.getElementById("done-count-number").innerHTML = `: ${
+          document.getElementById("done-count-number").innerHTML = `${
             document.getElementById("todos-done-container").childElementCount
           }`;
           if (isDone === true) {
@@ -505,7 +503,7 @@ function editTask(idTodo) {
     document.getElementById("title-edit").placeholder = "Wprowadź tytuł";
     document.getElementById("desc-edit").placeholder = "Wprowadź opis";
   } else {
-    document.getElementById("text-add").innerHTML = `Edit task!`;
+    document.getElementById("edit-text").innerHTML = `Edit task!`;
     document.getElementById("edit-button").innerHTML = "Save";
     document.getElementById("title-edit").placeholder = "Enter title";
     document.getElementById("desc-edit").placeholder = "Enter description";
@@ -519,9 +517,9 @@ function editTask(idTodo) {
       } else {
         document.getElementById("category-edit").checked = false;
       }
-      if (document.getElementById("desc-edit").value.length < 19) {
+      if (document.getElementById("desc-edit").value.length <= 21) {
         document.getElementById("desc-edit").rows = 1;
-      } else if (document.getElementById("desc-edit").value.length > 19) {
+      } else if (document.getElementById("desc-edit").value.length > 21) {
         document.getElementById("desc-edit").rows = 2;
       } else if (document.getElementById("desc-edit").value.length > 38) {
         document.getElementById("desc-edit").rows = 3;
@@ -626,7 +624,7 @@ function addTodo() {
     document.getElementById("title-edit").placeholder = "Wprowadź tytuł";
     document.getElementById("desc-edit").placeholder = "Wprowadź opis";
   } else {
-    document.getElementById("text-add").innerHTML = `Add new task!`;
+    document.getElementById("edit-text").innerHTML = `Add new task!`;
     document.getElementById("edit-button").innerHTML = "Add";
     document.getElementById("title-edit").placeholder = "Enter title";
     document.getElementById("desc-edit").placeholder = "Enter description";

@@ -548,6 +548,8 @@ table input {
   position: relative;
   font-size: 22px;
   user-select: none;
+  align-items: start;
+  margin-left: 0.5rem;
 }
 
 .checkbox-edit-container input {

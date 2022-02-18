@@ -77,7 +77,7 @@ const date = new Date();
 const hours = date.getHours();
 const minutes = date.getMinutes();
 
-function time() {
+if (navigator.language === "pl") {
   if (hours < 10) {
     document.getElementById("hours").innerHTML = `0${hours}`;
   } else {
@@ -88,9 +88,76 @@ function time() {
   } else {
     document.getElementById("minutes").innerHTML = `${minutes}`;
   }
+} else {
+  const timeString = `${hours}:${minutes}`;
+  const timeString12hr = new Date().toLocaleTimeString("en-US", {
+    timeZone: "UTC",
+    hour12: true,
+    hour: "numeric",
+  });
+  const hour12 = timeString12hr.replace("AM", "").replace("PM", "");
+  if (hour12 < 10) {
+    document.getElementById("hours").innerHTML = `0${hour12}`;
+  } else {
+    document.getElementById("hours").innerHTML = `${hour12}`;
+  }
+  if (minutes < 10) {
+    document.getElementById("minutes").innerHTML = `0${minutes}`;
+  } else {
+    document.getElementById("minutes").innerHTML = `${minutes}`;
+  }
+  let amPm;
+  if (hours >= 0 && hours < 12) {
+    amPm = "AM";
+  } else {
+    amPm = "PM";
+  }
+  document.getElementById("ampm").innerHTML = amPm;
 }
 
+function time() {
+  const date = new Date();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  if (navigator.language === "pl") {
+    if (hours < 10) {
+      document.getElementById("hours").innerHTML = `0${hours}`;
+    } else {
+      document.getElementById("hours").innerHTML = `${hours}`;
+    }
+    if (minutes < 10) {
+      document.getElementById("minutes").innerHTML = `0${minutes}`;
+    } else {
+      document.getElementById("minutes").innerHTML = `${minutes}`;
+    }
+  } else {
+    const timeString = `${hours}:${minutes}`;
+    const timeString12hr = new Date().toLocaleTimeString("en-US", {
+      timeZone: "UTC",
+      hour12: true,
+      hour: "numeric",
+    });
+    const hour12 = timeString12hr.replace("AM", "").replace("PM", "");
+    if (hour12 < 10) {
+      document.getElementById("hours").innerHTML = `0${hour12}`;
+    } else {
+      document.getElementById("hours").innerHTML = `${hour12}`;
+    }
+    if (minutes < 10) {
+      document.getElementById("minutes").innerHTML = `0${minutes}`;
+    } else {
+      document.getElementById("minutes").innerHTML = `${minutes}`;
+    }
+    let amPm;
+    if (hours >= 0 && hours < 12) {
+      amPm = "AM";
+    } else {
+      amPm = "PM";
+    }
+    document.getElementById("ampm").innerHTML = amPm;
+  }
+}
 setInterval(() => time(), 1000);
 
-document.getElementById("hours").innerHTML = `${hours}`;
-document.getElementById("minutes").innerHTML = `${minutes}`;
+const yearSettings = date.getFullYear();
+document.getElementById("year").innerHTML = yearSettings;
