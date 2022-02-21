@@ -3,7 +3,10 @@
 # **Description**
 
 This README is a simple documentation of Justy.
-An authorized "To Do" application where all tasks are synchronized with the MongoDB database via the backend.
+
+<br>
+
+Justy is an “To Do” app with authentication. It allows users to increase their productivity by creating, editing, deleting, and marking tasks as done. Tasks are assigned to the appropriate user accounts. Because of that, they have access to their resources from many devices. Furthermore, every task can have a “important” flag, so it will be better visible on the list. When the tasks accumulate, Justy gives possibility to find individual of them through the searching mechanism. In a sliding up menu is available a summary, where you find out how many tasks have “To Do” status and how many “Done” status.
 
 <br>
 
