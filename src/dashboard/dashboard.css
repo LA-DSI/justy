@@ -589,7 +589,7 @@ table input {
 .checkbox-edit-container .checkbox-edit:after {
   position: absolute;
   top: 5px;
-  left: 96px;
+  left: 9px;
   width: 5px;
   height: 10px;
   border: solid white;
